@@ -1,0 +1,46 @@
+{
+  "task": "vacuum",
+  "target": 1,
+  "target_name": "vacuum",
+  "seed": 1,
+  "rank": 1,
+  "window_index": 7654,
+  "cohort_size": 233,
+  "demo": false,
+  "checkpoint": "loggers/results/final_vacuum_positional_seed1_2026-07-28_07-34-47/model.pt",
+  "checkpoint_sha256": "8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3",
+  "method": "hirescam",
+  "rho": 0.25,
+  "mc": 10,
+  "pool_size": 30000,
+  "neighbors_k": 50,
+  "cam_span_ticks_1based": [
+    76,
+    100
+  ],
+  "random_span_ticks_1based": [
+    3,
+    27
+  ],
+  "input_branch": "bid_volume",
+  "cam_shares": {
+    "ask_price": 0.0019,
+    "ask_volume": 0.3298,
+    "bid_price": 0.018,
+    "bid_volume": 0.6503
+  },
+  "p_original": [
+    0.0004,
+    0.9996
+  ],
+  "p_cam_deleted": [
+    0.9882,
+    0.0118
+  ],
+  "p_random_deleted": [
+    0.0008,
+    0.9992
+  ],
+  "flip_cam": true,
+  "flip_random": false
+}

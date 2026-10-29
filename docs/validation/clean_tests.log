@@ -1,0 +1,35 @@
+test_builders_have_explicit_class_head (test_baseline_source_contract.BaselineSourceContractTests.test_builders_have_explicit_class_head) ... ok
+test_models_return_logits_and_tlob_is_self_contained (test_baseline_source_contract.BaselineSourceContractTests.test_models_return_logits_and_tlob_is_self_contained) ... ok
+test_no_parameter_data_mutation_in_forward (test_baseline_source_contract.BaselineSourceContractTests.test_no_parameter_data_mutation_in_forward) ... ok
+test_hash_missing_changed_and_escaping_path (test_cleanup.PreservationTests.test_hash_missing_changed_and_escaping_path) ... ok
+test_old_entrypoint_exports_the_same_module (test_cleanup.PreservationTests.test_old_entrypoint_exports_the_same_module) ... ok
+test_prediction_based_mode_is_explicit (test_evaluation_protocol.ExplanationCohortTests.test_prediction_based_mode_is_explicit) ... ok
+test_selects_correct_target_alerts_by_confidence (test_evaluation_protocol.ExplanationCohortTests.test_selects_correct_target_alerts_by_confidence) ... ok
+test_ties_preserve_dataset_order (test_evaluation_protocol.ExplanationCohortTests.test_ties_preserve_dataset_order) ... ok
+test_future_labels_never_cross_segments (test_microstructure_labels.MicrostructureLabelTests.test_future_labels_never_cross_segments) ... ok
+test_toxic_up_and_down_use_future_top_of_book (test_microstructure_labels.MicrostructureLabelTests.test_toxic_up_and_down_use_future_top_of_book) ... ok
+test_vacuum_requires_volume_drop_and_spread_widening (test_microstructure_labels.MicrostructureLabelTests.test_vacuum_requires_volume_drop_and_spread_widening) ... ok
+test_windows_never_cross_segments (test_microstructure_labels.MicrostructureLabelTests.test_windows_never_cross_segments) ... ok
+test_branch_local_pool_forbids_interaction (test_models_pooling.TestBranchLocalPooling.test_branch_local_pool_forbids_interaction) ... ok
+test_forward_backward_gradients_reach_pool (test_models_pooling.TestBranchLocalPooling.test_forward_backward_gradients_reach_pool) ... ok
+test_multi_scale_state_keys_and_shapes (test_models_pooling.TestBranchLocalPooling.test_multi_scale_state_keys_and_shapes) ... ok
+test_parameter_counts_match_protocol (test_models_pooling.TestBranchLocalPooling.test_parameter_counts_match_protocol) ... ok
+test_positional_state_keys_and_shapes (test_models_pooling.TestBranchLocalPooling.test_positional_state_keys_and_shapes) ... ok
+test_positional_zero_init_equals_gap (test_models_pooling.TestBranchLocalPooling.test_positional_zero_init_equals_gap) ... ok
+test_strict_state_dict_round_trip (test_models_pooling.TestBranchLocalPooling.test_strict_state_dict_round_trip) ... ok
+test_temporal_weights_are_convex (test_models_pooling.TestBranchLocalPooling.test_temporal_weights_are_convex) ... ok
+test_boundary_parser_is_sorted_and_unique (test_paper_protocol.PaperProtocolTests.test_boundary_parser_is_sorted_and_unique) ... ok
+test_branch_upgrade_parameter_counts (test_paper_protocol.PaperProtocolTests.test_branch_upgrade_parameter_counts) ... ok
+test_manuscript_defaults (test_paper_protocol.PaperProtocolTests.test_manuscript_defaults) ... ok
+test_split_math (test_paper_protocol.PaperProtocolTests.test_split_math) ... ok
+test_identity_detects_file_change (test_provenance.ProvenanceTests.test_identity_detects_file_change) ... ok
+test_default_matches_frozen_protocol (test_split_purge_gap.TestSplitPurgeGap.test_default_matches_frozen_protocol) ... ok
+test_gap_larger_than_validation_empties_it (test_split_purge_gap.TestSplitPurgeGap.test_gap_larger_than_validation_empties_it) ... ok
+test_gap_removes_head_of_validation_only (test_split_purge_gap.TestSplitPurgeGap.test_gap_removes_head_of_validation_only) ... ok
+test_negative_gap_rejected (test_split_purge_gap.TestSplitPurgeGap.test_negative_gap_rejected) ... ok
+test_two_segments_each_purged (test_split_purge_gap.TestSplitPurgeGap.test_two_segments_each_purged) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 10.311s
+
+OK

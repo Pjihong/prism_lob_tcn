@@ -1,0 +1,26 @@
+{
+  "regression": {
+    "checkpoints": 6,
+    "arrays_equal": 54,
+    "max_abs_difference": 0,
+    "input": "two fixed synthetic windows per checkpoint; logits and four branch signed/absolute HiResCAM"
+  },
+  "cf_mirror.aggregated_curves.csv": {
+    "rows": 396,
+    "exactly_equal": true
+  },
+  "cf_mirror.sample_counts.csv": {
+    "rows": 36,
+    "exactly_equal": true
+  },
+  "stored_vacuum_predictions": {
+    "seeds": [
+      0.17013064209082734,
+      0.2199203643329054,
+      0.2382969506155125
+    ],
+    "mean": 0.20944931901308175,
+    "population_sd": 0.028796915309780336,
+    "note": "Recomputed from supplied saved predictions, not new checkpoint inference; manuscript discrepancy retained."
+  }
+}

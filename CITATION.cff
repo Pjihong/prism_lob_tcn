@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying Prism-LOB manuscript and the repository commit used."
+title: "Prism-LOB: Structured Evidence and Perturbation Audits for Limit Order Book Risk Prediction"
+type: software
+authors:
+  - family-names: Park
+    given-names: Jihong
+  - family-names: Koo
+    given-names: Eunho
+repository-code: "https://github.com/Pjihong/prism_lob_tcn"
+abstract: "Research code and reproducibility artifacts for branch-wise attribution and perturbation audits of limit order book risk proxies."

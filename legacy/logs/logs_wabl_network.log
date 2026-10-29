@@ -1,0 +1,9 @@
+/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/plot_wabl_network.py:205: RuntimeWarning: Mean of empty slice
+  A_mean, A_std = np.nanmean(A, axis=0), np.nanstd(A, axis=0)
+/home/jupyter-jihong0429/.local/lib/python3.10/site-packages/numpy/lib/nanfunctions.py:1879: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/plot_wabl_network.py:230: RuntimeWarning: Mean of empty slice
+  V_mean = np.nanmean(V, axis=0)
+[saved] figures/wabl_network/wabl_network_vacuum_k30.png / .pdf
+[saved] figures/wabl_network/wabl_var_appendix_vacuum_k30.png / .pdf
+[saved] figures/wabl_network/wabl_network_vacuum_k30.provenance.json

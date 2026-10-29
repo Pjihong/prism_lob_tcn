@@ -1,0 +1,21 @@
+# FI-2010 remains local; see docs/DATA.md for schema, source and checksums.
+/data/
+# Generated runs and logs stay local; paper PNGs are tracked in figures/.
+/loggers/
+/logs/
+/log/
+/figure_revision_output/
+/validation_output/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+build/
+dist/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example

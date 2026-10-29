@@ -1,0 +1,107 @@
+=== ours_vacuum_seed1 (ckpt=loggers/results/final_vacuum_positional_seed1_2026-07-28_07-34-47/model.pt) ===
+[done] class vacuum: 233 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3065 p=2.81e-40 recover(cam)=0.95 recover(rand)=0.03
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed1_insertion.png
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed1_insertion.csv
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed1_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed1_insertion.curves.npz
+=== ours_vacuum_seed2 (ckpt=loggers/results/final_vacuum_positional_seed2_2026-07-28_09-09-35/model.pt) ===
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2941 p=1.40e-67 recover(cam)=0.98 recover(rand)=0.04
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed2_insertion.png
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed2_insertion.csv
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed2_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed2_insertion.curves.npz
+=== ours_vacuum_seed3 (ckpt=loggers/results/final_vacuum_positional_seed3_2026-07-28_10-20-12/model.pt) ===
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2869 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.04
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed3_insertion.png
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed3_insertion.csv
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed3_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/ours_vacuum_seed3_insertion.curves.npz
+=== deeplob_toxic_seed1 (ckpt=loggers/results/deeplob_toxic_seed1_k10_2026-07-29_17-28-13/model.pt) ===
+[done] class toxic_up: 74 windows (direction=insertion)
+[done] class toxic_down: 242 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2755 p=3.87e-14 recover(cam)=0.92 recover(rand)=0.07
+  [ins toxic_down] ΔAUC=0.1602 p=2.78e-41 recover(cam)=0.75 recover(rand)=0.06
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed1_insertion.png
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed1_insertion.csv
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed1_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed1_insertion.curves.npz
+=== deeplob_toxic_seed2 (ckpt=loggers/results/deeplob_toxic_seed2_k10_2026-07-29_21-12-27/model.pt) ===
+[done] class toxic_up: 61 windows (direction=insertion)
+[done] class toxic_down: 239 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1824 p=5.56e-12 recover(cam)=0.67 recover(rand)=0.05
+  [ins toxic_down] ΔAUC=0.2028 p=3.72e-41 recover(cam)=0.83 recover(rand)=0.05
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed2_insertion.png
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed2_insertion.csv
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed2_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed2_insertion.curves.npz
+=== deeplob_toxic_seed3 (ckpt=loggers/results/deeplob_toxic_seed3_k10_2026-07-29_23-52-34/model.pt) ===
+[done] class toxic_up: 308 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2019 p=1.51e-51 recover(cam)=0.92 recover(rand)=0.12
+  [ins toxic_down] ΔAUC=0.1555 p=3.53e-66 recover(cam)=0.89 recover(rand)=0.08
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed3_insertion.png
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed3_insertion.csv
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed3_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/deeplob_toxic_seed3_insertion.curves.npz
+=== deeplob_vacuum_seed1 (ckpt=loggers/results/deeplob_vacuum_seed1_k30_2026-07-29_18-13-51/model.pt) ===
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3096 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.03
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed1_insertion.png
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed1_insertion.csv
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed1_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed1_insertion.curves.npz
+=== deeplob_vacuum_seed2 (ckpt=loggers/results/deeplob_vacuum_seed2_k30_2026-07-29_22-02-07/model.pt) ===
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2779 p=1.93e-67 recover(cam)=0.97 recover(rand)=0.04
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed2_insertion.png
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed2_insertion.csv
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed2_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed2_insertion.curves.npz
+=== deeplob_vacuum_seed3 (ckpt=loggers/results/deeplob_vacuum_seed3_k30_2026-07-30_00-05-48/model.pt) ===
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2893 p=1.37e-67 recover(cam)=0.99 recover(rand)=0.02
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed3_insertion.png
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed3_insertion.csv
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed3_insertion.windows.csv
+[wrote] figures/cf_insertion_redump/deeplob_vacuum_seed3_insertion.curves.npz
+=== 수치 일치 검증 (재덤프 recovery vs 기존 cf_final CSV) ===
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+deeplob,toxic,toxic_up,insertion,74,top_confidence_correct,unconditional_full_window_train_donor,f731724e154210d31ac4244ec896b9dcd7307390d0e50f4aca2d53e0a89e0d48,1,50,10,30000,0.3174785194091231,0.041954849239168444,0.027851573232613117,0.27552367016995466,3.866366526504789e-14,0.918918918918919,0.06756756756756757,0.0
+
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+deeplob,toxic,toxic_up,insertion,61,top_confidence_correct,unconditional_full_window_train_donor,97e820933752fdfc4bd6c39e4a78cc8551de0e9c811ccf9ca3b541506d6d48e9,2,50,10,30000,0.2134439208119238,0.031030033927615084,0.018628029525839442,0.1824138868843087,5.555823681751392e-12,0.6721311475409836,0.04918032786885246,0.0
+
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+deeplob,toxic,toxic_up,insertion,308,top_confidence_correct,unconditional_full_window_train_donor,9c8305e6574e3c1c017d6c65a5e8b77b2141d711e5276a772b8f4872a30311d2,3,50,10,30000,0.3034634109556617,0.10160120851088121,0.0771027719626179,0.20186220244478054,1.5101768339132685e-51,0.9155844155844156,0.12337662337662338,0.032467532467532464
+
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+deeplob,vacuum,vacuum,insertion,400,top_confidence_correct,unconditional_full_window_train_donor,c060c86e1d8f5bae75c6ac3a1ba6d0c38939680159064b921073789977acb2de,1,50,10,30000,0.4243687991917977,0.1147269369256137,0.10716708280182502,0.309641862266184,1.365034630976675e-67,1.0,0.0325,0.005
+
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+deeplob,vacuum,vacuum,insertion,400,top_confidence_correct,unconditional_full_window_train_donor,854544b877d5764cfbdb342e61302a0b239f733750115e4366e09f84ca210a14,2,50,10,30000,0.3656671345761388,0.08777909675171576,0.07812525816183552,0.277888037824423,1.928402072045896e-67,0.97,0.0425,0.0025
+
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+deeplob,vacuum,vacuum,insertion,400,top_confidence_correct,unconditional_full_window_train_donor,b94b0ba6249e0e718e792f2f76d762eeb6fd7792dc1ad38b30c546a73416ee6f,3,50,10,30000,0.36776899935922613,0.07844777218380068,0.07115894464536246,0.2893212271754255,1.365034630976675e-67,0.995,0.0225,0.0
+
+model,task,cls,direction,n,selection,baseline,checkpoint_sha256,seed,neighbor_candidates,mc_samples,pool_size,ins_auc_cam,ins_auc_rand,ins_auc_anti,ins_dAUC_mean,wilcoxon_p,recovery_cam,recovery_random,recovery_anti
+ours,vacuum,vacuum,insertion,233,top_confidence_correct,unconditional_full_window_train_donor,8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3,1,50,10,30000,0.34425260640780353,0.03773551767527771,0.03088814908583786,0.30651708873252576,2.8122589363377365e-40,0.9527896995708155,0.02575107296137339,0.0
+=== cf_mirror 재생성 ===
+deeplob_toxic_seed1_insertion.curves.npz
+deeplob_toxic_seed2_insertion.curves.npz
+deeplob_toxic_seed3_insertion.curves.npz
+deeplob_vacuum_seed1_insertion.curves.npz
+deeplob_vacuum_seed2_insertion.curves.npz
+deeplob_vacuum_seed3_insertion.curves.npz
+ours_toxic_seed1_insertion.curves.npz
+ours_toxic_seed2_insertion.curves.npz
+ours_toxic_seed3_insertion.curves.npz
+ours_vacuum_seed1_insertion.curves.npz
+ours_vacuum_seed2_insertion.curves.npz
+ours_vacuum_seed3_insertion.curves.npz
+[saved] figures/cf_mirror_positional/cf_mirror.png / .pdf
+[saved] figures/cf_mirror_positional/cf_mirror.provenance.json
+[upload this] rerun_kit/cf_mirror_final_20260826_0411.tar.gz
+FIX4 DONE

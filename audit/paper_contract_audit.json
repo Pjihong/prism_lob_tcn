@@ -1,0 +1,332 @@
+{
+  "counts": {
+    "error": 43,
+    "warning": 12,
+    "info": 2
+  },
+  "issues": [
+    {
+      "severity": "info",
+      "code": "baseline-sources",
+      "message": "all three baseline modules are present and expose explicit class heads",
+      "sha256": {
+        "deeplob": "0d74099c9434f92c1bc9342fd0dc71b3641f5220fc1b26d2e1fa16913379ca6b",
+        "tlob": "483fa0e9604d15072bdd19ae7b8aa33dcc7f41d651694d9cca15082a8a049792",
+        "bin_ctabl": "ec85cd5ecdf359d9c6fb42b16176319ef928ecea4e7a84bc92f4769cbb7d5ab1"
+      },
+      "expected_parameter_counts": {
+        "deeplob_3class": 143907,
+        "tlob_3class": 1798866,
+        "bin_ctabl_3class": 12526
+      }
+    },
+    {
+      "severity": "info",
+      "code": "canonical-protocol",
+      "message": "loaded canonical protocol",
+      "values": {
+        "seq_len": 100,
+        "n_features": 40,
+        "toxic_horizon": 10,
+        "vacuum_horizon": 30,
+        "batch_size": 256,
+        "epochs": 100,
+        "patience": 10,
+        "branch_temporal_receptive_field": 29,
+        "ours_params_toxic": 141955,
+        "ours_params_vacuum": 141890,
+        "deeplob_params_toxic": 143907,
+        "tlob_params_toxic": 1798866,
+        "bin_ctabl_params_toxic": 12526,
+        "pool_size": 30000,
+        "mc": 10,
+        "neighbors_k": 50,
+        "selection": "top-confidence correct target alerts",
+        "donor_subset": "training partition only (validation excluded)"
+      }
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\CaseWinIdxA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\CaseWinIdxB"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicDnFlipA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicDnFlipAStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicDnFlipR"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicDnFlipRStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicUpFlipA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicUpFlipAStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicUpFlipR"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLToxicUpFlipRStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLVacFlipA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLVacFlipAStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLVacFlipR"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\DLVacFlipRStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicDnFlipA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicDnFlipAStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicDnFlipR"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicDnFlipRStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicUpFlipA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicUpFlipAStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicUpFlipR"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursToxicUpFlipRStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursVacFlipA"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursVacFlipAStd"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursVacFlipR"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-macro",
+      "message": "undefined manuscript macro \\OursVacFlipRStd"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 7",
+      "excerpt": "%     → k>=20 ours 값은 동일 실행 재검증 필요(해당 위치에 TODO 주석)"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 58",
+      "excerpt": "\\newcommand{\\TBD}{\\textcolor{red}{\\texttt{TBD}}}"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 64",
+      "excerpt": "\\newcommand{\\CaseNAlerts}{507}      % n_correct_alerts (seed1; 3-seed로 확인 권장)"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 438",
+      "excerpt": "% [확인] 원본에 CTABL cite 키가 있으면 위 문장에 복원(예: tran2018temporal)"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 443",
+      "excerpt": "% [원문 대조 권장] 아래 표는 재구성본입니다. 채널(32,32,64)/FC 64/wd 1e-5 는 변경"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 477",
+      "excerpt": "% [원문 대조 필수] 아래 defn 블록은 원본 원고의 \\begin{defn}[충실성 게이트]\\label{def:gate}"
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 480",
+      "excerpt": "% 재구성본이며 G1/G2의 구조는 원문과 동일하나 세부 임계값은 반드시 원본과 대조하세요."
+    },
+    {
+      "severity": "warning",
+      "code": "unresolved-draft-marker",
+      "message": "unresolved draft marker at line 795",
+      "excerpt": "% TODO: 각 사례의 branch |CAM| share(스크립트 stdout)를 받으면 subcaption에 병기 예정."
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/model_arch.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/saliency_shape_4model.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/00_qualitative_case_studies.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig12_decision_survival.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig03_texture_raster.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig06_horizon_ridgeline.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig04_method_fan.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig10_decision_provenance_input.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig10_input_classmode.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/fig11_qualitative_cases.png"
+    },
+    {
+      "severity": "error",
+      "code": "missing-figure",
+      "message": "missing manuscript figure: viz_fig/axisC_localization_toxic_k10_seed1.png"
+    },
+    {
+      "severity": "error",
+      "code": "detection-number-conflict",
+      "message": "draft contains both disputed ours MCC values 0.179/0.186 and table values 0.109/0.116"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-neighbor-k",
+      "message": "counterfactual protocol uses K neighbours but never fixes K=50"
+    },
+    {
+      "severity": "error",
+      "code": "normalization-provenance-conflict",
+      "message": "draft claims both pre-normalized FI-2010 input and train-only fitted normalization; the supplied loader performs no normalization fit, so one provenance statement must change"
+    },
+    {
+      "severity": "warning",
+      "code": "toxic-label-wording",
+      "message": "narrative says consecutive changes, while the equation/code compare only endpoints t and t+k"
+    },
+    {
+      "severity": "warning",
+      "code": "tcn-receptive-field-wording",
+      "message": "the classifier aggregates all 100 positions through GAP, but each final branch timestep has local receptive field 29, not 100; word the architectural claim precisely"
+    },
+    {
+      "severity": "error",
+      "code": "deeplob-attribution-conflict",
+      "message": "abstract says the DeepLOB gate uses Grad-CAM, but the headline counterfactual table says HiResCAM"
+    },
+    {
+      "severity": "warning",
+      "code": "insertion-base-underspecified",
+      "message": "insertion has empty preserved context; state explicitly that rho=0 uses unconditional full-window draws from the training pool"
+    },
+    {
+      "severity": "warning",
+      "code": "localization-cohort-ambiguity",
+      "message": "the localization table reports one take-rate but compares two models; state whether each model is scored on its own successful injections, a shared intersection, or an ours-selected cohort, and report both take-rates"
+    },
+    {
+      "severity": "error",
+      "code": "non-nested-survival-interpretation",
+      "message": "argmax spans are reselected independently at each rho and need not be nested; a monotone survival/first-failure interpretation is unjustified unless a nested deletion path is defined"
+    },
+    {
+      "severity": "error",
+      "code": "undefined-g2-threshold",
+      "message": "G2 says 'material/multiplicative difference' but gives no numeric threshold"
+    }
+  ]
+}

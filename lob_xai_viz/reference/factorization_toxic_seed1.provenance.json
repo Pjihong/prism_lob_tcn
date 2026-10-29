@@ -1,0 +1,29 @@
+{
+  "task": "toxic",
+  "target": 1,
+  "target_name": "toxic_up",
+  "seed": 1,
+  "demo": false,
+  "checkpoint": "/home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt",
+  "checkpoint_sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee",
+  "pool_kind": "positional",
+  "mixtures": null,
+  "staircase_boundaries_1based": [],
+  "law": "HiResCAM(t) = T * alpha_t * GradCAM(t)",
+  "cohort_rule": "top-confidence correct alerts (same as Axis A)",
+  "cohort_size": 262,
+  "n_verify": 128,
+  "representative_rank": 1,
+  "representative_window_index": 20152,
+  "max_rel_err": 1.1281358919928972e-06,
+  "median_rel_err": 1.5324889333611758e-07,
+  "per_branch_max_rel_err": {
+    "ask_price": 1.07913728938504e-06,
+    "ask_volume": 3.635541459940961e-07,
+    "bid_price": 1.1281358919928972e-06,
+    "bid_volume": 8.280953098638707e-07
+  },
+  "r2": 0.9999999999999829,
+  "rel_tol": 0.001,
+  "verdict": "PASS"
+}

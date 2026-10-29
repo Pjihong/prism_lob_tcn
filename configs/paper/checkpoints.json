@@ -1,0 +1,30 @@
+{
+  "source": "lob_xai_viz/reference/input_manifest.json (checkpoint entries and CF source hashes)",
+  "scope": "Paper positional checkpoint identities only; weights are supplied separately.",
+  "checkpoints": {
+    "toxic_seed1": {
+      "path": "loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt",
+      "sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee"
+    },
+    "toxic_seed2": {
+      "path": "loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/model.pt",
+      "sha256": "eccb673fd685a7dca231330f21bf8bc50ce99297caf8fad4e52a1d088d8149f6"
+    },
+    "toxic_seed3": {
+      "path": "loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/model.pt",
+      "sha256": "63c0c5e158453b26c6d6932e921b3204d3b747a81a0b0e6b24ed7cde6486c653"
+    },
+    "vacuum_seed1": {
+      "path": "loggers/results/final_vacuum_positional_seed1_2026-07-28_07-34-47/model.pt",
+      "sha256": "8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3"
+    },
+    "vacuum_seed2": {
+      "path": "loggers/results/final_vacuum_positional_seed2_2026-07-28_09-09-35/model.pt",
+      "sha256": "36fe452a073a7b219d10f96b4a3655280dd33b6be79d4f6871692ad953e70398"
+    },
+    "vacuum_seed3": {
+      "path": "loggers/results/final_vacuum_positional_seed3_2026-07-28_10-20-12/model.pt",
+      "sha256": "6c2c17a4a9ceaeb6af913a320ff15036fc70f2799da21225110ae47273da1356"
+    }
+  }
+}

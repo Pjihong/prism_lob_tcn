@@ -1,0 +1,121 @@
+{
+  "task": "toxic",
+  "k": 10,
+  "rho": 0.25,
+  "model_name": "Prism-LOB",
+  "branches": [
+    "ask_price",
+    "ask_volume",
+    "bid_price",
+    "bid_volume"
+  ],
+  "fig00": {
+    "toxic_up_correct": {
+      "window": 20152,
+      "conf": 0.9942,
+      "true": "toxic_up",
+      "pred": "toxic_up",
+      "peak_t": 99,
+      "askvol_share": 0.7861
+    },
+    "toxic_up_wrong": {
+      "window": 20154,
+      "conf": 0.995,
+      "true": "stationary",
+      "pred": "toxic_up",
+      "peak_t": 99,
+      "askvol_share": 0.7694
+    },
+    "stationary_correct": {
+      "window": 1915,
+      "conf": 1.0,
+      "true": "stationary",
+      "pred": "stationary",
+      "peak_t": 99,
+      "askvol_share": 0.696
+    },
+    "stationary_wrong": {
+      "window": 3706,
+      "conf": 1.0,
+      "true": "toxic_up",
+      "pred": "stationary",
+      "peak_t": 99,
+      "askvol_share": 0.4956
+    },
+    "toxic_down_correct": {
+      "window": 22887,
+      "conf": 0.9673,
+      "true": "toxic_down",
+      "pred": "toxic_down",
+      "peak_t": 99,
+      "askvol_share": 0.5793
+    },
+    "toxic_down_wrong": {
+      "window": 6809,
+      "conf": 0.9931,
+      "true": "stationary",
+      "pred": "toxic_down",
+      "peak_t": 99,
+      "askvol_share": 0.241
+    }
+  },
+  "per_seed": {
+    "1": {
+      "toxic_up": {
+        "n_alerts": 262,
+        "rank1_window": 20152,
+        "rank1_conf": 0.9942,
+        "rank1_askvol_share": 0.7861,
+        "dominant_askvol_share": 0.9771,
+        "peak_last25_share": 1.0
+      },
+      "toxic_down": {
+        "n_alerts": 400,
+        "rank1_window": 22887,
+        "rank1_conf": 0.9673,
+        "rank1_askvol_share": 0.5792,
+        "dominant_askvol_share": 0.455,
+        "peak_last25_share": 1.0
+      }
+    },
+    "2": {
+      "toxic_up": {
+        "n_alerts": 133,
+        "rank1_window": 691,
+        "rank1_conf": 0.9955,
+        "rank1_askvol_share": 0.6274,
+        "dominant_askvol_share": 0.8496,
+        "peak_last25_share": 1.0
+      },
+      "toxic_down": {
+        "n_alerts": 354,
+        "rank1_window": 25205,
+        "rank1_conf": 0.9999,
+        "rank1_askvol_share": 0.6773,
+        "dominant_askvol_share": 0.6215,
+        "peak_last25_share": 1.0
+      }
+    },
+    "3": {
+      "toxic_up": {
+        "n_alerts": 174,
+        "rank1_window": 22643,
+        "rank1_conf": 0.9871,
+        "rank1_askvol_share": 0.6369,
+        "dominant_askvol_share": 0.9368,
+        "peak_last25_share": 1.0
+      },
+      "toxic_down": {
+        "n_alerts": 400,
+        "rank1_window": 24005,
+        "rank1_conf": 0.9974,
+        "rank1_askvol_share": 0.8586,
+        "dominant_askvol_share": 0.645,
+        "peak_last25_share": 1.0
+      }
+    }
+  },
+  "caption": {
+    "fig11_ko": "정타 경보 코호트(시드당 up n=133–262, down n=354–400)에서 매도 잔량(ask-volume)이 최대 |CAM| 질량 branch인 경보 비율은 up 85–98%, down 46–64%였고, S(t) 봉우리가 창 후반 25%에 놓인 비율은 up 100–100%, down 100–100%에 그쳐 증거가 창 전반에 분산되어 있다."
+  }
+}

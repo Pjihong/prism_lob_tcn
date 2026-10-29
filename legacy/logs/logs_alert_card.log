@@ -1,0 +1,8 @@
+[alert-card] window index=21586 (cohort rank 1/237) p(toxic_up)=1.000
+[alert-card] CAM span [76,100]  p 1.000 -> 0.048 (FLIP);  random span [3,27] -> 0.078 (FLIP)
+[saved] figures/alert_card/alert_card_toxic_toxic_up_seed1_rank1.png / .pdf
+[saved] figures/alert_card/alert_card_toxic_toxic_up_seed1_rank1.provenance.json
+[alert-card] window index=7654 (cohort rank 1/233) p(vacuum)=1.000
+[alert-card] CAM span [76,100]  p 1.000 -> 0.012 (FLIP);  random span [3,27] -> 0.999 (no flip)
+[saved] figures/alert_card/alert_card_vacuum_vacuum_seed1_rank1.png / .pdf
+[saved] figures/alert_card/alert_card_vacuum_vacuum_seed1_rank1.provenance.json

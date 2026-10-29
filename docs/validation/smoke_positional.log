@@ -1,0 +1,2 @@
+[ok] toxic  pool=positional  params=142,439 output=(2, 3) strict_reload=yes
+[ok] vacuum pool=positional  params=142,290 output=(2, 2) strict_reload=yes

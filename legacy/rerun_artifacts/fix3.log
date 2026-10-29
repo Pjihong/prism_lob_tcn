@@ -1,0 +1,265 @@
+=== [D] cf_effect_stats 재계산 ===
+[done] 18 npz analysed -> figures/cf_effect_stats_final_positional.csv
+[caveat] overlapping windows: treat p-values as descriptive unless block/cluster uncertainty is added
+=== [E] branch probe ===
+[probe] ckpt: /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt
+[probe] X.shape=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+
+=== module output shapes (name : shape) ===
+  input_norm                               (64, 100, 40)       
+  cnns.0.blocks.0.downsample               (64, 32, 100)       
+  cnns.0.blocks.0.conv1                    (64, 32, 100)       
+  cnns.0.blocks.0.norm1                    (64, 32, 100)       
+  cnns.0.blocks.0.act                      (64, 32, 100)       
+  cnns.0.blocks.0.dropout                  (64, 32, 100)       
+  cnns.0.blocks.0.conv2                    (64, 32, 100)       
+  cnns.0.blocks.0.norm2                    (64, 32, 100)       
+  cnns.0.blocks.0                          (64, 32, 100)       
+  cnns.0.blocks.1.conv1                    (64, 32, 100)       
+  cnns.0.blocks.1.norm1                    (64, 32, 100)       
+  cnns.0.blocks.1.act                      (64, 32, 100)       
+  cnns.0.blocks.1.dropout                  (64, 32, 100)       
+  cnns.0.blocks.1.conv2                    (64, 32, 100)       
+  cnns.0.blocks.1.norm2                    (64, 32, 100)       
+  cnns.0.blocks.1                          (64, 32, 100)       
+  cnns.0.blocks.2.downsample               (64, 64, 100)       
+  cnns.0.blocks.2.conv1                    (64, 64, 100)       
+  cnns.0.blocks.2.norm1                    (64, 64, 100)       
+  cnns.0.blocks.2.act                      (64, 64, 100)       
+  cnns.0.blocks.2.dropout                  (64, 64, 100)       
+  cnns.0.blocks.2.conv2                    (64, 64, 100)       
+  cnns.0.blocks.2.norm2                    (64, 64, 100)       
+  cnns.0.blocks.2                          (64, 64, 100)       
+  cnns.0                                   (64, 64, 100)          <== FUSION (branch encoder)   <== TEMPORAL (s_b(t) source)
+  cnns.1.blocks.0.downsample               (64, 32, 100)       
+  cnns.1.blocks.0.conv1                    (64, 32, 100)       
+  cnns.1.blocks.0.norm1                    (64, 32, 100)       
+  cnns.1.blocks.0.act                      (64, 32, 100)       
+  cnns.1.blocks.0.dropout                  (64, 32, 100)       
+  cnns.1.blocks.0.conv2                    (64, 32, 100)       
+  cnns.1.blocks.0.norm2                    (64, 32, 100)       
+  cnns.1.blocks.0                          (64, 32, 100)       
+  cnns.1.blocks.1.conv1                    (64, 32, 100)       
+  cnns.1.blocks.1.norm1                    (64, 32, 100)       
+  cnns.1.blocks.1.act                      (64, 32, 100)       
+  cnns.1.blocks.1.dropout                  (64, 32, 100)       
+  cnns.1.blocks.1.conv2                    (64, 32, 100)       
+  cnns.1.blocks.1.norm2                    (64, 32, 100)       
+  cnns.1.blocks.1                          (64, 32, 100)       
+  cnns.1.blocks.2.downsample               (64, 64, 100)       
+  cnns.1.blocks.2.conv1                    (64, 64, 100)       
+  cnns.1.blocks.2.norm1                    (64, 64, 100)       
+  cnns.1.blocks.2.act                      (64, 64, 100)       
+  cnns.1.blocks.2.dropout                  (64, 64, 100)       
+  cnns.1.blocks.2.conv2                    (64, 64, 100)       
+  cnns.1.blocks.2.norm2                    (64, 64, 100)       
+  cnns.1.blocks.2                          (64, 64, 100)       
+  cnns.1                                   (64, 64, 100)          <== FUSION (branch encoder)   <== TEMPORAL (s_b(t) source)
+  cnns.2.blocks.0.downsample               (64, 32, 100)       
+  cnns.2.blocks.0.conv1                    (64, 32, 100)       
+  cnns.2.blocks.0.norm1                    (64, 32, 100)       
+  cnns.2.blocks.0.act                      (64, 32, 100)       
+  cnns.2.blocks.0.dropout                  (64, 32, 100)       
+  cnns.2.blocks.0.conv2                    (64, 32, 100)       
+  cnns.2.blocks.0.norm2                    (64, 32, 100)       
+  cnns.2.blocks.0                          (64, 32, 100)       
+  cnns.2.blocks.1.conv1                    (64, 32, 100)       
+  cnns.2.blocks.1.norm1                    (64, 32, 100)       
+  cnns.2.blocks.1.act                      (64, 32, 100)       
+  cnns.2.blocks.1.dropout                  (64, 32, 100)       
+  cnns.2.blocks.1.conv2                    (64, 32, 100)       
+  cnns.2.blocks.1.norm2                    (64, 32, 100)       
+  cnns.2.blocks.1                          (64, 32, 100)       
+  cnns.2.blocks.2.downsample               (64, 64, 100)       
+  cnns.2.blocks.2.conv1                    (64, 64, 100)       
+  cnns.2.blocks.2.norm1                    (64, 64, 100)       
+  cnns.2.blocks.2.act                      (64, 64, 100)       
+  cnns.2.blocks.2.dropout                  (64, 64, 100)       
+  cnns.2.blocks.2.conv2                    (64, 64, 100)       
+  cnns.2.blocks.2.norm2                    (64, 64, 100)       
+  cnns.2.blocks.2                          (64, 64, 100)       
+  cnns.2                                   (64, 64, 100)          <== FUSION (branch encoder)   <== TEMPORAL (s_b(t) source)
+  cnns.3.blocks.0.downsample               (64, 32, 100)       
+  cnns.3.blocks.0.conv1                    (64, 32, 100)       
+  cnns.3.blocks.0.norm1                    (64, 32, 100)       
+  cnns.3.blocks.0.act                      (64, 32, 100)       
+  cnns.3.blocks.0.dropout                  (64, 32, 100)       
+  cnns.3.blocks.0.conv2                    (64, 32, 100)       
+  cnns.3.blocks.0.norm2                    (64, 32, 100)       
+  cnns.3.blocks.0                          (64, 32, 100)       
+  cnns.3.blocks.1.conv1                    (64, 32, 100)       
+  cnns.3.blocks.1.norm1                    (64, 32, 100)       
+  cnns.3.blocks.1.act                      (64, 32, 100)       
+  cnns.3.blocks.1.dropout                  (64, 32, 100)       
+  cnns.3.blocks.1.conv2                    (64, 32, 100)       
+  cnns.3.blocks.1.norm2                    (64, 32, 100)       
+  cnns.3.blocks.1                          (64, 32, 100)       
+  cnns.3.blocks.2.downsample               (64, 64, 100)       
+  cnns.3.blocks.2.conv1                    (64, 64, 100)       
+  cnns.3.blocks.2.norm1                    (64, 64, 100)       
+  cnns.3.blocks.2.act                      (64, 64, 100)       
+  cnns.3.blocks.2.dropout                  (64, 64, 100)       
+  cnns.3.blocks.2.conv2                    (64, 64, 100)       
+  cnns.3.blocks.2.norm2                    (64, 64, 100)       
+  cnns.3.blocks.2                          (64, 64, 100)       
+  cnns.3                                   (64, 64, 100)          <== FUSION (branch encoder)   <== TEMPORAL (s_b(t) source)
+  pool.pools.0                             (64, 64)            
+  pool.pools.1                             (64, 64)            
+  pool.pools.2                             (64, 64)            
+  pool.pools.3                             (64, 64)            
+  pool                                     (64, 256)           
+  fc.0                                     (64, 64)            
+  fc.1                                     (64, 64)            
+  fc.2                                     (64, 64)            
+  fc.3                                     (64, 3)                <== HEAD?
+  fc                                       (64, 3)             
+
+=== auto-detected ===
+  fusion_modules : ['cnns.0', 'cnns.1', 'cnns.2', 'cnns.3']
+  temporal_modules: ['cnns.0', 'cnns.1', 'cnns.2', 'cnns.3']
+  head_module    : fc.3
+  seq_len        : 100
+
+=== verification: zero each branch's fused feature -> Δ target logit ===
+  ablate ask_price  : mean|Δlogit| = 1.2916e-02 ok
+  ablate ask_volume : mean|Δlogit| = 1.8441e+00 ok
+  ablate bid_price  : mean|Δlogit| = 4.6268e-02 ok
+  ablate bid_volume : mean|Δlogit| = 1.2209e+00 ok
+  per-branch s_b(t) shapes: {'ask_price': (16, 100), 'ask_volume': (16, 100), 'bid_price': (16, 100), 'bid_volume': (16, 100)}
+
+[probe] config written to rerun_kit/branch_config_toxic_positional.json  (verified=True)
+[ok] config 생성
+=== [F] Axis A (3-seed) ===
+[axisA-min] X=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+[axisA-min] n target windows = 262
+
+=== branch importance (drop-one ablation, value = logit) ===
+  ask_volume  drop-one=+7.6527 +/- 0.0951   CAM share=0.656   Wilcoxon p=1.00e-44 ***
+  bid_volume  drop-one=+0.7876 +/- 0.0475   CAM share=0.300   Wilcoxon p=4.83e-33 ***
+  ask_price   drop-one=+0.3201 +/- 0.0117   CAM share=0.032   Wilcoxon p=6.22e-43 ***
+  bid_price   drop-one=+0.1750 +/- 0.0073   CAM share=0.012   Wilcoxon p=2.57e-41 ***
+
+  agreement (observational CAM  vs  causal ablation):
+    per-window Kendall tau: mean=+0.730  sign-test(tau>0) p=1.77e-74  (n=262 windows)   <-- headline
+    branch-mean Spearman=+1.000  exact 4!-perm p=0.042 (descriptive; floor 1/24 ~= 0.042)
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed1.csv, figures/axis_a_positional/axisA_min_toxic_k10_seed1.windows.csv
+
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed1.csv
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed1.png
+[axisA-min] X=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+[axisA-min] n target windows = 133
+
+=== branch importance (drop-one ablation, value = logit) ===
+  ask_volume  drop-one=+23.2053 +/- 0.3172   CAM share=0.569   Wilcoxon p=1.43e-23 ***
+  bid_volume  drop-one=+2.3466 +/- 0.2563   CAM share=0.390   Wilcoxon p=5.92e-23 ***
+  ask_price   drop-one=+0.4199 +/- 0.0447   CAM share=0.003   Wilcoxon p=3.46e-13 ***
+  bid_price   drop-one=+0.1767 +/- 0.0319   CAM share=0.038   Wilcoxon p=2.99e-07 ***
+
+  agreement (observational CAM  vs  causal ablation):
+    per-window Kendall tau: mean=+0.649  sign-test(tau>0) p=2.94e-39  (n=133 windows)   <-- headline
+    branch-mean Spearman=+0.800  exact 4!-perm p=0.167 (descriptive; floor 1/24 ~= 0.042)
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed2.csv, figures/axis_a_positional/axisA_min_toxic_k10_seed2.windows.csv
+
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed2.csv
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed2.png
+[axisA-min] X=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+[axisA-min] n target windows = 174
+
+=== branch importance (drop-one ablation, value = logit) ===
+  ask_volume  drop-one=+9.3630 +/- 0.1105   CAM share=0.614   Wilcoxon p=2.64e-30 ***
+  bid_volume  drop-one=+0.4692 +/- 0.0857   CAM share=0.332   Wilcoxon p=9.06e-08 ***
+  bid_price   drop-one=-0.0808 +/- 0.0224   CAM share=0.044   Wilcoxon p=5.81e-07 ***
+  ask_price   drop-one=-0.1736 +/- 0.0297   CAM share=0.010   Wilcoxon p=1.72e-08 ***
+
+  agreement (observational CAM  vs  causal ablation):
+    per-window Kendall tau: mean=+0.655  sign-test(tau>0) p=1.09e-47  (n=174 windows)   <-- headline
+    branch-mean Spearman=+1.000  exact 4!-perm p=0.042 (descriptive; floor 1/24 ~= 0.042)
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed3.csv, figures/axis_a_positional/axisA_min_toxic_k10_seed3.windows.csv
+
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed3.csv
+[saved] figures/axis_a_positional/axisA_min_toxic_k10_seed3.png
+=== [G] Axis B (toxic 참고치) ===
+[axisB] X.shape=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+[axisB] n target windows = 262
+[axisB] VAR(1) fit on 262 windows; median cond=1.07e+01, max spectral radius=3.1571 -> UNSTABLE/NON-STATIONARY
+[axisB] Spearman(W_var, W_abl) = 0.909 (p=4.19e-05)  ->  EXPLORATORY (unstable VAR or weak agreement) -- report as exploratory only
+
+  VAR influence W_var[i->j] (row-normalized):
+    ask_price    .   0.49  0.07  0.44
+    ask_volume 0.16    .   0.13  0.71
+    bid_price  0.34  0.30    .   0.35
+    bid_volume 0.16  0.71  0.12    . 
+  intervention W_abl[i->j] (row-normalized):
+    ask_price    .   0.57  0.03  0.40
+    ask_volume 0.20    .   0.03  0.77
+    bid_price  0.09  0.54    .   0.36
+    bid_volume 0.09  0.88  0.02    . 
+
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed1.csv
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed1.matrices.csv
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed1.png
+[axisB][note] Per the integrity rules, write this up as EXPLORATORY (do not claim a verified equation system). State the VAR lag / series-length limits.
+[axisB] X.shape=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+[axisB] n target windows = 133
+[axisB] VAR(1) fit on 133 windows; median cond=7.23e+00, max spectral radius=1.9362 -> UNSTABLE/NON-STATIONARY
+[axisB] Spearman(W_var, W_abl) = 0.825 (p=0.000951)  ->  EXPLORATORY (unstable VAR or weak agreement) -- report as exploratory only
+
+  VAR influence W_var[i->j] (row-normalized):
+    ask_price    .   0.41  0.24  0.34
+    ask_volume 0.05    .   0.20  0.75
+    bid_price  0.28  0.33    .   0.39
+    bid_volume 0.06  0.67  0.27    . 
+  intervention W_abl[i->j] (row-normalized):
+    ask_price    .   0.57  0.05  0.38
+    ask_volume 0.01    .   0.19  0.81
+    bid_price  0.01  0.59    .   0.41
+    bid_volume 0.01  0.91  0.08    . 
+
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed2.csv
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed2.matrices.csv
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed2.png
+[axisB][note] Per the integrity rules, write this up as EXPLORATORY (do not claim a verified equation system). State the VAR lag / series-length limits.
+[axisB] X.shape=(31828, 100, 40) classes=['stationary', 'toxic_up', 'toxic_down'] target=1
+[axisB] n target windows = 174
+[axisB] VAR(1) fit on 174 windows; median cond=1.82e+01, max spectral radius=2.0161 -> UNSTABLE/NON-STATIONARY
+[axisB] Spearman(W_var, W_abl) = 0.881 (p=0.000153)  ->  EXPLORATORY (unstable VAR or weak agreement) -- report as exploratory only
+
+  VAR influence W_var[i->j] (row-normalized):
+    ask_price    .   0.38  0.13  0.50
+    ask_volume 0.19    .   0.26  0.56
+    bid_price  0.08  0.40    .   0.51
+    bid_volume 0.20  0.54  0.26    . 
+  intervention W_abl[i->j] (row-normalized):
+    ask_price    .   0.56  0.11  0.33
+    ask_volume 0.04    .   0.21  0.75
+    bid_price  0.03  0.58    .   0.38
+    bid_volume 0.02  0.87  0.11    . 
+
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed3.csv
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed3.matrices.csv
+[saved] figures/axis_b_positional/axisB_structure_toxic_k10_seed3.png
+[axisB][note] Per the integrity rules, write this up as EXPLORATORY (do not claim a verified equation system). State the VAR lag / series-length limits.
+=== [I-1] branch_importance ===
+[branch-imp] seed 1: ckpt=loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt  cohort n=262
+[branch-imp] cached -> figures/branch_importance_positional/cam_time_toxic_k10_seed1.npz
+[branch-imp] seed 2: ckpt=loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/model.pt  cohort n=133
+[branch-imp] cached -> figures/branch_importance_positional/cam_time_toxic_k10_seed2.npz
+[branch-imp] seed 3: ckpt=loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/model.pt  cohort n=174
+[branch-imp] cached -> figures/branch_importance_positional/cam_time_toxic_k10_seed3.npz
+[branch-imp][warn] seed 3: negative drop-one means {'ask_price': -0.173559, 'bid_price': -0.080777}; clipped to 0 before share normalisation (noted in provenance json)
+[saved] figures/branch_importance_positional/branch_importance_toxic_k10.png / .pdf
+[saved] figures/branch_importance_positional/branch_importance_toxic_k10.provenance.json
+=== [I-2] alert card ===
+[alert-card] window index=20152 (cohort rank 1/262) p(toxic_up)=0.994
+[alert-card] CAM span [76,100]  p 0.994 -> 0.027 (FLIP);  random span [3,27] -> 0.993 (no flip)
+[saved] figures/alert_card_positional/alert_card_toxic_toxic_up_seed1_rank1.png / .pdf
+[saved] figures/alert_card_positional/alert_card_toxic_toxic_up_seed1_rank1.provenance.json
+=== [I-3] cf_mirror ===
+ours_toxic_seed1_insertion.curves.npz
+ours_toxic_seed2_insertion.curves.npz
+ours_toxic_seed3_insertion.curves.npz
+[saved] figures/cf_mirror_positional/cf_mirror.png / .pdf
+[saved] figures/cf_mirror_positional/cf_mirror.provenance.json
+=== [J] 결과 수집 ===
+[upload this] rerun_kit/positional_final_results_20260825_2035.tar.gz
+FIX3 DONE

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "prism_figure_revision_20260929.zip",
+    "size": 474780,
+    "sha256": "ded855189c8ca1bcd3b785c8bebe0ac3c287b62fb02dd29d68a506cbece5ab10"
+  },
+  {
+    "name": "lob-xai.zip",
+    "size": 325148225,
+    "sha256": "22db136996adf3fc5653b341f37e7b8e80b2551f65ad697893d34d0d320b4ea8"
+  },
+  {
+    "name": "Prism_LOB_Integrated_Package.zip",
+    "size": 2580864,
+    "sha256": "f9a4b1c30f8cc6f3f65f62ae93379c2c57f2ba7148772cc301feadfa7e7bb13c"
+  },
+  {
+    "name": "my_code.zip",
+    "size": 204078,
+    "sha256": "91a3c60d6723e7e8239aeaad49329870b4543fb6cd8d35ab69dc1c61a20ce86b"
+  },
+  {
+    "name": "lob_tcn 1.pdf",
+    "size": 4042729,
+    "sha256": "5f8fd25ae39860778626373405f0c2ae5148b2657690c1049cf1b3cd291eadb3",
+    "disposition": "removed_by_request",
+    "reason": "Unpublished manuscript excluded from distribution at author request."
+  },
+  {
+    "name": "lob_tcn 2.pdf",
+    "size": 4957350,
+    "sha256": "af6d12c24e8966461e0f059feb8b26bfc579839407d3b9f7c0b2de665089282a",
+    "disposition": "removed_by_request",
+    "reason": "Unpublished manuscript excluded from distribution at author request."
+  },
+  {
+    "name": "Prism_LOB_TCN1.pdf",
+    "size": 8223677,
+    "sha256": "7d57507697335a04da56ab2e0578ed4aaba9f9ef77d51bc655a021c01e607e97",
+    "disposition": "removed_by_request",
+    "reason": "Unpublished manuscript excluded from distribution at author request."
+  },
+  {
+    "name": "Prism_LOB_TCN2.pdf",
+    "size": 8368356,
+    "sha256": "db11e60aa707d8cd39e9df5ec3811f42e30ddaf4968c999e9a028d48aeb7df04",
+    "disposition": "removed_by_request",
+    "reason": "Unpublished manuscript excluded from distribution at author request."
+  },
+  {
+    "name": "revision_20261021.txt",
+    "size": 83326,
+    "sha256": "869e8ef9ac16d47bdfa32a807e5fbf94cccd0e06c47b226b8f27832d149c2a8c",
+    "disposition": "removed_by_request",
+    "reason": "Unpublished manuscript excluded from distribution at author request."
+  }
+]

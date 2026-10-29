@@ -1,0 +1,36 @@
+{
+  "n_branches": 4,
+  "branch_names": [
+    "ask_price",
+    "ask_volume",
+    "bid_price",
+    "bid_volume"
+  ],
+  "seq_len": 100,
+  "fusion_modules": [
+    "cnns.0",
+    "cnns.1",
+    "cnns.2",
+    "cnns.3"
+  ],
+  "temporal_modules": [
+    "cnns.0",
+    "cnns.1",
+    "cnns.2",
+    "cnns.3"
+  ],
+  "head_module": "fc.3",
+  "verified": true,
+  "checkpoint": "/home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt",
+  "checkpoint_sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee",
+  "architecture_sha256": "7689fc6877fb7271fbfde482905751ce4d422e70e26ea6f736c1d7b2b0f93cb4",
+  "task": "toxic",
+  "seed": 1,
+  "k": 10,
+  "ablation_delta_logit": {
+    "ask_price": 0.012916316278278828,
+    "ask_volume": 1.8440523147583008,
+    "bid_price": 0.04626820236444473,
+    "bid_volume": 1.2209281921386719
+  }
+}

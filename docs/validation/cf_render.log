@@ -1,0 +1,10 @@
+
+[RUN] plot_cf_mirror.py
+Could not save font_manager cache [Errno 13] Permission denied: 'C:\\Users\\aa\\.matplotlib\\fontlist-v3.11.0.json.matplotlib-lock'
+[saved] C:\Users\aa\Documents\Codex\2026-10-20\26\outputs\prism_lob\figure_revision_output\20261020_172032_cf\work\cf\cf_mirror.png / .pdf
+[saved] C:\Users\aa\Documents\Codex\2026-10-20\26\outputs\prism_lob\figure_revision_output\20261020_172032_cf\work\cf\cf_mirror.provenance.json
+
+DONE
+Upload files in: C:\Users\aa\Documents\Codex\2026-10-20\26\outputs\prism_lob\figure_revision_output\20261020_172032_cf\fig 
+ZIP: C:\Users\aa\Documents\Codex\2026-10-20\26\outputs\prism_lob\figure_revision_output\20261020_172032_cf\overleaf_figures.zip
+Original scripts and images were not overwritten. See LATEX_GUIDE.md and notes/.

@@ -1,0 +1,28 @@
+[ok] test CSV SHA-256 provenance 일치
+[cfg] task=toxic k=10 seq_len=100 tick=0.00098 branches=['ask_price', 'ask_volume', 'bid_price', 'bid_volume']
+[load] 전체 테스트 윈도우 적재 중 ...
+[load] windows=31828  T=100
+[seed1] probs 계산 완료 (전체 정확도 0.7451)
+[seed2] probs 계산 완료 (전체 정확도 0.8073)
+[seed3] probs 계산 완료 (전체 정확도 0.7550)
+[fig00] UP ✓: window #20152 conf=0.994
+[fig00] UP ✗: window #20154 conf=0.995
+[fig00] FLAT ✓: window #1915 conf=1.000
+[fig00] FLAT ✗: window #3706 conf=1.000
+[fig00] DOWN ✓: window #22887 conf=0.967
+[fig00] DOWN ✗: window #6809 conf=0.993
+[saved] figures/qual_gallery_positional/fig00_qual_grounding_positional.png
+[fig11] seed1 UP: rank-1 #20152 conf=0.994 n=262 dom(ask-vol)=97.71% peak-last25=100.00%
+[fig11] seed1 DOWN: rank-1 #22887 conf=0.967 n=400 dom(ask-vol)=45.50% peak-last25=100.00%
+[fig11] seed2 UP: rank-1 #691 conf=0.996 n=133 dom(ask-vol)=84.96% peak-last25=100.00%
+[fig11] seed2 DOWN: rank-1 #25205 conf=1.000 n=354 dom(ask-vol)=62.15% peak-last25=100.00%
+[fig11] seed3 UP: rank-1 #22643 conf=0.987 n=174 dom(ask-vol)=93.68% peak-last25=100.00%
+[fig11] seed3 DOWN: rank-1 #24005 conf=0.997 n=400 dom(ask-vol)=64.50% peak-last25=100.00%
+[saved] figures/qual_gallery_positional/fig11_alert_typicality_positional.png
+[check] seed1 toxic_up rank-1 = #20152 — v3 알림 카드와 동일 ✓
+
+[caption] 정타 경보 코호트(시드당 up n=133–262, down n=354–400)에서 매도 잔량(ask-volume)이 최대 |CAM| 질량 branch인 경보 비율은 up 85–98%, down 46–64%였고, S(t) 봉우리가 창 후반 25%에 놓인 비율은 up 100–100%, down 100–100%에 그쳐 증거가 창 전반에 분산되어 있다.
+[saved] figures/qual_gallery_positional/caption_stats.json
+DONE in 13s
+[upload this] rerun_kit/qual_gallery_20260827_2030.tar.gz
+FIX5 DONE

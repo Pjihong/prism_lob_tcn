@@ -1,0 +1,53 @@
+{
+  "verified": true,
+  "results": [
+    {
+      "model": "deeplob",
+      "n_classes": 2,
+      "parameters": 143842,
+      "batch1_and_batch3_shape_ok": true,
+      "eval_state_immutable": true,
+      "finite_gradients": true
+    },
+    {
+      "model": "deeplob",
+      "n_classes": 3,
+      "parameters": 143907,
+      "batch1_and_batch3_shape_ok": true,
+      "eval_state_immutable": true,
+      "finite_gradients": true
+    },
+    {
+      "model": "tlob",
+      "n_classes": 2,
+      "parameters": 1798815,
+      "batch1_and_batch3_shape_ok": true,
+      "eval_state_immutable": true,
+      "finite_gradients": true
+    },
+    {
+      "model": "tlob",
+      "n_classes": 3,
+      "parameters": 1798866,
+      "batch1_and_batch3_shape_ok": true,
+      "eval_state_immutable": true,
+      "finite_gradients": true
+    },
+    {
+      "model": "bin_ctabl",
+      "n_classes": 2,
+      "parameters": 12405,
+      "batch1_and_batch3_shape_ok": true,
+      "eval_state_immutable": true,
+      "finite_gradients": true
+    },
+    {
+      "model": "bin_ctabl",
+      "n_classes": 3,
+      "parameters": 12526,
+      "batch1_and_batch3_shape_ok": true,
+      "eval_state_immutable": true,
+      "finite_gradients": true
+    }
+  ]
+}

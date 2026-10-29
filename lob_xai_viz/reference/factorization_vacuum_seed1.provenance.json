@@ -1,0 +1,29 @@
+{
+  "task": "vacuum",
+  "target": 1,
+  "target_name": "vacuum",
+  "seed": 1,
+  "demo": false,
+  "checkpoint": "loggers/results/final_vacuum_positional_seed1_2026-07-28_07-34-47/model.pt",
+  "checkpoint_sha256": "8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3",
+  "pool_kind": "positional",
+  "mixtures": null,
+  "staircase_boundaries_1based": [],
+  "law": "HiResCAM(t) = T * alpha_t * GradCAM(t)",
+  "cohort_rule": "top-confidence correct alerts (same as Axis A)",
+  "cohort_size": 233,
+  "n_verify": 128,
+  "representative_rank": 1,
+  "representative_window_index": 7654,
+  "max_rel_err": 6.11058079286525e-06,
+  "median_rel_err": 1.719982396387058e-07,
+  "per_branch_max_rel_err": {
+    "ask_price": 1.3952135830041363e-06,
+    "ask_volume": 8.105834003909964e-07,
+    "bid_price": 6.11058079286525e-06,
+    "bid_volume": 1.2755809606707335e-06
+  },
+  "r2": 0.999999999999982,
+  "rel_tol": 0.001,
+  "verdict": "PASS"
+}

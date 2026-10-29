@@ -1,0 +1,252 @@
+[done] class toxic_up: 237 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1212 p=1.07e-40 recover(cam)=0.44 recover(rand)=0.02
+  [ins toxic_down] ΔAUC=0.0803 p=5.38e-48 recover(cam)=0.73 recover(rand)=0.20
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.windows.csv
+[done] class vacuum: 233 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3065 p=2.81e-40 recover(cam)=0.95 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.windows.csv
+[done] class toxic_up: 74 windows (direction=insertion)
+[done] class toxic_down: 242 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2755 p=3.87e-14 recover(cam)=0.92 recover(rand)=0.07
+  [ins toxic_down] ΔAUC=0.1602 p=2.78e-41 recover(cam)=0.75 recover(rand)=0.06
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3096 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.windows.csv
+[done] class toxic_up: 112 windows (direction=insertion)
+[done] class toxic_down: 389 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1464 p=5.99e-20 recover(cam)=0.72 recover(rand)=0.06
+  [ins toxic_down] ΔAUC=0.0405 p=1.88e-41 recover(cam)=0.10 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2941 p=1.40e-67 recover(cam)=0.98 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.windows.csv
+[done] class toxic_up: 61 windows (direction=insertion)
+[done] class toxic_down: 239 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1824 p=5.56e-12 recover(cam)=0.67 recover(rand)=0.05
+  [ins toxic_down] ΔAUC=0.2028 p=3.72e-41 recover(cam)=0.83 recover(rand)=0.05
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2779 p=1.93e-67 recover(cam)=0.97 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.windows.csv
+[done] class toxic_up: 171 windows (direction=insertion)
+[done] class toxic_down: 359 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.0493 p=7.86e-18 recover(cam)=0.22 recover(rand)=0.08
+  [ins toxic_down] ΔAUC=0.0805 p=2.28e-52 recover(cam)=0.52 recover(rand)=0.01
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2869 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.windows.csv
+[done] class toxic_up: 308 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2019 p=1.51e-51 recover(cam)=0.92 recover(rand)=0.12
+  [ins toxic_down] ΔAUC=0.1555 p=3.53e-66 recover(cam)=0.89 recover(rand)=0.08
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2893 p=1.37e-67 recover(cam)=0.99 recover(rand)=0.02
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.windows.csv
+[done] class toxic_up: 237 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1212 p=1.07e-40 recover(cam)=0.44 recover(rand)=0.02
+  [ins toxic_down] ΔAUC=0.0803 p=5.38e-48 recover(cam)=0.73 recover(rand)=0.20
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.windows.csv
+[done] class vacuum: 233 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3065 p=2.81e-40 recover(cam)=0.95 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.windows.csv
+[done] class toxic_up: 74 windows (direction=insertion)
+[done] class toxic_down: 242 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2755 p=3.87e-14 recover(cam)=0.92 recover(rand)=0.07
+  [ins toxic_down] ΔAUC=0.1602 p=2.78e-41 recover(cam)=0.75 recover(rand)=0.06
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3096 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.windows.csv
+[done] class toxic_up: 112 windows (direction=insertion)
+[done] class toxic_down: 389 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1464 p=5.99e-20 recover(cam)=0.72 recover(rand)=0.06
+  [ins toxic_down] ΔAUC=0.0405 p=1.88e-41 recover(cam)=0.10 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2941 p=1.40e-67 recover(cam)=0.98 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.windows.csv
+[done] class toxic_up: 61 windows (direction=insertion)
+[done] class toxic_down: 239 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1824 p=5.56e-12 recover(cam)=0.67 recover(rand)=0.05
+  [ins toxic_down] ΔAUC=0.2028 p=3.72e-41 recover(cam)=0.83 recover(rand)=0.05
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2779 p=1.93e-67 recover(cam)=0.97 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.windows.csv
+[done] class toxic_up: 171 windows (direction=insertion)
+[done] class toxic_down: 359 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.0493 p=7.86e-18 recover(cam)=0.22 recover(rand)=0.08
+  [ins toxic_down] ΔAUC=0.0805 p=2.28e-52 recover(cam)=0.52 recover(rand)=0.01
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2869 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.windows.csv
+[done] class toxic_up: 308 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2019 p=1.51e-51 recover(cam)=0.92 recover(rand)=0.12
+  [ins toxic_down] ΔAUC=0.1555 p=3.53e-66 recover(cam)=0.89 recover(rand)=0.08
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2893 p=1.37e-67 recover(cam)=0.99 recover(rand)=0.02
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.windows.csv
+[done] class toxic_up: 237 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1212 p=1.07e-40 recover(cam)=0.44 recover(rand)=0.02
+  [ins toxic_down] ΔAUC=0.0803 p=5.38e-48 recover(cam)=0.73 recover(rand)=0.20
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.windows.csv
+[done] class vacuum: 233 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3065 p=2.81e-40 recover(cam)=0.95 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.windows.csv
+[done] class toxic_up: 74 windows (direction=insertion)
+[done] class toxic_down: 242 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2755 p=3.87e-14 recover(cam)=0.92 recover(rand)=0.07
+  [ins toxic_down] ΔAUC=0.1602 p=2.78e-41 recover(cam)=0.75 recover(rand)=0.06
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.windows.csv
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3096 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.windows.csv
+[done] class toxic_up: 237 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1212 p=1.07e-40 recover(cam)=0.44 recover(rand)=0.02
+  [ins toxic_down] ΔAUC=0.0803 p=5.38e-48 recover(cam)=0.73 recover(rand)=0.20
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed1_insertion.curves.npz
+[done] class vacuum: 233 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3065 p=2.81e-40 recover(cam)=0.95 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed1_insertion.curves.npz
+[done] class toxic_up: 74 windows (direction=insertion)
+[done] class toxic_down: 242 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2755 p=3.87e-14 recover(cam)=0.92 recover(rand)=0.07
+  [ins toxic_down] ΔAUC=0.1602 p=2.78e-41 recover(cam)=0.75 recover(rand)=0.06
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed1_insertion.curves.npz
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.3096 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.03
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed1_insertion.curves.npz
+[done] class toxic_up: 112 windows (direction=insertion)
+[done] class toxic_down: 389 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1464 p=5.99e-20 recover(cam)=0.72 recover(rand)=0.06
+  [ins toxic_down] ΔAUC=0.0405 p=1.88e-41 recover(cam)=0.10 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed2_insertion.curves.npz
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2941 p=1.40e-67 recover(cam)=0.98 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed2_insertion.curves.npz
+[done] class toxic_up: 61 windows (direction=insertion)
+[done] class toxic_down: 239 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.1824 p=5.56e-12 recover(cam)=0.67 recover(rand)=0.05
+  [ins toxic_down] ΔAUC=0.2028 p=3.72e-41 recover(cam)=0.83 recover(rand)=0.05
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed2_insertion.curves.npz
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2779 p=1.93e-67 recover(cam)=0.97 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed2_insertion.curves.npz
+[done] class toxic_up: 171 windows (direction=insertion)
+[done] class toxic_down: 359 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.0493 p=7.86e-18 recover(cam)=0.22 recover(rand)=0.08
+  [ins toxic_down] ΔAUC=0.0805 p=2.28e-52 recover(cam)=0.52 recover(rand)=0.01
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_toxic_seed3_insertion.curves.npz
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2869 p=1.37e-67 recover(cam)=1.00 recover(rand)=0.04
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_ours_vacuum_seed3_insertion.curves.npz
+[done] class toxic_up: 308 windows (direction=insertion)
+[done] class toxic_down: 400 windows (direction=insertion)
+  [ins toxic_up] ΔAUC=0.2019 p=1.51e-51 recover(cam)=0.92 recover(rand)=0.12
+  [ins toxic_down] ΔAUC=0.1555 p=3.53e-66 recover(cam)=0.89 recover(rand)=0.08
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_toxic_seed3_insertion.curves.npz
+[done] class vacuum: 400 windows (direction=insertion)
+  [ins vacuum] ΔAUC=0.2893 p=1.37e-67 recover(cam)=0.99 recover(rand)=0.02
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.png
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.windows.csv
+[wrote] figures/cf_mirror_src/counterfactual_deeplob_vacuum_seed3_insertion.curves.npz

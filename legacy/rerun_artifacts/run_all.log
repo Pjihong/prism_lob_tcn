@@ -1,0 +1,614 @@
+=== [1/8] 잔여 프로세스 정리 ===
+=== [2/8] toxic positional+identity 3-seed 재학습 (최장 구간, seed당 30-60분) ===
+[main] task          = toxic
+[main] device        = cuda:0
+[main] backbone/pool = tcn / positional
+[main] channels/norm = [32, 32, 64] / none
+[main] interaction   = 0
+[main] branching     = type4 (ALWAYS — topdeep8 dropped)
+[main] loss          = ce_weighted  (γ=2.0)
+[main] early stop on = val_f1, patience=10
+[main] k=10  tick_size=0.00098
+[main] hashing input data for provenance ...
+[main] model_id = final_toxic_positional_seed1_2026-08-25_10-01-42
+[main] save_dir = /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42
+[data] Loading train CSV (features only): data/FI2010/FI2010_train.csv
+[data] train shape: X=(362400, 40)
+[data] test split SEALED (features and labels not loaded)
+[data] train: no boundaries → SINGLE segment (paper mode).
+[seg] train: 1 segments, boundaries=[]
+[seg]   seg0: rows        0-362400   (n= 362400)  col0 mean=-0.000 std=1.000
+[data] Within-segment split: train_rows=298448, val_rows=63952, test_rows=SEALED
+[data] Windows (intra-segment only): train=298339, val=63843, test=SEALED
+[data]   train: {'stationary': 276026, 'toxic_up': 8627, 'toxic_down': 13686}  ({0: '92.52%', 1: '2.89%', 2: '4.59%'})  [task=toxic]
+[data]   val: {'stationary': 56977, 'toxic_up': 2732, 'toxic_down': 4134}  ({0: '89.25%', 1: '4.28%', 2: '6.48%'})  [task=toxic]
+[data] Branching scheme: 'type4' → 4 branches
+[data]   ask_price               : 10 channels
+[data]   ask_volume              : 10 channels
+[data]   bid_price               : 10 channels
+[data]   bid_volume              : 10 channels
+[main] development-only row split = train_within_development=0.824, validation_within_development=0.176
+[main] model params = 142,355
+[train] class_weights = [0.05800566077232361, 1.7958282232284546, 1.1461660861968994]
+[train] starting training for 100 epochs on cuda:0
+[train] optimizer=adamw scheduler=cosine
+[train] early stopping on val_f1, patience=10, flat_class=0
+[ep   1/100] tr_loss=0.9431 tr_f1=0.362 | val_loss=1.1631 f1=0.032 mcc=-0.004 pr_auc=0.060 ctp=0.043 (45s)
+[ep   2/100] tr_loss=0.9091 tr_f1=0.363 | val_loss=1.1448 f1=0.078 mcc=0.035 pr_auc=0.063 ctp=0.066 (96s)
+[ep   3/100] tr_loss=0.8698 tr_f1=0.368 | val_loss=1.0767 f1=0.090 mcc=0.049 pr_auc=0.069 ctp=0.071 (146s)
+[ep   4/100] tr_loss=0.8169 tr_f1=0.380 | val_loss=1.0962 f1=0.098 mcc=0.064 pr_auc=0.079 ctp=0.071 (196s)
+[ep   5/100] tr_loss=0.7678 tr_f1=0.392 | val_loss=1.0850 f1=0.111 mcc=0.065 pr_auc=0.088 ctp=0.069 (247s)
+[ep   6/100] tr_loss=0.7272 tr_f1=0.402 | val_loss=1.0848 f1=0.126 mcc=0.074 pr_auc=0.087 ctp=0.074 (297s)
+[ep   7/100] tr_loss=0.6955 tr_f1=0.411 | val_loss=1.0586 f1=0.142 mcc=0.072 pr_auc=0.089 ctp=0.073 (347s)
+[ep   8/100] tr_loss=0.6604 tr_f1=0.421 | val_loss=1.0676 f1=0.138 mcc=0.073 pr_auc=0.090 ctp=0.074 (397s)
+[ep   9/100] tr_loss=0.6342 tr_f1=0.429 | val_loss=1.1156 f1=0.181 mcc=0.078 pr_auc=0.087 ctp=0.075 (448s)
+[ep  10/100] tr_loss=0.6042 tr_f1=0.440 | val_loss=1.0965 f1=0.211 mcc=0.094 pr_auc=0.095 ctp=0.081 (498s)
+[ep  11/100] tr_loss=0.5786 tr_f1=0.448 | val_loss=1.1422 f1=0.204 mcc=0.088 pr_auc=0.088 ctp=0.079 (548s)
+[ep  12/100] tr_loss=0.5567 tr_f1=0.456 | val_loss=1.1526 f1=0.205 mcc=0.095 pr_auc=0.091 ctp=0.080 (598s)
+[ep  13/100] tr_loss=0.5299 tr_f1=0.464 | val_loss=1.1671 f1=0.220 mcc=0.093 pr_auc=0.090 ctp=0.081 (648s)
+[ep  14/100] tr_loss=0.5126 tr_f1=0.470 | val_loss=1.2858 f1=0.217 mcc=0.087 pr_auc=0.084 ctp=0.081 (699s)
+[ep  15/100] tr_loss=0.4924 tr_f1=0.478 | val_loss=1.2846 f1=0.217 mcc=0.090 pr_auc=0.087 ctp=0.082 (749s)
+[ep  16/100] tr_loss=0.4688 tr_f1=0.487 | val_loss=1.3111 f1=0.231 mcc=0.095 pr_auc=0.090 ctp=0.081 (799s)
+[ep  17/100] tr_loss=0.4547 tr_f1=0.490 | val_loss=1.3123 f1=0.235 mcc=0.098 pr_auc=0.086 ctp=0.085 (849s)
+[ep  18/100] tr_loss=0.4424 tr_f1=0.496 | val_loss=1.3645 f1=0.244 mcc=0.098 pr_auc=0.090 ctp=0.086 (899s)
+[ep  19/100] tr_loss=0.4188 tr_f1=0.504 | val_loss=1.4313 f1=0.261 mcc=0.091 pr_auc=0.084 ctp=0.086 (950s)
+[ep  20/100] tr_loss=0.4039 tr_f1=0.511 | val_loss=1.6464 f1=0.318 mcc=0.088 pr_auc=0.086 ctp=0.089 (1000s)
+[ep  21/100] tr_loss=0.3996 tr_f1=0.513 | val_loss=1.5619 f1=0.267 mcc=0.095 pr_auc=0.088 ctp=0.081 (1050s)
+[ep  22/100] tr_loss=0.3866 tr_f1=0.519 | val_loss=1.6092 f1=0.278 mcc=0.091 pr_auc=0.085 ctp=0.081 (1101s)
+[ep  23/100] tr_loss=0.3755 tr_f1=0.524 | val_loss=1.6824 f1=0.272 mcc=0.093 pr_auc=0.084 ctp=0.087 (1151s)
+[ep  24/100] tr_loss=0.3646 tr_f1=0.528 | val_loss=1.7575 f1=0.294 mcc=0.090 pr_auc=0.084 ctp=0.088 (1201s)
+[ep  25/100] tr_loss=0.3529 tr_f1=0.533 | val_loss=1.7465 f1=0.280 mcc=0.094 pr_auc=0.083 ctp=0.086 (1251s)
+[ep  26/100] tr_loss=0.3482 tr_f1=0.537 | val_loss=1.7504 f1=0.302 mcc=0.088 pr_auc=0.083 ctp=0.087 (1301s)
+[ep  27/100] tr_loss=0.3381 tr_f1=0.541 | val_loss=1.8965 f1=0.283 mcc=0.082 pr_auc=0.080 ctp=0.082 (1352s)
+[ep  28/100] tr_loss=0.3298 tr_f1=0.546 | val_loss=1.8543 f1=0.300 mcc=0.087 pr_auc=0.080 ctp=0.087 (1402s)
+[ep  29/100] tr_loss=0.3290 tr_f1=0.546 | val_loss=1.9092 f1=0.315 mcc=0.091 pr_auc=0.087 ctp=0.088 (1452s)
+[ep  30/100] tr_loss=0.3158 tr_f1=0.554 | val_loss=1.9739 f1=0.294 mcc=0.083 pr_auc=0.078 ctp=0.084 (1503s)
+[train] early stop at epoch 30 (best=0.3185 at ep 20)
+[train] restored best checkpoint at epoch 20 (val_f1=0.3185)
+
+[main] restored-checkpoint validation evaluation:
+  val f1         = 0.3185
+  val mcc        = 0.0877
+  val pr_auc_nf  = 0.0862
+[main] DEV-ONLY: test inference and test metrics were skipped
+[main] saved checkpoint to /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt
+[main] saved val predictions to /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/val_predictions.npz
+
+[main] DONE. model_id = final_toxic_positional_seed1_2026-08-25_10-01-42
+[main] all outputs in /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42
+[main] task          = toxic
+[main] device        = cuda:0
+[main] backbone/pool = tcn / positional
+[main] channels/norm = [32, 32, 64] / none
+[main] interaction   = 0
+[main] branching     = type4 (ALWAYS — topdeep8 dropped)
+[main] loss          = ce_weighted  (γ=2.0)
+[main] early stop on = val_f1, patience=10
+[main] k=10  tick_size=0.00098
+[main] hashing input data for provenance ...
+[main] model_id = final_toxic_positional_seed2_2026-08-25_10-27-08
+[main] save_dir = /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08
+[data] Loading train CSV (features only): data/FI2010/FI2010_train.csv
+[data] train shape: X=(362400, 40)
+[data] test split SEALED (features and labels not loaded)
+[data] train: no boundaries → SINGLE segment (paper mode).
+[seg] train: 1 segments, boundaries=[]
+[seg]   seg0: rows        0-362400   (n= 362400)  col0 mean=-0.000 std=1.000
+[data] Within-segment split: train_rows=298448, val_rows=63952, test_rows=SEALED
+[data] Windows (intra-segment only): train=298339, val=63843, test=SEALED
+[data]   train: {'stationary': 276026, 'toxic_up': 8627, 'toxic_down': 13686}  ({0: '92.52%', 1: '2.89%', 2: '4.59%'})  [task=toxic]
+[data]   val: {'stationary': 56977, 'toxic_up': 2732, 'toxic_down': 4134}  ({0: '89.25%', 1: '4.28%', 2: '6.48%'})  [task=toxic]
+[data] Branching scheme: 'type4' → 4 branches
+[data]   ask_price               : 10 channels
+[data]   ask_volume              : 10 channels
+[data]   bid_price               : 10 channels
+[data]   bid_volume              : 10 channels
+[main] development-only row split = train_within_development=0.824, validation_within_development=0.176
+[main] model params = 142,355
+[train] class_weights = [0.05800566077232361, 1.7958282232284546, 1.1461660861968994]
+[train] starting training for 100 epochs on cuda:0
+[train] optimizer=adamw scheduler=cosine
+[train] early stopping on val_f1, patience=10, flat_class=0
+[ep   1/100] tr_loss=0.9411 tr_f1=0.357 | val_loss=1.1847 f1=0.066 mcc=0.011 pr_auc=0.058 ctp=0.063 (51s)
+[ep   2/100] tr_loss=0.9127 tr_f1=0.362 | val_loss=1.1612 f1=0.056 mcc=0.016 pr_auc=0.065 ctp=0.047 (101s)
+[ep   3/100] tr_loss=0.8727 tr_f1=0.370 | val_loss=1.1399 f1=0.091 mcc=0.050 pr_auc=0.073 ctp=0.060 (151s)
+[ep   4/100] tr_loss=0.8213 tr_f1=0.382 | val_loss=1.0851 f1=0.124 mcc=0.067 pr_auc=0.084 ctp=0.071 (201s)
+[ep   5/100] tr_loss=0.7701 tr_f1=0.392 | val_loss=1.0845 f1=0.109 mcc=0.070 pr_auc=0.086 ctp=0.074 (251s)
+[ep   6/100] tr_loss=0.7320 tr_f1=0.402 | val_loss=1.0859 f1=0.117 mcc=0.068 pr_auc=0.088 ctp=0.076 (301s)
+[ep   7/100] tr_loss=0.6957 tr_f1=0.413 | val_loss=1.0812 f1=0.142 mcc=0.081 pr_auc=0.092 ctp=0.076 (351s)
+[ep   8/100] tr_loss=0.6615 tr_f1=0.422 | val_loss=1.0708 f1=0.158 mcc=0.083 pr_auc=0.090 ctp=0.081 (401s)
+[ep   9/100] tr_loss=0.6283 tr_f1=0.431 | val_loss=1.1499 f1=0.161 mcc=0.077 pr_auc=0.082 ctp=0.077 (451s)
+[ep  10/100] tr_loss=0.6000 tr_f1=0.441 | val_loss=1.1543 f1=0.202 mcc=0.089 pr_auc=0.085 ctp=0.080 (501s)
+[ep  11/100] tr_loss=0.5669 tr_f1=0.451 | val_loss=1.2422 f1=0.148 mcc=0.074 pr_auc=0.082 ctp=0.076 (551s)
+[ep  12/100] tr_loss=0.5464 tr_f1=0.458 | val_loss=1.2607 f1=0.199 mcc=0.081 pr_auc=0.085 ctp=0.079 (601s)
+[ep  13/100] tr_loss=0.5240 tr_f1=0.465 | val_loss=1.3149 f1=0.202 mcc=0.080 pr_auc=0.083 ctp=0.081 (651s)
+[ep  14/100] tr_loss=0.5011 tr_f1=0.473 | val_loss=1.2917 f1=0.172 mcc=0.081 pr_auc=0.083 ctp=0.078 (701s)
+[ep  15/100] tr_loss=0.4820 tr_f1=0.478 | val_loss=1.4098 f1=0.221 mcc=0.076 pr_auc=0.079 ctp=0.078 (751s)
+[ep  16/100] tr_loss=0.4643 tr_f1=0.485 | val_loss=1.4921 f1=0.233 mcc=0.082 pr_auc=0.081 ctp=0.080 (802s)
+[ep  17/100] tr_loss=0.4466 tr_f1=0.492 | val_loss=1.4441 f1=0.192 mcc=0.079 pr_auc=0.081 ctp=0.079 (852s)
+[ep  18/100] tr_loss=0.4295 tr_f1=0.498 | val_loss=1.4856 f1=0.242 mcc=0.084 pr_auc=0.083 ctp=0.078 (902s)
+[ep  19/100] tr_loss=0.4169 tr_f1=0.504 | val_loss=1.5711 f1=0.251 mcc=0.084 pr_auc=0.080 ctp=0.084 (952s)
+[ep  20/100] tr_loss=0.4060 tr_f1=0.507 | val_loss=1.5759 f1=0.234 mcc=0.080 pr_auc=0.080 ctp=0.081 (1002s)
+[ep  21/100] tr_loss=0.3906 tr_f1=0.515 | val_loss=1.6450 f1=0.245 mcc=0.080 pr_auc=0.079 ctp=0.083 (1053s)
+[ep  22/100] tr_loss=0.3787 tr_f1=0.519 | val_loss=1.6902 f1=0.255 mcc=0.082 pr_auc=0.079 ctp=0.083 (1103s)
+[ep  23/100] tr_loss=0.3665 tr_f1=0.526 | val_loss=1.7533 f1=0.259 mcc=0.079 pr_auc=0.081 ctp=0.083 (1153s)
+[ep  24/100] tr_loss=0.3616 tr_f1=0.530 | val_loss=1.7457 f1=0.228 mcc=0.073 pr_auc=0.079 ctp=0.075 (1202s)
+[ep  25/100] tr_loss=0.3508 tr_f1=0.533 | val_loss=1.8113 f1=0.244 mcc=0.073 pr_auc=0.077 ctp=0.077 (1252s)
+[ep  26/100] tr_loss=0.3402 tr_f1=0.540 | val_loss=1.8835 f1=0.271 mcc=0.081 pr_auc=0.079 ctp=0.081 (1302s)
+[ep  27/100] tr_loss=0.3295 tr_f1=0.545 | val_loss=1.8624 f1=0.266 mcc=0.081 pr_auc=0.077 ctp=0.084 (1352s)
+[ep  28/100] tr_loss=0.3272 tr_f1=0.545 | val_loss=1.8847 f1=0.272 mcc=0.077 pr_auc=0.077 ctp=0.082 (1402s)
+[ep  29/100] tr_loss=0.3213 tr_f1=0.551 | val_loss=1.8410 f1=0.281 mcc=0.078 pr_auc=0.078 ctp=0.082 (1452s)
+[ep  30/100] tr_loss=0.3097 tr_f1=0.556 | val_loss=1.9664 f1=0.255 mcc=0.069 pr_auc=0.078 ctp=0.076 (1502s)
+[ep  31/100] tr_loss=0.3056 tr_f1=0.558 | val_loss=2.0211 f1=0.297 mcc=0.078 pr_auc=0.078 ctp=0.085 (1553s)
+[ep  32/100] tr_loss=0.2942 tr_f1=0.565 | val_loss=2.1068 f1=0.295 mcc=0.077 pr_auc=0.080 ctp=0.083 (1603s)
+[ep  33/100] tr_loss=0.2928 tr_f1=0.567 | val_loss=2.3304 f1=0.288 mcc=0.074 pr_auc=0.074 ctp=0.085 (1653s)
+[ep  34/100] tr_loss=0.2865 tr_f1=0.572 | val_loss=2.1537 f1=0.285 mcc=0.075 pr_auc=0.075 ctp=0.078 (1703s)
+[ep  35/100] tr_loss=0.2805 tr_f1=0.574 | val_loss=2.3342 f1=0.298 mcc=0.072 pr_auc=0.076 ctp=0.082 (1753s)
+[ep  36/100] tr_loss=0.2763 tr_f1=0.579 | val_loss=2.1224 f1=0.298 mcc=0.075 pr_auc=0.076 ctp=0.086 (1803s)
+[ep  37/100] tr_loss=0.2706 tr_f1=0.580 | val_loss=2.2039 f1=0.312 mcc=0.081 pr_auc=0.079 ctp=0.088 (1854s)
+[ep  38/100] tr_loss=0.2667 tr_f1=0.585 | val_loss=2.2423 f1=0.297 mcc=0.078 pr_auc=0.077 ctp=0.083 (1904s)
+[ep  39/100] tr_loss=0.2609 tr_f1=0.589 | val_loss=2.3834 f1=0.316 mcc=0.083 pr_auc=0.077 ctp=0.090 (1954s)
+[ep  40/100] tr_loss=0.2574 tr_f1=0.592 | val_loss=2.4287 f1=0.319 mcc=0.069 pr_auc=0.077 ctp=0.082 (2004s)
+[ep  41/100] tr_loss=0.2560 tr_f1=0.594 | val_loss=2.3123 f1=0.276 mcc=0.071 pr_auc=0.076 ctp=0.078 (2054s)
+[ep  42/100] tr_loss=0.2503 tr_f1=0.597 | val_loss=2.5948 f1=0.321 mcc=0.070 pr_auc=0.076 ctp=0.083 (2104s)
+[ep  43/100] tr_loss=0.2478 tr_f1=0.600 | val_loss=2.4429 f1=0.297 mcc=0.070 pr_auc=0.074 ctp=0.081 (2154s)
+[ep  44/100] tr_loss=0.2414 tr_f1=0.604 | val_loss=2.5939 f1=0.300 mcc=0.077 pr_auc=0.076 ctp=0.085 (2205s)
+[ep  45/100] tr_loss=0.2369 tr_f1=0.609 | val_loss=2.7155 f1=0.315 mcc=0.068 pr_auc=0.074 ctp=0.084 (2255s)
+[ep  46/100] tr_loss=0.2337 tr_f1=0.612 | val_loss=2.6901 f1=0.311 mcc=0.070 pr_auc=0.073 ctp=0.085 (2305s)
+[ep  47/100] tr_loss=0.2281 tr_f1=0.618 | val_loss=2.7928 f1=0.328 mcc=0.066 pr_auc=0.075 ctp=0.083 (2356s)
+[ep  48/100] tr_loss=0.2262 tr_f1=0.618 | val_loss=2.7626 f1=0.323 mcc=0.068 pr_auc=0.076 ctp=0.085 (2406s)
+[ep  49/100] tr_loss=0.2253 tr_f1=0.619 | val_loss=2.8039 f1=0.321 mcc=0.062 pr_auc=0.075 ctp=0.081 (2457s)
+[ep  50/100] tr_loss=0.2180 tr_f1=0.626 | val_loss=2.7189 f1=0.321 mcc=0.069 pr_auc=0.074 ctp=0.084 (2507s)
+[ep  51/100] tr_loss=0.2191 tr_f1=0.625 | val_loss=2.9834 f1=0.320 mcc=0.059 pr_auc=0.071 ctp=0.083 (2557s)
+[ep  52/100] tr_loss=0.2153 tr_f1=0.632 | val_loss=2.9358 f1=0.321 mcc=0.062 pr_auc=0.074 ctp=0.081 (2608s)
+[ep  53/100] tr_loss=0.2082 tr_f1=0.636 | val_loss=2.8772 f1=0.328 mcc=0.066 pr_auc=0.075 ctp=0.084 (2658s)
+[ep  54/100] tr_loss=0.2061 tr_f1=0.638 | val_loss=3.0952 f1=0.331 mcc=0.059 pr_auc=0.075 ctp=0.083 (2709s)
+[ep  55/100] tr_loss=0.2059 tr_f1=0.638 | val_loss=3.0861 f1=0.330 mcc=0.061 pr_auc=0.073 ctp=0.082 (2759s)
+[ep  56/100] tr_loss=0.2021 tr_f1=0.642 | val_loss=3.0411 f1=0.325 mcc=0.066 pr_auc=0.075 ctp=0.084 (2810s)
+[ep  57/100] tr_loss=0.1977 tr_f1=0.646 | val_loss=3.1201 f1=0.331 mcc=0.064 pr_auc=0.073 ctp=0.085 (2859s)
+[ep  58/100] tr_loss=0.1978 tr_f1=0.646 | val_loss=3.1817 f1=0.327 mcc=0.065 pr_auc=0.074 ctp=0.084 (2910s)
+[ep  59/100] tr_loss=0.1964 tr_f1=0.648 | val_loss=3.1344 f1=0.332 mcc=0.062 pr_auc=0.076 ctp=0.084 (2960s)
+[ep  60/100] tr_loss=0.1947 tr_f1=0.650 | val_loss=3.1359 f1=0.333 mcc=0.070 pr_auc=0.073 ctp=0.086 (3010s)
+[ep  61/100] tr_loss=0.1878 tr_f1=0.655 | val_loss=3.1283 f1=0.320 mcc=0.065 pr_auc=0.074 ctp=0.080 (3060s)
+[ep  62/100] tr_loss=0.1882 tr_f1=0.657 | val_loss=3.2861 f1=0.327 mcc=0.063 pr_auc=0.075 ctp=0.084 (3111s)
+[ep  63/100] tr_loss=0.1862 tr_f1=0.660 | val_loss=3.3454 f1=0.326 mcc=0.062 pr_auc=0.074 ctp=0.080 (3161s)
+[ep  64/100] tr_loss=0.1850 tr_f1=0.661 | val_loss=3.3354 f1=0.330 mcc=0.064 pr_auc=0.074 ctp=0.085 (3211s)
+[ep  65/100] tr_loss=0.1793 tr_f1=0.667 | val_loss=3.3283 f1=0.330 mcc=0.061 pr_auc=0.075 ctp=0.083 (3261s)
+[ep  66/100] tr_loss=0.1785 tr_f1=0.666 | val_loss=3.3624 f1=0.330 mcc=0.061 pr_auc=0.075 ctp=0.084 (3312s)
+[ep  67/100] tr_loss=0.1767 tr_f1=0.670 | val_loss=3.4659 f1=0.337 mcc=0.061 pr_auc=0.075 ctp=0.084 (3362s)
+[ep  68/100] tr_loss=0.1763 tr_f1=0.669 | val_loss=3.5783 f1=0.326 mcc=0.055 pr_auc=0.072 ctp=0.078 (3412s)
+[ep  69/100] tr_loss=0.1753 tr_f1=0.672 | val_loss=3.4219 f1=0.325 mcc=0.057 pr_auc=0.073 ctp=0.081 (3462s)
+[ep  70/100] tr_loss=0.1732 tr_f1=0.674 | val_loss=3.5988 f1=0.336 mcc=0.058 pr_auc=0.073 ctp=0.084 (3512s)
+[ep  71/100] tr_loss=0.1711 tr_f1=0.678 | val_loss=3.5178 f1=0.330 mcc=0.053 pr_auc=0.073 ctp=0.079 (3562s)
+[ep  72/100] tr_loss=0.1697 tr_f1=0.677 | val_loss=3.5678 f1=0.337 mcc=0.058 pr_auc=0.074 ctp=0.083 (3612s)
+[ep  73/100] tr_loss=0.1653 tr_f1=0.684 | val_loss=3.5776 f1=0.327 mcc=0.058 pr_auc=0.074 ctp=0.081 (3663s)
+[ep  74/100] tr_loss=0.1668 tr_f1=0.682 | val_loss=3.6500 f1=0.336 mcc=0.056 pr_auc=0.074 ctp=0.082 (3713s)
+[ep  75/100] tr_loss=0.1650 tr_f1=0.685 | val_loss=3.6167 f1=0.334 mcc=0.057 pr_auc=0.074 ctp=0.083 (3763s)
+[ep  76/100] tr_loss=0.1625 tr_f1=0.687 | val_loss=3.7553 f1=0.338 mcc=0.057 pr_auc=0.073 ctp=0.083 (3814s)
+[ep  77/100] tr_loss=0.1618 tr_f1=0.689 | val_loss=3.7648 f1=0.340 mcc=0.057 pr_auc=0.073 ctp=0.084 (3864s)
+[ep  78/100] tr_loss=0.1585 tr_f1=0.692 | val_loss=3.8524 f1=0.337 mcc=0.053 pr_auc=0.074 ctp=0.080 (3914s)
+[ep  79/100] tr_loss=0.1583 tr_f1=0.692 | val_loss=3.7623 f1=0.335 mcc=0.056 pr_auc=0.074 ctp=0.082 (3964s)
+[ep  80/100] tr_loss=0.1592 tr_f1=0.691 | val_loss=3.8946 f1=0.342 mcc=0.058 pr_auc=0.074 ctp=0.085 (4014s)
+[ep  81/100] tr_loss=0.1547 tr_f1=0.696 | val_loss=3.9834 f1=0.346 mcc=0.058 pr_auc=0.074 ctp=0.087 (4064s)
+[ep  82/100] tr_loss=0.1563 tr_f1=0.694 | val_loss=3.8239 f1=0.338 mcc=0.055 pr_auc=0.074 ctp=0.084 (4114s)
+[ep  83/100] tr_loss=0.1530 tr_f1=0.698 | val_loss=3.9256 f1=0.342 mcc=0.055 pr_auc=0.074 ctp=0.085 (4164s)
+[ep  84/100] tr_loss=0.1535 tr_f1=0.697 | val_loss=3.9841 f1=0.340 mcc=0.049 pr_auc=0.073 ctp=0.081 (4214s)
+[ep  85/100] tr_loss=0.1539 tr_f1=0.698 | val_loss=3.9775 f1=0.340 mcc=0.049 pr_auc=0.073 ctp=0.080 (4264s)
+[ep  86/100] tr_loss=0.1533 tr_f1=0.697 | val_loss=3.9094 f1=0.340 mcc=0.053 pr_auc=0.073 ctp=0.083 (4315s)
+[ep  87/100] tr_loss=0.1516 tr_f1=0.700 | val_loss=3.9127 f1=0.339 mcc=0.052 pr_auc=0.073 ctp=0.083 (4365s)
+[ep  88/100] tr_loss=0.1503 tr_f1=0.702 | val_loss=4.0043 f1=0.342 mcc=0.052 pr_auc=0.073 ctp=0.083 (4415s)
+[ep  89/100] tr_loss=0.1486 tr_f1=0.704 | val_loss=4.0175 f1=0.342 mcc=0.054 pr_auc=0.073 ctp=0.083 (4464s)
+[ep  90/100] tr_loss=0.1492 tr_f1=0.703 | val_loss=4.0037 f1=0.342 mcc=0.053 pr_auc=0.073 ctp=0.083 (4515s)
+[ep  91/100] tr_loss=0.1480 tr_f1=0.704 | val_loss=4.0493 f1=0.342 mcc=0.052 pr_auc=0.073 ctp=0.083 (4565s)
+[train] early stop at epoch 91 (best=0.3456 at ep 81)
+[train] restored best checkpoint at epoch 81 (val_f1=0.3456)
+
+[main] restored-checkpoint validation evaluation:
+  val f1         = 0.3456
+  val mcc        = 0.0578
+  val pr_auc_nf  = 0.0736
+[main] DEV-ONLY: test inference and test metrics were skipped
+[main] saved checkpoint to /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/model.pt
+[main] saved val predictions to /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/val_predictions.npz
+
+[main] DONE. model_id = final_toxic_positional_seed2_2026-08-25_10-27-08
+[main] all outputs in /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08
+[main] task          = toxic
+[main] device        = cuda:0
+[main] backbone/pool = tcn / positional
+[main] channels/norm = [32, 32, 64] / none
+[main] interaction   = 0
+[main] branching     = type4 (ALWAYS — topdeep8 dropped)
+[main] loss          = ce_weighted  (γ=2.0)
+[main] early stop on = val_f1, patience=10
+[main] k=10  tick_size=0.00098
+[main] hashing input data for provenance ...
+[main] model_id = final_toxic_positional_seed3_2026-08-25_11-43-34
+[main] save_dir = /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34
+[data] Loading train CSV (features only): data/FI2010/FI2010_train.csv
+[data] train shape: X=(362400, 40)
+[data] test split SEALED (features and labels not loaded)
+[data] train: no boundaries → SINGLE segment (paper mode).
+[seg] train: 1 segments, boundaries=[]
+[seg]   seg0: rows        0-362400   (n= 362400)  col0 mean=-0.000 std=1.000
+[data] Within-segment split: train_rows=298448, val_rows=63952, test_rows=SEALED
+[data] Windows (intra-segment only): train=298339, val=63843, test=SEALED
+[data]   train: {'stationary': 276026, 'toxic_up': 8627, 'toxic_down': 13686}  ({0: '92.52%', 1: '2.89%', 2: '4.59%'})  [task=toxic]
+[data]   val: {'stationary': 56977, 'toxic_up': 2732, 'toxic_down': 4134}  ({0: '89.25%', 1: '4.28%', 2: '6.48%'})  [task=toxic]
+[data] Branching scheme: 'type4' → 4 branches
+[data]   ask_price               : 10 channels
+[data]   ask_volume              : 10 channels
+[data]   bid_price               : 10 channels
+[data]   bid_volume              : 10 channels
+[main] development-only row split = train_within_development=0.824, validation_within_development=0.176
+[main] model params = 142,355
+[train] class_weights = [0.05800566077232361, 1.7958282232284546, 1.1461660861968994]
+[train] starting training for 100 epochs on cuda:0
+[train] optimizer=adamw scheduler=cosine
+[train] early stopping on val_f1, patience=10, flat_class=0
+[ep   1/100] tr_loss=0.9406 tr_f1=0.362 | val_loss=1.1760 f1=0.031 mcc=0.001 pr_auc=0.059 ctp=0.043 (51s)
+[ep   2/100] tr_loss=0.9122 tr_f1=0.360 | val_loss=1.1727 f1=0.073 mcc=0.027 pr_auc=0.065 ctp=0.055 (101s)
+[ep   3/100] tr_loss=0.8737 tr_f1=0.370 | val_loss=1.1507 f1=0.086 mcc=0.045 pr_auc=0.074 ctp=0.058 (151s)
+[ep   4/100] tr_loss=0.8222 tr_f1=0.379 | val_loss=1.0981 f1=0.098 mcc=0.056 pr_auc=0.079 ctp=0.073 (202s)
+[ep   5/100] tr_loss=0.7776 tr_f1=0.389 | val_loss=1.0775 f1=0.112 mcc=0.066 pr_auc=0.084 ctp=0.074 (228s)
+[ep   6/100] tr_loss=0.7340 tr_f1=0.398 | val_loss=1.0843 f1=0.121 mcc=0.070 pr_auc=0.088 ctp=0.075 (255s)
+[ep   7/100] tr_loss=0.7023 tr_f1=0.408 | val_loss=1.1023 f1=0.120 mcc=0.065 pr_auc=0.084 ctp=0.074 (305s)
+[ep   8/100] tr_loss=0.6690 tr_f1=0.418 | val_loss=1.1159 f1=0.165 mcc=0.075 pr_auc=0.085 ctp=0.079 (355s)
+[ep   9/100] tr_loss=0.6376 tr_f1=0.428 | val_loss=1.1302 f1=0.125 mcc=0.072 pr_auc=0.084 ctp=0.074 (405s)
+[ep  10/100] tr_loss=0.6030 tr_f1=0.438 | val_loss=1.1744 f1=0.158 mcc=0.073 pr_auc=0.087 ctp=0.074 (455s)
+[ep  11/100] tr_loss=0.5759 tr_f1=0.446 | val_loss=1.2464 f1=0.165 mcc=0.075 pr_auc=0.087 ctp=0.072 (505s)
+[ep  12/100] tr_loss=0.5486 tr_f1=0.456 | val_loss=1.2250 f1=0.184 mcc=0.080 pr_auc=0.089 ctp=0.079 (556s)
+[ep  13/100] tr_loss=0.5257 tr_f1=0.463 | val_loss=1.2923 f1=0.184 mcc=0.078 pr_auc=0.088 ctp=0.078 (606s)
+[ep  14/100] tr_loss=0.5029 tr_f1=0.471 | val_loss=1.2739 f1=0.212 mcc=0.087 pr_auc=0.089 ctp=0.081 (656s)
+[ep  15/100] tr_loss=0.4815 tr_f1=0.478 | val_loss=1.3672 f1=0.207 mcc=0.082 pr_auc=0.084 ctp=0.080 (706s)
+[ep  16/100] tr_loss=0.4647 tr_f1=0.484 | val_loss=1.4354 f1=0.229 mcc=0.079 pr_auc=0.083 ctp=0.077 (739s)
+[ep  17/100] tr_loss=0.4480 tr_f1=0.489 | val_loss=1.4283 f1=0.215 mcc=0.079 pr_auc=0.087 ctp=0.076 (802s)
+[ep  18/100] tr_loss=0.4290 tr_f1=0.497 | val_loss=1.4550 f1=0.216 mcc=0.083 pr_auc=0.081 ctp=0.081 (852s)
+[ep  19/100] tr_loss=0.4159 tr_f1=0.500 | val_loss=1.4900 f1=0.252 mcc=0.084 pr_auc=0.084 ctp=0.083 (902s)
+[ep  20/100] tr_loss=0.4013 tr_f1=0.508 | val_loss=1.5368 f1=0.247 mcc=0.074 pr_auc=0.082 ctp=0.074 (952s)
+[ep  21/100] tr_loss=0.3923 tr_f1=0.510 | val_loss=1.5988 f1=0.245 mcc=0.089 pr_auc=0.082 ctp=0.084 (1002s)
+[ep  22/100] tr_loss=0.3782 tr_f1=0.517 | val_loss=1.7525 f1=0.240 mcc=0.070 pr_auc=0.080 ctp=0.071 (1053s)
+[ep  23/100] tr_loss=0.3695 tr_f1=0.522 | val_loss=1.6654 f1=0.288 mcc=0.083 pr_auc=0.081 ctp=0.085 (1103s)
+[ep  24/100] tr_loss=0.3548 tr_f1=0.529 | val_loss=1.7115 f1=0.255 mcc=0.077 pr_auc=0.079 ctp=0.076 (1153s)
+[ep  25/100] tr_loss=0.3509 tr_f1=0.530 | val_loss=1.7680 f1=0.248 mcc=0.084 pr_auc=0.079 ctp=0.083 (1203s)
+[ep  26/100] tr_loss=0.3373 tr_f1=0.537 | val_loss=1.6621 f1=0.242 mcc=0.077 pr_auc=0.078 ctp=0.080 (1254s)
+[ep  27/100] tr_loss=0.3303 tr_f1=0.542 | val_loss=1.7056 f1=0.290 mcc=0.083 pr_auc=0.079 ctp=0.084 (1304s)
+[ep  28/100] tr_loss=0.3279 tr_f1=0.544 | val_loss=1.7965 f1=0.278 mcc=0.081 pr_auc=0.079 ctp=0.081 (1354s)
+[ep  29/100] tr_loss=0.3158 tr_f1=0.550 | val_loss=1.9139 f1=0.293 mcc=0.076 pr_auc=0.077 ctp=0.084 (1404s)
+[ep  30/100] tr_loss=0.3111 tr_f1=0.552 | val_loss=1.9628 f1=0.310 mcc=0.082 pr_auc=0.080 ctp=0.086 (1449s)
+[ep  31/100] tr_loss=0.3030 tr_f1=0.557 | val_loss=1.9674 f1=0.271 mcc=0.078 pr_auc=0.078 ctp=0.078 (1478s)
+[ep  32/100] tr_loss=0.2955 tr_f1=0.562 | val_loss=2.1021 f1=0.293 mcc=0.073 pr_auc=0.076 ctp=0.086 (1506s)
+[ep  33/100] tr_loss=0.2922 tr_f1=0.563 | val_loss=1.9896 f1=0.281 mcc=0.081 pr_auc=0.077 ctp=0.084 (1535s)
+[ep  34/100] tr_loss=0.2873 tr_f1=0.568 | val_loss=2.0101 f1=0.309 mcc=0.075 pr_auc=0.078 ctp=0.085 (1569s)
+[ep  35/100] tr_loss=0.2838 tr_f1=0.571 | val_loss=1.9790 f1=0.303 mcc=0.088 pr_auc=0.079 ctp=0.087 (1620s)
+[ep  36/100] tr_loss=0.2774 tr_f1=0.575 | val_loss=2.1099 f1=0.279 mcc=0.082 pr_auc=0.078 ctp=0.084 (1670s)
+[ep  37/100] tr_loss=0.2708 tr_f1=0.579 | val_loss=2.2266 f1=0.317 mcc=0.088 pr_auc=0.081 ctp=0.093 (1720s)
+[ep  38/100] tr_loss=0.2686 tr_f1=0.581 | val_loss=2.2677 f1=0.307 mcc=0.078 pr_auc=0.079 ctp=0.083 (1771s)
+[ep  39/100] tr_loss=0.2635 tr_f1=0.587 | val_loss=2.1745 f1=0.312 mcc=0.089 pr_auc=0.079 ctp=0.090 (1821s)
+[ep  40/100] tr_loss=0.2574 tr_f1=0.590 | val_loss=2.2472 f1=0.311 mcc=0.072 pr_auc=0.075 ctp=0.085 (1871s)
+[ep  41/100] tr_loss=0.2557 tr_f1=0.592 | val_loss=2.4153 f1=0.329 mcc=0.082 pr_auc=0.079 ctp=0.090 (1922s)
+[ep  42/100] tr_loss=0.2504 tr_f1=0.596 | val_loss=2.3231 f1=0.317 mcc=0.075 pr_auc=0.078 ctp=0.084 (1972s)
+[ep  43/100] tr_loss=0.2471 tr_f1=0.598 | val_loss=2.3409 f1=0.308 mcc=0.073 pr_auc=0.076 ctp=0.082 (2023s)
+[ep  44/100] tr_loss=0.2424 tr_f1=0.602 | val_loss=2.3564 f1=0.302 mcc=0.081 pr_auc=0.081 ctp=0.084 (2073s)
+[ep  45/100] tr_loss=0.2377 tr_f1=0.605 | val_loss=2.4958 f1=0.309 mcc=0.078 pr_auc=0.080 ctp=0.084 (2124s)
+[ep  46/100] tr_loss=0.2367 tr_f1=0.608 | val_loss=2.3903 f1=0.291 mcc=0.073 pr_auc=0.073 ctp=0.079 (2174s)
+[ep  47/100] tr_loss=0.2336 tr_f1=0.611 | val_loss=2.4767 f1=0.323 mcc=0.081 pr_auc=0.079 ctp=0.087 (2225s)
+[ep  48/100] tr_loss=0.2254 tr_f1=0.618 | val_loss=2.7510 f1=0.315 mcc=0.067 pr_auc=0.075 ctp=0.081 (2275s)
+[ep  49/100] tr_loss=0.2237 tr_f1=0.619 | val_loss=2.6076 f1=0.313 mcc=0.077 pr_auc=0.078 ctp=0.084 (2326s)
+[ep  50/100] tr_loss=0.2211 tr_f1=0.623 | val_loss=2.5425 f1=0.323 mcc=0.076 pr_auc=0.078 ctp=0.089 (2377s)
+[ep  51/100] tr_loss=0.2199 tr_f1=0.623 | val_loss=2.6610 f1=0.323 mcc=0.074 pr_auc=0.078 ctp=0.087 (2427s)
+[train] early stop at epoch 51 (best=0.3292 at ep 41)
+[train] restored best checkpoint at epoch 41 (val_f1=0.3292)
+
+[main] restored-checkpoint validation evaluation:
+  val f1         = 0.3292
+  val mcc        = 0.0824
+  val pr_auc_nf  = 0.0788
+[main] DEV-ONLY: test inference and test metrics were skipped
+[main] saved checkpoint to /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/model.pt
+[main] saved val predictions to /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/val_predictions.npz
+
+[main] DONE. model_id = final_toxic_positional_seed3_2026-08-25_11-43-34
+[main] all outputs in /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34
+[next] loggers/results/final_toxic_positional_seed*/model.pt 경로를 rerun_kit/ckpts_toxic.env 에 기록
+=== [3/8] 새 체크포인트 등록 ===
+export CKPT_TOXIC_S1="/home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt"
+export CKPT_TOXIC_S2="/home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/model.pt"
+export CKPT_TOXIC_S3="/home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/model.pt"
+
+=== [4/8] test 재평가 ===
+{
+  "checkpoint": "/home/jupyter-jihong0429/timeseries/lob_xai_positional_pooling/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt",
+  "task": "toxic",
+  "k": 10,
+  "seed": 1,
+  "n_test": 31828,
+  "metrics": {
+    "loss": 0.5798672137722846,
+    "acc": 0.7450986504554749,
+    "f1": 0.3809208838959401,
+    "mcc": 0.1523310124389845,
+    "support_class_0": 29952,
+    "predicted_class_0": 23831,
+    "precision_class_0": 0.9652133775334648,
+    "recall_class_0": 0.7679620726495726,
+    "f1_class_0": 0.8553632188609783,
+    "support_class_1": 654,
+    "predicted_class_1": 3070,
+    "precision_class_1": 0.08534201954397394,
+    "recall_class_1": 0.40061162079510704,
+    "f1_class_1": 0.1407089151450054,
+    "support_class_2": 1222,
+    "predicted_class_2": 4927,
+    "precision_class_2": 0.09153643190582504,
+    "recall_class_2": 0.3690671031096563,
+    "f1_class_2": 0.14669051878354203,
+    "ctp": 0.08915843441290484,
+    "coverage": 0.2512567550584391,
+    "n_actions": 7997,
+    "ctp_class_1": 0.08534201954397394,
+    "ctp_class_2": 0.09153643190582504,
+    "pr_auc_class_0": 0.9765234564002729,
+    "pr_auc_class_1": 0.08268555998960117,
+    "pr_auc_class_2": 0.0772059066463699,
+    "pr_auc_macro_nonflat": 0.07994573331798555,
+    "roc_auc_class_0": 0.7432860594007982,
+    "roc_auc_class_1": 0.8067693045388525,
+    "roc_auc_class_2": 0.7218384219775269,
+    "roc_auc_macro_nonflat": 0.7643038632581898,
+    "lift5_class_1": 4.58830923947203,
+    "lift10_class_1": 3.9765346742090926,
+    "brier_class_1": 0.06529968715058149,
+    "lift5_class_2": 2.4883504903297085,
+    "lift10_class_2": 2.398311492324357,
+    "brier_class_2": 0.10602604081487646
+  }
+}
+[saved] figures/final_test_positional/toxic_seed1.json
+{
+  "checkpoint": "/home/jupyter-jihong0429/timeseries/lob_xai_positional_pooling/loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/model.pt",
+  "task": "toxic",
+  "k": 10,
+  "seed": 2,
+  "n_test": 31828,
+  "metrics": {
+    "loss": 0.777099138648881,
+    "acc": 0.8072766065597534,
+    "f1": 0.3846072923258004,
+    "mcc": 0.11081439470364325,
+    "support_class_0": 29952,
+    "predicted_class_0": 26432,
+    "precision_class_0": 0.9536546610169492,
+    "recall_class_0": 0.8415798611111112,
+    "f1_class_0": 0.8941188989784337,
+    "support_class_1": 654,
+    "predicted_class_1": 1576,
+    "precision_class_1": 0.08439086294416244,
+    "recall_class_1": 0.20336391437308868,
+    "f1_class_1": 0.11928251121076235,
+    "support_class_2": 1222,
+    "predicted_class_2": 3820,
+    "precision_class_2": 0.09267015706806282,
+    "recall_class_2": 0.2896890343698854,
+    "f1_class_2": 0.1404204680682269,
+    "ctp": 0.09025203854707191,
+    "coverage": 0.16953625738343597,
+    "n_actions": 5396,
+    "ctp_class_1": 0.08439086294416244,
+    "ctp_class_2": 0.09267015706806282,
+    "pr_auc_class_0": 0.9761350124390376,
+    "pr_auc_class_1": 0.058283440111602317,
+    "pr_auc_class_2": 0.07904561662172449,
+    "pr_auc_macro_nonflat": 0.0686645283666634,
+    "roc_auc_class_0": 0.7217078775934886,
+    "roc_auc_class_1": 0.7661003671019663,
+    "roc_auc_class_2": 0.7303334615668033,
+    "roc_auc_macro_nonflat": 0.7482169143343849,
+    "lift5_class_1": 4.098889587261681,
+    "lift10_class_1": 3.5024093861303163,
+    "brier_class_1": 0.049344931832232666,
+    "lift5_class_2": 2.553833397969964,
+    "lift10_class_2": 2.406496855779389,
+    "brier_class_2": 0.10581558524972287
+  }
+}
+[saved] figures/final_test_positional/toxic_seed2.json
+{
+  "checkpoint": "/home/jupyter-jihong0429/timeseries/lob_xai_positional_pooling/loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/model.pt",
+  "task": "toxic",
+  "k": 10,
+  "seed": 3,
+  "n_test": 31828,
+  "metrics": {
+    "loss": 0.6849270946963409,
+    "acc": 0.754995584487915,
+    "f1": 0.37438353706273814,
+    "mcc": 0.1389803986839584,
+    "support_class_0": 29952,
+    "predicted_class_0": 24295,
+    "precision_class_0": 0.9625848940111134,
+    "recall_class_0": 0.7807825854700855,
+    "f1_class_0": 0.8622043615315133,
+    "support_class_1": 654,
+    "predicted_class_1": 2471,
+    "precision_class_1": 0.07041683528935654,
+    "recall_class_1": 0.26605504587155965,
+    "f1_class_1": 0.11136,
+    "support_class_2": 1222,
+    "predicted_class_2": 5062,
+    "precision_class_2": 0.09284867641248519,
+    "recall_class_2": 0.38461538461538464,
+    "f1_class_2": 0.14958625079567156,
+    "ctp": 0.08549050842957653,
+    "coverage": 0.23667839638054544,
+    "n_actions": 7533,
+    "ctp_class_1": 0.07041683528935654,
+    "ctp_class_2": 0.09284867641248519,
+    "pr_auc_class_0": 0.9771644648519678,
+    "pr_auc_class_1": 0.055314010331231324,
+    "pr_auc_class_2": 0.0919684123023578,
+    "pr_auc_macro_nonflat": 0.07364121131679456,
+    "roc_auc_class_0": 0.747475109072882,
+    "roc_auc_class_1": 0.769515155046676,
+    "roc_auc_class_2": 0.7331574187233486,
+    "roc_auc_macro_nonflat": 0.7513362868850123,
+    "lift5_class_1": 3.3341713806830087,
+    "lift10_class_1": 3.3953488372093026,
+    "brier_class_1": 0.062377617241249725,
+    "lift5_class_2": 3.2577746551027102,
+    "lift10_class_2": 2.709355303615571,
+    "brier_class_2": 0.1174866195293512
+  }
+}
+[saved] figures/final_test_positional/toxic_seed3.json
+[out] figures/final_test_positional/toxic_seed{1,2,3}.json
+=== [5/8] 반사실 deletion+insertion (30-60분) ===
+[done] class toxic_up: 262 windows (direction=both)
+[done] class toxic_down: 400 windows (direction=both)
+  [toxic_up] ΔAUC=0.1461 p=8.99e-44 flip(cam)=0.64 flip(rand)=0.19
+  [toxic_down] ΔAUC=0.1787 p=1.54e-67 flip(cam)=0.88 flip(rand)=0.17
+[wrote] figures/cf_final_positional/ours_toxic_seed1
+[wrote] figures/cf_final_positional/ours_toxic_seed1
+[wrote] figures/cf_final_positional/ours_toxic_seed1.windows.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed1.curves.npz
+  [ins toxic_up] ΔAUC=0.1991 p=5.02e-45 recover(cam)=1.00 recover(rand)=0.06
+  [ins toxic_down] ΔAUC=0.1947 p=1.53e-67 recover(cam)=0.93 recover(rand)=0.07
+[wrote] figures/cf_final_positional/ours_toxic_seed1_insertion.png
+[wrote] figures/cf_final_positional/ours_toxic_seed1_insertion.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed1_insertion.windows.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed1_insertion.curves.npz
+[done] class toxic_up: 133 windows (direction=both)
+[done] class toxic_down: 354 windows (direction=both)
+  [toxic_up] ΔAUC=0.2003 p=7.16e-24 flip(cam)=0.98 flip(rand)=0.29
+  [toxic_down] ΔAUC=0.2256 p=5.52e-60 flip(cam)=0.93 flip(rand)=0.25
+[wrote] figures/cf_final_positional/ours_toxic_seed2
+[wrote] figures/cf_final_positional/ours_toxic_seed2
+[wrote] figures/cf_final_positional/ours_toxic_seed2.windows.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed2.curves.npz
+  [ins toxic_up] ΔAUC=0.1440 p=7.32e-24 recover(cam)=0.74 recover(rand)=0.03
+  [ins toxic_down] ΔAUC=0.2385 p=4.61e-60 recover(cam)=0.96 recover(rand)=0.05
+[wrote] figures/cf_final_positional/ours_toxic_seed2_insertion.png
+[wrote] figures/cf_final_positional/ours_toxic_seed2_insertion.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed2_insertion.windows.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed2_insertion.curves.npz
+[done] class toxic_up: 174 windows (direction=both)
+[done] class toxic_down: 400 windows (direction=both)
+  [toxic_up] ΔAUC=0.1696 p=1.34e-30 flip(cam)=0.85 flip(rand)=0.26
+  [toxic_down] ΔAUC=0.1992 p=1.40e-67 flip(cam)=0.83 flip(rand)=0.14
+[wrote] figures/cf_final_positional/ours_toxic_seed3
+[wrote] figures/cf_final_positional/ours_toxic_seed3
+[wrote] figures/cf_final_positional/ours_toxic_seed3.windows.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed3.curves.npz
+  [ins toxic_up] ΔAUC=0.1512 p=1.32e-30 recover(cam)=0.88 recover(rand)=0.03
+  [ins toxic_down] ΔAUC=0.2282 p=1.38e-67 recover(cam)=0.97 recover(rand)=0.07
+[wrote] figures/cf_final_positional/ours_toxic_seed3_insertion.png
+[wrote] figures/cf_final_positional/ours_toxic_seed3_insertion.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed3_insertion.windows.csv
+[wrote] figures/cf_final_positional/ours_toxic_seed3_insertion.curves.npz
+[out] figures/cf_final_positional/ours_toxic_seed{1,2,3}{,_insertion}.{png,csv,windows.csv}
+=== [6/8] carpet + 효과통계 ===
+[skip] completed: figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50
+[success] elapsed=00:00:00
+[outputs]
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2-checkpoint.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2-checkpoint.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3-checkpoint.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1-checkpoint.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.windows.csv
+Traceback (most recent call last):
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/cf_effect_stats.py", line 171, in <module>
+    main()
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/cf_effect_stats.py", line 126, in main
+    results = [analyse_one(Path(p), args.n_boot, args.seed)
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/cf_effect_stats.py", line 126, in <listcomp>
+    results = [analyse_one(Path(p), args.n_boot, args.seed)
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/cf_effect_stats.py", line 65, in analyse_one
+    data = np.load(path, allow_pickle=False)
+  File "/home/jupyter-jihong0429/.local/lib/python3.10/site-packages/numpy/lib/npyio.py", line 427, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: 'figures/cf_response_carpet/final/full/*/*.npz'
+[warn] 30 실패 - rerun_kit/run_all.log 확인 후 개별 재실행
+=== [7/8] Axis A/B + cam_sanity ===
+[probe] ckpt: /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt
+Traceback (most recent call last):
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/probe_branch_structure.py", line 143, in <module>
+    main()
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/probe_branch_structure.py", line 63, in main
+    X, y, class_names, cfg = load_micro_windows_in_order(ck, args.test_csv, task=args.task)
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/lob_xai_viz/viz_micro_loader.py", line 80, in load_micro_windows_in_order
+    raise ValueError(
+ValueError: checkpoint task='toxic', requested task='vacuum'
+[warn] 40 실패
+usage: cam_sanity_checks.py [-h] --ckpt CKPT --test-csv TEST_CSV --task {toxic,vacuum} --target
+                            TARGET [--n-windows N_WINDOWS] [--noise-sigma NOISE_SIGMA]
+                            [--randomize-scope {head,head_and_last_block}] [--seed SEED]
+                            [--device DEVICE] [--batch-size BATCH_SIZE] --out-json OUT_JSON
+                            [--allow-unverified-data]
+cam_sanity_checks.py: error: the following arguments are required: --test-csv
+[warn] 50 실패
+=== [8/8] 그림 재생성 ===
+[factorization] cohort 262; identity check on first 128; representative window index=20152 (rank 1)
+[factorization] identity PASS: max rel err 1.13e-06 (median 1.53e-07), R^2 = 1.00000000
+[saved] figures/factorization/factorization_toxic_seed1.png / .pdf
+[saved] figures/factorization/factorization_toxic_seed1_alpha.csv / _errors.csv
+[saved] figures/factorization/factorization_toxic_seed1.provenance.json
+[branch-imp] missing Axis A artifact: figures/axis_a_positional/axisA_min_toxic_k10_seed1.csv
+[warn] 60 실패
+=== 결과 수집 ===
+[upload this] rerun_kit/positional_toxic_results_20260825.tar.gz
+ALL DONE

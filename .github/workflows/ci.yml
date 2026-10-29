@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install (CPU torch)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e .
+      - name: Unit tests (protocol / label / pooling contracts)
+        run: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python -m unittest discover -s tests -v
+      - name: Current documentation links
+        run: python scripts/check_docs.py
+      - name: Pooling smoke (forward/backward/strict-reload/param count)
+        run: |
+          PYTHONPATH=. python scripts/smoke_pooling.py --pool positional
+          PYTHONPATH=. python scripts/smoke_pooling.py --pool multi_scale
+      - name: Baseline builders (DeepLOB / TLOB / BiN-CTABL)
+        run: PYTHONPATH=. python scripts/verify_baseline_models.py --device cpu

@@ -1,0 +1,10 @@
+[branch-imp] seed 1: ckpt=loggers/results/final_toxic_multiscale_seed1_2026-07-28_07-12-44/model.pt  cohort n=237
+[branch-imp] cached -> figures/branch_importance/cam_time_toxic_k10_seed1.npz
+[branch-imp] seed 2: ckpt=loggers/results/final_toxic_multiscale_seed2_2026-07-28_08-35-40/model.pt  cohort n=112
+[branch-imp] cached -> figures/branch_importance/cam_time_toxic_k10_seed2.npz
+[branch-imp] seed 3: ckpt=loggers/results/final_toxic_multiscale_seed3_2026-07-28_09-40-36/model.pt  cohort n=171
+[branch-imp] cached -> figures/branch_importance/cam_time_toxic_k10_seed3.npz
+[saved] figures/branch_importance/branch_importance_toxic_k10.png / .pdf
+[saved] figures/branch_importance/branch_importance_toxic_k10.provenance.json
+[saved] figures/branch_importance/branch_importance_toxic_k10.png / .pdf
+[saved] figures/branch_importance/branch_importance_toxic_k10.provenance.json

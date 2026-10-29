@@ -1,0 +1,414 @@
+{
+  "cf_sources": [
+    {
+      "direction": "deletion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "ours",
+      "seed": 1,
+      "file": "figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.npz",
+      "n": 233,
+      "checkpoint_sha256": "8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3"
+    },
+    {
+      "direction": "deletion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "ours",
+      "seed": 2,
+      "file": "figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.npz",
+      "n": 400,
+      "checkpoint_sha256": "36fe452a073a7b219d10f96b4a3655280dd33b6be79d4f6871692ad953e70398"
+    },
+    {
+      "direction": "deletion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "ours",
+      "seed": 3,
+      "file": "figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.npz",
+      "n": 400,
+      "checkpoint_sha256": "6c2c17a4a9ceaeb6af913a320ff15036fc70f2799da21225110ae47273da1356"
+    },
+    {
+      "direction": "insertion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "ours",
+      "seed": 1,
+      "file": "figures/cf_mirror_src_positional/ours_vacuum_seed1_insertion.curves.npz",
+      "n": 233,
+      "checkpoint_sha256": "8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3"
+    },
+    {
+      "direction": "insertion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "ours",
+      "seed": 2,
+      "file": "figures/cf_mirror_src_positional/ours_vacuum_seed2_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "36fe452a073a7b219d10f96b4a3655280dd33b6be79d4f6871692ad953e70398"
+    },
+    {
+      "direction": "insertion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "ours",
+      "seed": 3,
+      "file": "figures/cf_mirror_src_positional/ours_vacuum_seed3_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "6c2c17a4a9ceaeb6af913a320ff15036fc70f2799da21225110ae47273da1356"
+    },
+    {
+      "direction": "deletion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "deeplob",
+      "seed": 1,
+      "file": "figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.npz",
+      "n": 400,
+      "checkpoint_sha256": "c060c86e1d8f5bae75c6ac3a1ba6d0c38939680159064b921073789977acb2de"
+    },
+    {
+      "direction": "deletion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "deeplob",
+      "seed": 2,
+      "file": "figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.npz",
+      "n": 400,
+      "checkpoint_sha256": "854544b877d5764cfbdb342e61302a0b239f733750115e4366e09f84ca210a14"
+    },
+    {
+      "direction": "deletion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "deeplob",
+      "seed": 3,
+      "file": "figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.npz",
+      "n": 400,
+      "checkpoint_sha256": "b94b0ba6249e0e718e792f2f76d762eeb6fd7792dc1ad38b30c546a73416ee6f"
+    },
+    {
+      "direction": "insertion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "deeplob",
+      "seed": 1,
+      "file": "figures/cf_mirror_src_positional/deeplob_vacuum_seed1_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "c060c86e1d8f5bae75c6ac3a1ba6d0c38939680159064b921073789977acb2de"
+    },
+    {
+      "direction": "insertion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "deeplob",
+      "seed": 2,
+      "file": "figures/cf_mirror_src_positional/deeplob_vacuum_seed2_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "854544b877d5764cfbdb342e61302a0b239f733750115e4366e09f84ca210a14"
+    },
+    {
+      "direction": "insertion",
+      "task": "vacuum",
+      "cls": "vacuum",
+      "model": "deeplob",
+      "seed": 3,
+      "file": "figures/cf_mirror_src_positional/deeplob_vacuum_seed3_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "b94b0ba6249e0e718e792f2f76d762eeb6fd7792dc1ad38b30c546a73416ee6f"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "ours",
+      "seed": 1,
+      "file": "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.npz",
+      "n": 262,
+      "checkpoint_sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "ours",
+      "seed": 2,
+      "file": "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.npz",
+      "n": 133,
+      "checkpoint_sha256": "eccb673fd685a7dca231330f21bf8bc50ce99297caf8fad4e52a1d088d8149f6"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "ours",
+      "seed": 3,
+      "file": "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.npz",
+      "n": 173,
+      "checkpoint_sha256": "63c0c5e158453b26c6d6932e921b3204d3b747a81a0b0e6b24ed7cde6486c653"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "ours",
+      "seed": 1,
+      "file": "figures/cf_mirror_src_positional/ours_toxic_seed1_insertion.curves.npz",
+      "n": 262,
+      "checkpoint_sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "ours",
+      "seed": 2,
+      "file": "figures/cf_mirror_src_positional/ours_toxic_seed2_insertion.curves.npz",
+      "n": 133,
+      "checkpoint_sha256": "eccb673fd685a7dca231330f21bf8bc50ce99297caf8fad4e52a1d088d8149f6"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "ours",
+      "seed": 3,
+      "file": "figures/cf_mirror_src_positional/ours_toxic_seed3_insertion.curves.npz",
+      "n": 174,
+      "checkpoint_sha256": "63c0c5e158453b26c6d6932e921b3204d3b747a81a0b0e6b24ed7cde6486c653"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "deeplob",
+      "seed": 1,
+      "file": "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.npz",
+      "n": 74,
+      "checkpoint_sha256": "f731724e154210d31ac4244ec896b9dcd7307390d0e50f4aca2d53e0a89e0d48"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "deeplob",
+      "seed": 2,
+      "file": "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.npz",
+      "n": 61,
+      "checkpoint_sha256": "97e820933752fdfc4bd6c39e4a78cc8551de0e9c811ccf9ca3b541506d6d48e9"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "deeplob",
+      "seed": 3,
+      "file": "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.npz",
+      "n": 308,
+      "checkpoint_sha256": "9c8305e6574e3c1c017d6c65a5e8b77b2141d711e5276a772b8f4872a30311d2"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "deeplob",
+      "seed": 1,
+      "file": "figures/cf_mirror_src_positional/deeplob_toxic_seed1_insertion.curves.npz",
+      "n": 74,
+      "checkpoint_sha256": "f731724e154210d31ac4244ec896b9dcd7307390d0e50f4aca2d53e0a89e0d48"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "deeplob",
+      "seed": 2,
+      "file": "figures/cf_mirror_src_positional/deeplob_toxic_seed2_insertion.curves.npz",
+      "n": 61,
+      "checkpoint_sha256": "97e820933752fdfc4bd6c39e4a78cc8551de0e9c811ccf9ca3b541506d6d48e9"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_up",
+      "model": "deeplob",
+      "seed": 3,
+      "file": "figures/cf_mirror_src_positional/deeplob_toxic_seed3_insertion.curves.npz",
+      "n": 308,
+      "checkpoint_sha256": "9c8305e6574e3c1c017d6c65a5e8b77b2141d711e5276a772b8f4872a30311d2"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "ours",
+      "seed": 1,
+      "file": "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.npz",
+      "n": 400,
+      "checkpoint_sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "ours",
+      "seed": 2,
+      "file": "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.npz",
+      "n": 354,
+      "checkpoint_sha256": "eccb673fd685a7dca231330f21bf8bc50ce99297caf8fad4e52a1d088d8149f6"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "ours",
+      "seed": 3,
+      "file": "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.npz",
+      "n": 400,
+      "checkpoint_sha256": "63c0c5e158453b26c6d6932e921b3204d3b747a81a0b0e6b24ed7cde6486c653"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "ours",
+      "seed": 1,
+      "file": "figures/cf_mirror_src_positional/ours_toxic_seed1_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "ours",
+      "seed": 2,
+      "file": "figures/cf_mirror_src_positional/ours_toxic_seed2_insertion.curves.npz",
+      "n": 354,
+      "checkpoint_sha256": "eccb673fd685a7dca231330f21bf8bc50ce99297caf8fad4e52a1d088d8149f6"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "ours",
+      "seed": 3,
+      "file": "figures/cf_mirror_src_positional/ours_toxic_seed3_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "63c0c5e158453b26c6d6932e921b3204d3b747a81a0b0e6b24ed7cde6486c653"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "deeplob",
+      "seed": 1,
+      "file": "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.npz",
+      "n": 242,
+      "checkpoint_sha256": "f731724e154210d31ac4244ec896b9dcd7307390d0e50f4aca2d53e0a89e0d48"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "deeplob",
+      "seed": 2,
+      "file": "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.npz",
+      "n": 239,
+      "checkpoint_sha256": "97e820933752fdfc4bd6c39e4a78cc8551de0e9c811ccf9ca3b541506d6d48e9"
+    },
+    {
+      "direction": "deletion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "deeplob",
+      "seed": 3,
+      "file": "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.npz",
+      "n": 400,
+      "checkpoint_sha256": "9c8305e6574e3c1c017d6c65a5e8b77b2141d711e5276a772b8f4872a30311d2"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "deeplob",
+      "seed": 1,
+      "file": "figures/cf_mirror_src_positional/deeplob_toxic_seed1_insertion.curves.npz",
+      "n": 242,
+      "checkpoint_sha256": "f731724e154210d31ac4244ec896b9dcd7307390d0e50f4aca2d53e0a89e0d48"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "deeplob",
+      "seed": 2,
+      "file": "figures/cf_mirror_src_positional/deeplob_toxic_seed2_insertion.curves.npz",
+      "n": 239,
+      "checkpoint_sha256": "97e820933752fdfc4bd6c39e4a78cc8551de0e9c811ccf9ca3b541506d6d48e9"
+    },
+    {
+      "direction": "insertion",
+      "task": "toxic",
+      "cls": "toxic_down",
+      "model": "deeplob",
+      "seed": 3,
+      "file": "figures/cf_mirror_src_positional/deeplob_toxic_seed3_insertion.curves.npz",
+      "n": 400,
+      "checkpoint_sha256": "9c8305e6574e3c1c017d6c65a5e8b77b2141d711e5276a772b8f4872a30311d2"
+    }
+  ],
+  "files": {
+    "figures/cf_mirror_src_positional/deeplob_toxic_seed1_insertion.curves.npz": "922286d17372c8b92a05fb1e40c87ba9387e6921b07eda981c92fa63aa1e91d7",
+    "figures/cf_mirror_src_positional/deeplob_toxic_seed2_insertion.curves.npz": "06d2b65c6a304aba381409350e65ea53b64b5991d57c1b381d3cd4460ba613ac",
+    "figures/cf_mirror_src_positional/deeplob_toxic_seed3_insertion.curves.npz": "63bdd08330fac3e3faa164ae8e4775d3092360ce72b2f5e7e620cb3e5f3a9187",
+    "figures/cf_mirror_src_positional/deeplob_vacuum_seed1_insertion.curves.npz": "72edca1ad9c44b0eca1303f9fcf60fab83273e377229f73f485c580b4a20a3b5",
+    "figures/cf_mirror_src_positional/deeplob_vacuum_seed2_insertion.curves.npz": "13e463fba04f6097fa2af6765ab1ac9d0d53d43e6f6163592006c7920d226d02",
+    "figures/cf_mirror_src_positional/deeplob_vacuum_seed3_insertion.curves.npz": "a8a36e907d7bd8e6c870096ece3f031406200b5feed103adae6b21b9be0fe247",
+    "figures/cf_mirror_src_positional/ours_toxic_seed1_insertion.curves.npz": "e487f501695d062de72c58a687f2fad8108a65790b621b346ba44ff32220e2ac",
+    "figures/cf_mirror_src_positional/ours_toxic_seed2_insertion.curves.npz": "112ce3ab4b77707c2427cd40748ece30b015e8f257196406a3a808fe0d1faa8d",
+    "figures/cf_mirror_src_positional/ours_toxic_seed3_insertion.curves.npz": "f6354d5732c715b4aa9ef33edc74a52a51454919a0f3153134efbe248702192c",
+    "figures/cf_mirror_src_positional/ours_vacuum_seed1_insertion.curves.npz": "98dcf91865240d5bdef6502dbc38052d42bda7cab056b5c12e0c137acd488b55",
+    "figures/cf_mirror_src_positional/ours_vacuum_seed2_insertion.curves.npz": "86eac845d7fcb7770754ae03aa7279ff4c1c71f0476ab27c235b1e4a042a8976",
+    "figures/cf_mirror_src_positional/ours_vacuum_seed3_insertion.curves.npz": "d227e41b718405c15214ae59d4ef3967779fa81eae7331e34754317698d790c8",
+    "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.npz": "b4f0f202fd0214b4d88f6d99e6a5a161213e1cf586a793e8d65a31ccb19c9af8",
+    "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.npz": "08520e42e957aeefd4f936f1dbe0afeefbd25e5ef033a04cdfbb3a1bf3f05851",
+    "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.npz": "df164585e5d9ccb3610dccdc7b4816a82e545c45e1d625ec61344b4e41f67c62",
+    "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.npz": "faf8df4262b9fac831fda04f049ff678299a3f3c467ad907c13e4a76830b2d21",
+    "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.npz": "b27287d3a7fd0a92f0b75a7f55bdfc8cc001fba833ed599d47d5d23fe0a8c62d",
+    "figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.npz": "c8a784b45882f5fd324778bc1356df6d92e79ac4ba016c9d7144c4d0ede6d108",
+    "figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.npz": "f2f2def9c39eea57051bf168333576982534d66bae720b63747c04907d99aaea",
+    "figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.npz": "7394c0f065e1e48de137c3e2237bb2a4ef7a4de03d36ffc5feeb7f0cdede2741",
+    "figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.npz": "009742cd3d1e7ea24740b5fd4289e29d5d7e944ffc5b457824930ce72bc6e966",
+    "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.npz": "8bc34fd4bc9116cc36e1090a3e50d6e9edda15af4684c935beb23782666418ab",
+    "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.npz": "10f5307168675020d37a40660f663b1a156c6331ed9f66942be031b18f20ac4e",
+    "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.npz": "b851881163521d5aacc95f3401b01600ffef9dc9dfbb925e4abbd9adc24b8820",
+    "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.npz": "0d1696503fe40c4f3ceff6d65a64c2847f79e556433325715006916cd092b559",
+    "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.npz": "55f81f0932f95633263703a91abb9de4af080c8479a211b98df7d9d9b731337a",
+    "figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.npz": "de3856b7ecbc9d92aeb6b25c4c5d1fb2eed233435e0c15087706120935e78e6d",
+    "figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.npz": "9535da6ca3ea9d849ccf8372363c45b0cf21ac57ff0da0dd7cdff85795b52511",
+    "figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.npz": "6884a20163ff9f304a251bfe314bf62d67230fb16fadbcccf3b7bb431a7fee0a",
+    "figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.npz": "af131ef8cc866fa0ad2214308f654efabbed471255e5a9bf54515f35ca706cf6"
+  },
+  "checkpoints": {
+    "toxic_seed1": {
+      "path": "loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt",
+      "sha256": "30ce8f3646637db02b97128a36f8864b64653867a471e145d93754c89b0181ee"
+    },
+    "toxic_seed2": {
+      "path": "loggers/results/final_toxic_positional_seed2_2026-08-25_10-27-08/model.pt",
+      "sha256": "eccb673fd685a7dca231330f21bf8bc50ce99297caf8fad4e52a1d088d8149f6"
+    },
+    "toxic_seed3": {
+      "path": "loggers/results/final_toxic_positional_seed3_2026-08-25_11-43-34/model.pt",
+      "sha256": "63c0c5e158453b26c6d6932e921b3204d3b747a81a0b0e6b24ed7cde6486c653"
+    },
+    "vacuum_seed1": {
+      "path": "loggers/results/final_vacuum_positional_seed1_2026-07-28_07-34-47/model.pt",
+      "sha256": "8e6349212fde3526354fb46857f1a6814b42773b400c7bcff792d1cd8eb772d3"
+    }
+  }
+}

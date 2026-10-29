@@ -1,0 +1,5 @@
+# Preserve exact bytes of supplied research files across platforms.
+* -text
+
+# Classify manuscript sources as documentation in GitHub language statistics.
+manuscripts/** linguist-documentation

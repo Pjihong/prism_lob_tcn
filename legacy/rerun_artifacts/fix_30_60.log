@@ -1,0 +1,333 @@
+=== [A] ours-toxic carpet 산출물 격리 (구 multi_scale + 방금 잘못 생성분 모두) ===
+=== [B] selected manifest 갱신 (읽기전용 해제 -> 쓰기 -> 재잠금) ===
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "/home/jupyter-jihong0429/.conda/envs/jihongenv2/lib/python3.10/shutil.py", line 417, in copy
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/home/jupyter-jihong0429/.conda/envs/jihongenv2/lib/python3.10/shutil.py", line 256, in copyfile
+    with open(dst, 'wb') as fdst:
+PermissionError: [Errno 13] Permission denied: 'frozen/task_specific_selected_6ckpt_manifest.json.bak_multiscale'
+0
+[FAIL] manifest 교체 실패 - 여기서 중단하고 로그 공유
+=== [C] carpet 재실행 (ours toxic) ===
+[skip] completed: figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50
+[run] mode=full model=ours task=toxic seed=3
+[run] ckpt=/home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_multiscale_seed3_2026-07-28_09-40-36/model.pt
+[cohort] class=toxic_up n=171 confidence=[0.4021,0.9980]
+[saved] figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.{png,pdf,npz,json,windows.csv}
+[cohort] class=toxic_down n=359 confidence=[0.3482,0.9996]
+[saved] figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.{png,pdf,npz,json,windows.csv}
+[done] figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/run_manifest.json
+[skip] completed: figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50
+[skip] completed: figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50
+[success] elapsed=00:02:32
+[outputs]
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2-checkpoint.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2-checkpoint.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_down_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/deeplob_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_toxic_toxic_up_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3-checkpoint.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/deeplob_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_deeplob_vacuum_vacuum_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_down_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/ours_toxic_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_toxic_toxic_up_hirescam_stratified_correct_seed3.windows.csv
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/.ipynb_checkpoints/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1-checkpoint.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.npz
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed1_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed1.windows.csv
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.npz
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed2_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed2.windows.csv
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.npz
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.png
+figures/cf_response_carpet/final/full/ours_vacuum_hirescam_stratified_correct_seed3_n400_p30000_m10_k50_q0.50/cf_response_carpet_ours_vacuum_vacuum_hirescam_stratified_correct_seed3.windows.csv
+[FAIL] carpet가 구 ckpt 사용 - scripts/run_response_carpet.sh 내용 공유 필요
+=== [D] cf_effect_stats ===
+[done] 18 npz analysed -> figures/cf_effect_stats_final_positional.csv
+[caveat] overlapping windows: treat p-values as descriptive unless block/cluster uncertainty is added
+=== [E] branch probe ===
+[probe] ckpt: /home/jupyter-jihong0429/timeseries/lob-xai/loggers/results/final_toxic_positional_seed1_2026-08-25_10-01-42/model.pt
+Traceback (most recent call last):
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/probe_branch_structure.py", line 143, in <module>
+    main()
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/probe_branch_structure.py", line 64, in main
+    validate_run_protocol(cfg, task=args.task, k=args.k, seed=args.seed)
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/branch_xai_common.py", line 63, in validate_run_protocol
+    raise ValueError(f"{label} protocol mismatch: {mismatch}")
+ValueError: checkpoint protocol mismatch: {'k': {'stored': 10, 'requested': 30}}
+usage: probe_branch_structure.py [-h] [--task TASK] [--seed SEED] [--k K]
+                                 [--results-root RESULTS_ROOT] [--ckpt CKPT] [--test-csv TEST_CSV]
+                                 [--device DEVICE] [--target TARGET] [--config-out CONFIG_OUT]
+                                 [--n-probe N_PROBE]
+
+options:
+  -h, --help            show this help message and exit
+  --task TASK
+  --seed SEED
+  --k K
+  --results-root RESULTS_ROOT
+  --ckpt CKPT           explicit ours model.pt (recommended)
+  --test-csv TEST_CSV
+  --device DEVICE
+  --target TARGET       target class: vacuum=1, toxic->1(up)/2(down)
+  --config-out CONFIG_OUT
+  --n-probe N_PROBE
+=== [F] Axis A (3-seed) ===
+Traceback (most recent call last):
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/axis_a_min.py", line 337, in <module>
+    main()
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/axis_a_min.py", line 143, in main
+    cfg = load_config(args.config)
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/branch_xai_common.py", line 387, in load_config
+    with open(path, encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'frozen/branch_config_toxic_positional.json'
+usage: axis_a_min.py [-h] [--task TASK] [--seed SEED] [--k K] [--results-root RESULTS_ROOT]
+                     [--ckpt CKPT] [--train-csv TRAIN_CSV] [--test-csv TEST_CSV] [--device DEVICE]
+                     [--target TARGET] [--n-windows N_WINDOWS] [--config CONFIG] [--out-dir OUT_DIR]
+                     [--baseline {mean,zero}] [--use-prob] [--pred-based]
+
+options:
+  -h, --help            show this help message and exit
+  --task TASK
+  --seed SEED
+  --k K
+  --results-root RESULTS_ROOT
+  --ckpt CKPT           explicit ours model.pt (recommended for paper runs)
+  --train-csv TRAIN_CSV
+  --test-csv TEST_CSV
+  --device DEVICE
+  --target TARGET       target class: vacuum=1, toxic up=1 / down=2
+  --n-windows N_WINDOWS
+  --config CONFIG
+  --out-dir OUT_DIR
+  --baseline {mean,zero}
+  --use-prob            value function = target probability instead of logit
+  --pred-based          diagnostic: audit emitted alerts even when the true class differs
+=== [G] Axis B (toxic 참고치) ===
+Traceback (most recent call last):
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/axis_b_branch_structure.py", line 292, in <module>
+    main()
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/axis_b_branch_structure.py", line 129, in main
+    cfg = load_config(args.config)
+  File "/home/jupyter-jihong0429/timeseries/lob-xai/scripts/common/branch_xai_common.py", line 387, in load_config
+    with open(path, encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'frozen/branch_config_toxic_positional.json'
+usage: axis_b_branch_structure.py [-h] [--task TASK] [--seed SEED] [--k K]
+                                  [--results-root RESULTS_ROOT] [--ckpt CKPT] [--train-csv TRAIN_CSV]
+                                  [--test-csv TEST_CSV] [--device DEVICE] [--target TARGET]
+                                  [--n-windows N_WINDOWS] [--config CONFIG] [--out-dir OUT_DIR]
+                                  [--var-lag VAR_LAG] [--baseline {mean,zero}] [--cond-max COND_MAX]
+                                  [--score-min SCORE_MIN] [--alpha ALPHA] [--pred-based]
+
+options:
+  -h, --help            show this help message and exit
+  --task TASK
+  --seed SEED
+  --k K
+  --results-root RESULTS_ROOT
+  --ckpt CKPT
+  --train-csv TRAIN_CSV
+  --test-csv TEST_CSV
+  --device DEVICE
+  --target TARGET
+  --n-windows N_WINDOWS
+  --config CONFIG
+  --out-dir OUT_DIR
+  --var-lag VAR_LAG
+  --baseline {mean,zero}
+  --cond-max COND_MAX   condition-number threshold above which VAR is 'unstable'
+  --score-min SCORE_MIN
+                        min Spearman(W_var,W_abl) to call structure 'supported'
+  --alpha ALPHA         maximum Spearman p-value for supported status
+  --pred-based          diagnostic only; paper default requires correct alerts
+=== [H] cam_sanity (3-seed) ===
+[done] figures/cam_sanity_positional/toxic_up_seed1.json
+  agreement hirescam_vs_gradcam: rho=0.516 jaccard=0.137
+  agreement hirescam_vs_tsr: rho=0.910 jaccard=0.818
+  agreement gradcam_vs_tsr: rho=0.278 jaccard=0.121
+  stability: rho=0.956 (n=100)
+  randomization: rho=0.857 (should be low)
+[done] figures/cam_sanity_positional/toxic_up_seed2.json
+  agreement hirescam_vs_gradcam: rho=0.337 jaccard=0.078
+  agreement hirescam_vs_tsr: rho=0.900 jaccard=0.833
+  agreement gradcam_vs_tsr: rho=0.120 jaccard=0.056
+  stability: rho=0.938 (n=87)
+  randomization: rho=0.850 (should be low)
+[done] figures/cam_sanity_positional/toxic_up_seed3.json
+  agreement hirescam_vs_gradcam: rho=0.397 jaccard=0.065
+  agreement hirescam_vs_tsr: rho=0.873 jaccard=0.834
+  agreement gradcam_vs_tsr: rho=0.113 jaccard=0.051
+  stability: rho=0.931 (n=94)
+  randomization: rho=0.796 (should be low)
+=== [I] 그림 재생성 ===
+[branch-imp] missing Axis A artifact: figures/axis_a_positional/axisA_min_toxic_k10_seed1.csv
+usage: plot_branch_importance.py [-h] [--task TASK] [--k K] [--target TARGET]
+                                 [--seeds SEEDS [SEEDS ...]] [--axis-a-dir AXIS_A_DIR]
+                                 [--out-dir OUT_DIR] [--ckpt-template CKPT_TEMPLATE]
+                                 [--results-root RESULTS_ROOT] [--config CONFIG]
+                                 [--test-csv TEST_CSV] [--device DEVICE] [--n-windows N_WINDOWS]
+                                 [--from-cache] [--smooth SMOOTH]
+                                 [--readout-steps [READOUT_STEPS ...]]
+
+options:
+  -h, --help            show this help message and exit
+  --task TASK
+  --k K
+  --target TARGET
+  --seeds SEEDS [SEEDS ...]
+  --axis-a-dir AXIS_A_DIR
+  --out-dir OUT_DIR
+  --ckpt-template CKPT_TEMPLATE
+                        glob with {seed}, e.g.
+                        'loggers/results/final_toxic_multiscale_seed{seed}_*/model.pt'
+  --results-root RESULTS_ROOT
+  --config CONFIG
+  --test-csv TEST_CSV
+  --device DEVICE
+  --n-windows N_WINDOWS
+  --from-cache          require the npz cache; never touch checkpoints
+  --smooth SMOOTH       centered moving-average half-width for panel (a) display only (0 = raw)
+  --readout-steps [READOUT_STEPS ...]
+                        tail-window lengths of a multi_scale readout (e.g. 8 32); draws the alpha_t
+                        envelope boundaries at t = T-s+1 in panel (a) so the staircase reads as the
+                        learned recency envelope, not an artifact. Omit for positional/GAP readouts.
+usage: plot_alert_card.py [-h] [--task {toxic,vacuum}] [--target TARGET] [--seed SEED] [--ckpt CKPT]
+                          [--train-csv TRAIN_CSV] [--test-csv TEST_CSV] [--rank RANK] [--rho RHO]
+                          [--mc MC] [--pool-size POOL_SIZE] [--neighbors-k NEIGHBORS_K]
+                          [--method METHOD] [--n-windows N_WINDOWS] [--input-branch INPUT_BRANCH]
+                          [--readout-steps [READOUT_STEPS ...]] [--device DEVICE] [--out-dir OUT_DIR]
+                          [--demo] [--allow-unverified-data]
+plot_alert_card.py: error: argument --target: invalid int value: 'toxic_up'
+usage: plot_alert_card.py [-h] [--task {toxic,vacuum}] [--target TARGET] [--seed SEED] [--ckpt CKPT]
+                          [--train-csv TRAIN_CSV] [--test-csv TEST_CSV] [--rank RANK] [--rho RHO]
+                          [--mc MC] [--pool-size POOL_SIZE] [--neighbors-k NEIGHBORS_K]
+                          [--method METHOD] [--n-windows N_WINDOWS] [--input-branch INPUT_BRANCH]
+                          [--readout-steps [READOUT_STEPS ...]] [--device DEVICE] [--out-dir OUT_DIR]
+                          [--demo] [--allow-unverified-data]
+
+options:
+  -h, --help            show this help message and exit
+  --task {toxic,vacuum}
+  --target TARGET
+  --seed SEED           sampler seed AND the checkpoint seed being shown
+  --ckpt CKPT           ours model.pt (globs allowed)
+  --train-csv TRAIN_CSV
+  --test-csv TEST_CSV
+  --rank RANK           cohort rank to display (1 = most confident correct alert)
+  --rho RHO             CAM top-span fraction to delete (contiguous, len=ceil(rho*T))
+  --mc MC
+  --pool-size POOL_SIZE
+  --neighbors-k NEIGHBORS_K
+  --method METHOD
+  --n-windows N_WINDOWS
+                        cohort size for the selection rule (same as Axis A)
+  --input-branch INPUT_BRANCH
+                        branch shown in the INPUT heatmap (auto = largest |CAM| share of this window)
+  --readout-steps [READOUT_STEPS ...]
+                        multi_scale tail windows (e.g. 8 32) -> envelope boundary lines in the
+                        OBSERVATION row
+  --device DEVICE
+  --out-dir OUT_DIR
+  --demo                synthetic data + untrained model (watermarked)
+  --allow-unverified-data
+need --carpet-root or --deletion-template
+usage: plot_cf_mirror.py [-h] [--seeds SEEDS [SEEDS ...]] [--models MODELS [MODELS ...]]
+                         [--carpet-root CARPET_ROOT] [--deletion-template DELETION_TEMPLATE]
+                         [--insertion-template INSERTION_TEMPLATE] [--out-dir OUT_DIR]
+
+options:
+  -h, --help            show this help message and exit
+  --seeds SEEDS [SEEDS ...]
+  --models MODELS [MODELS ...]
+  --carpet-root CARPET_ROOT
+                        deletion source: response-carpet output root (searched recursively)
+  --deletion-template DELETION_TEMPLATE
+                        deletion source: counterfactual .curves.npz with {model}/{task}/{seed}
+                        placeholders (overrides --carpet-root)
+  --insertion-template INSERTION_TEMPLATE
+                        counterfactual *_insertion.curves.npz with {model}/{task}/{seed} placeholders
+  --out-dir OUT_DIR
+[run] task=vacuum checkpoints=3
+[verified] task=vacuum pool=positional seeds=[1, 2, 3] shape=(3, 4, 100)
+seed=1
+  ask_price    last8=0.079 last32=0.318 E[lag]=49.7
+  ask_volume   last8=0.225 last32=0.530 E[lag]=35.2
+  bid_price    last8=0.079 last32=0.313 E[lag]=50.2
+  bid_volume   last8=0.228 last32=0.540 E[lag]=35.1
+seed=2
+  ask_price    last8=0.079 last32=0.319 E[lag]=49.6
+  ask_volume   last8=0.229 last32=0.539 E[lag]=34.8
+  bid_price    last8=0.081 last32=0.319 E[lag]=50.0
+  bid_volume   last8=0.255 last32=0.569 E[lag]=33.2
+seed=3
+  ask_price    last8=0.078 last32=0.311 E[lag]=50.5
+  ask_volume   last8=0.240 last32=0.546 E[lag]=34.0
+  bid_price    last8=0.079 last32=0.308 E[lag]=51.0
+  bid_volume   last8=0.276 last32=0.595 E[lag]=31.3
+[saved] figures/positional_readout/fig_positional_readout_vacuum.png
+[saved] figures/positional_readout/fig_positional_readout_vacuum.pdf
+[saved] figures/positional_readout/fig_positional_readout_vacuum_weights.csv
+[saved] figures/positional_readout/fig_positional_readout_vacuum_summary.json
+[done]
+figures/positional_readout/fig_positional_readout_toxic.pdf
+figures/positional_readout/fig_positional_readout_toxic.png
+figures/positional_readout/fig_positional_readout_toxic_summary.json
+figures/positional_readout/fig_positional_readout_toxic_weights.csv
+figures/positional_readout/fig_positional_readout_vacuum.pdf
+figures/positional_readout/fig_positional_readout_vacuum.png
+figures/positional_readout/fig_positional_readout_vacuum_FINAL.pdf
+figures/positional_readout/fig_positional_readout_vacuum_FINAL.png
+figures/positional_readout/fig_positional_readout_vacuum_FINAL_summary.json
+figures/positional_readout/fig_positional_readout_vacuum_FINAL_weights.csv
+figures/positional_readout/fig_positional_readout_vacuum_summary.json
+figures/positional_readout/fig_positional_readout_vacuum_weights.csv
+=== [J] 결과 수집 ===
+[upload this] rerun_kit/positional_toxic_results_20260825.tar.gz
+FIX DONE
