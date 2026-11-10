@@ -5,7 +5,7 @@ BranchAdapter uses a training-mean internal feature map (or diagnostic zero
 baseline), keeping the input unchanged. Axis A compares drop-one logit changes
 with absolute HiResCAM shares on the same correct-alert cohort.
 
-probe_branch_structure.py verifies the branch module names and architecture
+The supplied branch configuration records module names and architecture
 signature before Axis A or branch-importance analysis uses this adapter.
 """
 from __future__ import annotations

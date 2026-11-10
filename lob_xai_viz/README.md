@@ -2,11 +2,11 @@
 
 완성 그림은 [figures/](../figures/README.md), 그림을 만드는 코드는 이 패키지에서 관리합니다.
 `prism_figure_revision`의 최종 수정 렌더러를 이곳으로 합쳤습니다.
-공통 모델·데이터 적재는 `lob_xai.checkpoints`, 분기 개입은 `lob_xai.branch_analysis`에 있습니다.
+공통 `lob_xai.checkpoints` 로더는 제거했습니다. 카드·factorization·gallery 등은 별도 구현을 사용하며, [제거 범위](../docs/PUBLICATION_SCOPE.md)에 유지된 도구를 명시했습니다.
 
 ## 논문에 사용한 입력으로 다시 그리기
 
-저장소 루트에서 실행합니다. 기존 가중치와 CF 원자료는 배포하지 않으므로 별도로 공급해야 합니다.
+저장소 루트에서 실행합니다. 전체 모델 checkpoint와 완전한 CF 재집계 입력은 별도로 준비해야 합니다. 일부 과거 수치·추출 가중치는 압축 안에 공개 검토 대기 상태로 남아 있으며, 아래 도구의 모든 입력이 갖추어졌다는 뜻은 아닙니다.
 
 | 명령 | 입력 | 담당 모듈 |
 |---|---|---|
@@ -36,7 +36,7 @@ python -m lob_xai_viz.plot_alert_card --demo --task toxic --target 1 --out-dir f
 ```
 
 `plot_branch_importance.py`와 `plot_positional_readout.py`는 추가 분석 그림용 도구입니다.
-전자는 분기 분석 CSV·checkpoint, 후자는 checkpoint의 readout 가중치를 읽습니다.
+전자는 기존 분기 분석 CSV와 CAM 시간 NPZ 캐시만 읽으며 checkpoint로 캐시를 새로 계산하지 않습니다. 후자는 독립 loader로 checkpoint의 readout 가중치를 읽습니다.
 새 실험 실행 순서는 [scripts 안내](../scripts/README.md)와 [REPRODUCE.md](../docs/REPRODUCE.md)에 있습니다.
 
 ## 그림과 캡션을 읽을 때

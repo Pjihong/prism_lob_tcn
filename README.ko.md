@@ -45,7 +45,7 @@ data/FI2010/FI2010_test.csv    # 테스트용: 31,937행
 
 | 설명 점검 | 무엇을 보는가 | 코드와 실험 기록 |
 |---|---|---|
-| 분기 귀속과 특징 대체 | 중요하다고 표시된 가격·수량 그룹을 학습 평균으로 바꿨을 때, 목표 클래스의 로짓도 그 순위에 맞게 변하는가? | [분기 분석](scripts/analyze_branch_importance.py) · [표 분석 안내](docs/PAPER_MAP.md) |
+| 분기 귀속과 특징 대체 | 중요하다고 표시된 가격·수량 그룹을 학습 평균으로 바꿨을 때, 목표 클래스의 로짓도 그 순위에 맞게 변하는가? | [분기 분석](lob_xai/branch_analysis.py) · [표 분석 안내](docs/PAPER_MAP.md) |
 | 시간 가중치와 귀속의 관계 | 학습된 시간 가중치가 Grad-CAM과 HiResCAM의 관계에 어떻게 반영되는가? | [귀속 구현](lob_xai/gradcam.py) · [원고·그림 대응](docs/PAPER_MAP.md) |
 | 시간 구간 대체·복원 | CAM이 고른 구간을 대체하면 예측이 더 잘 바뀌고, 복원하면 목표 예측이 더 잘 돌아오는가? 무작위·anti-CAM 구간과 비교하면 어떠한가? | [개입 구현](lob_xai/counterfactual_test.py) · [결과 경로 안내](figures/README.md) |
 
@@ -78,7 +78,7 @@ python scripts/check_docs.py
 python scripts/smoke_pooling.py --pool positional
 ```
 
-**위 점검에는 FI-2010 데이터가 필요하지 않습니다.** 완성된 그림은 [논문 PNG 목록](figures/README.md)에서 바로 볼 수 있습니다. 기존 CF 원자료는 포함하지 않으므로 현재 checkout만으로 CF 곡선을 다시 집계할 수는 없습니다.
+**위 점검에는 FI-2010 데이터가 필요하지 않습니다.** 완성된 그림은 [논문 PNG 목록](figures/README.md)에서 바로 볼 수 있습니다. CF 재집계에 필요한 전체 입력은 제공하지 않으며, 일부 과거 수치·배열은 압축 안에 공개 검토 대기 상태로 남아 있습니다.
 
 데이터를 준비한 뒤에는 논문 설정 파일로 학습할 수 있습니다.
 
@@ -106,7 +106,7 @@ Seed 2·3도 이름과 함께 바꾸어 실행합니다. 이 설정은 positiona
 2. [모델](lob_xai/models.py) → [학습](lob_xai/training.py)과 [평가 지표](lob_xai/metrics.py)
 3. [귀속](lob_xai/gradcam.py) → [구간 대체·복원](lob_xai/counterfactual_test.py)
 
-실행 흐름은 **데이터 → 학습 → checkpoint → 평가·개입 → 그림**입니다. [단계별 실행 코드](scripts/README.md)에서 각 단계를 연결해 볼 수 있습니다. `configs/paper/*.args`는 학습 명령이 읽는 설정이고, `docs/REPRODUCE.md`는 실행 순서입니다. 모델·데이터 적재는 `lob_xai/checkpoints.py`, 분기 분석 공통 기능은 `lob_xai/branch_analysis.py`에서 공유합니다.
+실행 흐름은 **데이터 → 학습 → checkpoint → 평가·개입 → 그림**입니다. [단계별 실행 코드](scripts/README.md)에서 각 단계를 연결해 볼 수 있습니다. `configs/paper/*.args`는 학습 명령이 읽는 설정이고, `docs/REPRODUCE.md`는 실행 순서입니다. 공통 checkpoint 로더와 이를 사용하는 명령은 사용자 요청으로 제거했습니다. 독립 CF·그림 도구의 유지 범위는 [현재 공개 범위](docs/PUBLICATION_SCOPE.md)를 참고하세요.
 
 ## 실험 기록은 어디에 있나요?
 
@@ -116,7 +116,7 @@ Seed 2·3도 이름과 함께 바꾸어 실행합니다. 이 설정은 positiona
 | 모델 식별 정보 | [configs/paper/checkpoints.json](configs/paper/checkpoints.json): 기존 모델의 해시 기록이며 가중치 파일은 미포함 |
 | 표·그림 분석 코드와 새 실행의 입력 | [논문–코드 대응표](docs/PAPER_MAP.md), [실행·재현 안내](docs/REPRODUCE.md) |
 
-미공개 원고와 기존 학습 run·로그·가중치 파일은 포함하지 않습니다. 평가하려면 직접 학습하거나 호환 checkpoint를 별도로 준비하세요. `figures/`에는 PNG와 그림 목록만 제공합니다. 기존 탐지 집계·분기 분석·CF 원자료와 과거 그림은 포함하지 않습니다. 표의 수치를 다시 계산하려면 필요한 데이터와 checkpoint로 분석을 새로 실행하거나 해당 원자료를 별도로 준비해야 합니다.
+미공개 원고와 전체 모델 checkpoint는 포함하지 않습니다. 추적된 `.log` 파일과 압축 내부 `.log`는 제거했습니다. `figures/`에는 최종 PNG 6개와 그림 목록이 있습니다. 과거 압축파일에는 결과 수치·일부 추출 가중치·이전 그림이 공개 검토를 위해 아직 남아 있습니다. 완전한 재현 패키지로 안내하지 않으며, [제거한 기능과 남은 자료](docs/PUBLICATION_SCOPE.md)를 구분해 확인하세요.
 
 ## 인용과 이용
 

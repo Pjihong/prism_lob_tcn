@@ -2,7 +2,8 @@
 
 Run: python scripts/train_microstructure.py "@configs/paper/toxic.args" --seed 1
 Inputs: indexed FI-2010 development/test CSVs and CLI or @file arguments.
-Outputs: checkpoint, configuration and metrics in loggers/results/.
+Outputs: checkpoint, configuration and metrics in --output-dir (default: runs/NAME).
+No YAML run log is written. Existing output directories are never reused.
 Scope: paper presets use positional/identity and validation-only selection.
 Without a preset, GAP remains the compatibility default. See docs/REPRODUCE.md.
 """
@@ -16,7 +17,6 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
-os.environ.setdefault("LOB_XAI_ROOT", str(PROJECT_ROOT))
 
 import numpy as np
 import torch
@@ -25,7 +25,6 @@ from lob_xai.config import Config
 from lob_xai.data import build_microstructure_dataloaders
 from lob_xai.models import LOBBranchModel
 from lob_xai.training import train, evaluate
-from lob_xai.loggers import generate_id, find_save_path, logger as yaml_logger
 from lob_xai.reporting import generate_full_report
 from lob_xai.microstructure_labels import TICK_SIZE_DEFAULT, K_DEFAULT
 from lob_xai.paper_protocol import (
@@ -119,7 +118,9 @@ def build_parser():
     ap.add_argument("--device", default="auto")
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--name", default=None,
-                    help="model_id prefix (default = 'tcn_avg_type4_{task}')")
+                    help="run name (default = '{backbone}_{pool}_type4_{task}')")
+    ap.add_argument("--output-dir", type=Path,
+                    help="new output directory (default: runs/NAME); must not already exist")
     ap.add_argument("--cam-windows", type=int, default=500)
     ap.add_argument("--cam-target-class", default="predicted",
                     choices=["predicted", "stationary", "toxic_up", "toxic_down",
@@ -172,13 +173,14 @@ def main():
         "test": file_identity(args.test_csv),
     }
 
-    # ── ID + log dir ──────────────────────────────────────────
+    # ── explicit result directory ─────────────────────────────
     if args.name:
         name = args.name
     else:
         name = f"{args.backbone}_{args.pool}_type4_{args.task}"
-    model_id = generate_id(name)
-    save_dir = find_save_path(model_id)
+    model_id = name
+    save_dir = args.output_dir or (PROJECT_ROOT / "runs" / name)
+    save_dir.mkdir(parents=True, exist_ok=False)
     print(f"[main] model_id = {model_id}")
     print(f"[main] save_dir = {save_dir}")
 
@@ -205,7 +207,6 @@ def main():
         train_boundaries=train_boundaries, test_boundaries=test_boundaries,
         data_files=data_files,
     )
-    yaml_logger(model_id, "config", cfg_log)
 
     # ── data ──────────────────────────────────────────────────
     bundle = build_microstructure_dataloaders(
@@ -243,9 +244,7 @@ def main():
                 meta["n_rows_train"], meta["n_rows_val"], meta["n_rows_test"]
             )
     cfg_log["realised_row_split"] = realised_split
-    # Backfill cfg_log with the resolved n_classes / flat_class so downstream
-    # tools that read ckpt["config"] (lob_xai.checkpoints.load_ours_model,
-    # tcav_negative_control, etc.) get the right shape without consulting meta.
+    # Store resolved dimensions with the model state for independent consumers.
     cfg_log["n_classes"] = int(n_classes)
     cfg_log["flat_class"] = int(flat_class)
     cfg_log["n_features"] = 40
@@ -266,7 +265,6 @@ def main():
         print(f"[main] QUICK mode — train={len(bundle['ds_train'])}, "
               f"val={len(bundle['ds_val'])}")
 
-    yaml_logger(model_id, "data_meta", meta)
 
     # ── model ─────────────────────────────────────────────────
     model = LOBBranchModel(
@@ -285,15 +283,6 @@ def main():
     )
     n_params = sum(p.numel() for p in model.parameters())
     print(f"[main] model params = {n_params:,}")
-    yaml_logger(model_id, "model_info", dict(
-        n_params=int(n_params), backbone=args.backbone, pool=args.pool,
-        branching_scheme="type4", branch_names=meta["branch_names"],
-        n_classes=n_classes, flat_class=flat_class,
-        cnn_channels=list(args.cnn_channels),
-        pool_windows=list(args.pool_windows),
-        tcn_norm=args.tcn_norm, input_norm=args.input_norm,
-        interaction_channels=args.interaction_channels,
-    ))
 
     # ── train ─────────────────────────────────────────────────
     use_focal = (args.loss == "focal")
@@ -302,7 +291,7 @@ def main():
         model, bundle["dl_train"], bundle["dl_val"],
         epochs=args.epochs, lr=args.lr, weight_decay=args.weight_decay,
         device=device, early_stop_patience=args.early_stop_patience,
-        n_classes=n_classes, model_id=model_id,
+        n_classes=n_classes,
         use_class_weights=use_class_weights,
         use_focal=use_focal, focal_gamma=args.focal_gamma,
         early_stop_metric=args.early_stop_metric,
@@ -318,7 +307,6 @@ def main():
                            flat_class=flat_class, return_predictions=True)
     val_log = {k: v for k, v in val_metrics.items()
                if k not in ("y_true", "y_pred", "probs")}
-    yaml_logger(model_id, "val_metrics", val_log)
     print("\n[main] restored-checkpoint validation evaluation:")
     print(f"  val f1         = {val_log['f1']:.4f}")
     print(f"  val mcc        = {val_log['mcc']:.4f}")
@@ -341,7 +329,6 @@ def main():
         print(f"  test roc_auc_nf = {test_metrics['roc_auc_macro_nonflat']:.4f}")
         test_log = {k: v for k, v in test_metrics.items()
                     if k not in ("y_true", "y_pred", "probs")}
-        yaml_logger(model_id, "test_metrics", test_log)
 
     # ── save checkpoint (including probs for threshold tuning later) ──
     import json

@@ -1,5 +1,7 @@
 > **역사 기록:** 아래 내용은 당시 버전의 작업·실험 상태다. 현재 실행법은 [REPRODUCE.md](REPRODUCE.md), 현재 결과 출처는 [PAPER_MAP.md](PAPER_MAP.md), 남은 문제는 [KNOWN_ISSUES.md](KNOWN_ISSUES.md)를 따른다. 경로와 명령을 현재 실행 지시로 사용하지 않는다.
 
+> 과거 실험 설계 기록입니다. 공통 checkpoint 평가 명령은 현재 제거되어 있으며, 아래 과거 명령을 현재 실행법으로 사용하지 마세요. [현재 범위](PUBLICATION_SCOPE.md).
+
 # Branch-TCN 성능 실험 (depth sweep 진단과 Stage 0–3)
 
 ## 기존 depth sweep이 확인한 것

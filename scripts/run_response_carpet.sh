@@ -71,7 +71,7 @@ test -s "$SCRIPT" || {
 test -f "$TRAIN_CSV" || { echo "[error] missing $TRAIN_CSV" >&2; exit 1; }
 test -f "$TEST_CSV" || { echo "[error] missing $TEST_CSV" >&2; exit 1; }
 
-mkdir -p "figures/cf_response_carpet/$CKPT_SET/$MODE" "logs/cf_response_carpet/$CKPT_SET/$MODE"
+mkdir -p "figures/cf_response_carpet/$CKPT_SET/$MODE"
 
 find_one () {
   local label="$1"
@@ -113,7 +113,6 @@ for model in $MODELS; do
       ckpt="$(resolve_ckpt "$model" "$task" "$seed")"
       run_tag="${model}_${task}_${METHOD}_${COHORT}_seed${seed}_n${N_WINDOWS}_p${POOL_SIZE}_m${MC}_k${NEIGHBORS_K}_q${Q_MAX}"
       out_dir="figures/cf_response_carpet/$CKPT_SET/$MODE/$run_tag"
-      log_file="logs/cf_response_carpet/$CKPT_SET/$MODE/${run_tag}.log"
 
       if [[ -s "$out_dir/run_manifest.json" ]] &&
          grep -q '"status": "complete"' "$out_dir/run_manifest.json"; then
@@ -148,8 +147,7 @@ for model in $MODELS; do
         --inference-batch-size "$INFERENCE_BATCH_SIZE" \
         --color-max "$COLOR_MAX" \
         --out-dir "$out_dir" \
-        "${extra[@]}" \
-        2>&1 | tee "$log_file"
+        "${extra[@]}"
     done
   done
 done

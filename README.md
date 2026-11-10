@@ -45,7 +45,7 @@ After prediction, the audits change the features and time spans identified by at
 
 | Explanation audit | What does it examine? | Code and records |
 |---|---|---|
-| Branch attribution vs. feature replacement | When a price/volume group is replaced with its training mean, does the ranking of target-logit changes agree with the attribution ranking? | [Branch analysis](scripts/analyze_branch_importance.py) · [Table analysis](docs/PAPER_MAP.md) |
+| Branch attribution vs. feature replacement | When a price/volume group is replaced with its training mean, does the ranking of target-logit changes agree with the attribution ranking? | [Branch analysis](lob_xai/branch_analysis.py) · [Table analysis](docs/PAPER_MAP.md) |
 | Temporal weights and attribution | How do learned temporal weights enter the relationship between Grad-CAM and HiResCAM? | [Attribution implementation](lob_xai/gradcam.py) · [Manuscript/figure map](docs/PAPER_MAP.md) |
 | Span replacement and restoration | Does replacing a CAM-selected span change the prediction more often, and does restoring it recover the target prediction more often, than random or anti-CAM spans? | [Intervention implementation](lob_xai/counterfactual_test.py) · [Result index](figures/README.md) |
 
@@ -78,7 +78,7 @@ python scripts/check_docs.py
 python scripts/smoke_pooling.py --pool positional
 ```
 
-**These checks do not require FI-2010 data.** View the completed figures in the [paper PNG index](figures/README.md). The original CF curve inputs are not included, so the current checkout alone cannot reaggregate those curves.
+**These checks do not require FI-2010 data.** View the completed figures in the [paper PNG index](figures/README.md). The complete inputs needed to reaggregate those curves are not supplied; some historical numerical arrays remain inside archives pending publication review.
 
 With the expected data available, train using the paper configuration files:
 
@@ -106,7 +106,7 @@ Read the code in experimental order:
 2. [Model](lob_xai/models.py) → [training](lob_xai/training.py) and [evaluation metrics](lob_xai/metrics.py)
 3. [Attribution](lob_xai/gradcam.py) → [span replacement/restoration](lob_xai/counterfactual_test.py)
 
-The execution flow is **data → training → checkpoint → evaluation / intervention → figures**. [Scripts by stage](scripts/README.md) connects each step to its implementation. `configs/paper/*.args` are inputs read by the training command; `docs/REPRODUCE.md` explains how to run it. Model/data loading is shared in `lob_xai/checkpoints.py`, and branch analysis in `lob_xai/branch_analysis.py`.
+The execution flow is **data → training → checkpoint → evaluation / intervention → figures**. [Scripts by stage](scripts/README.md) connects each step to its implementation. `configs/paper/*.args` are inputs read by the training command; `docs/REPRODUCE.md` explains how to run it. The shared checkpoint loader and its dependent commands were removed at the author's request. Independent CF and figure tools remain; see [current scope](docs/PUBLICATION_SCOPE.md).
 
 ## Where are the experiment records?
 
@@ -116,7 +116,7 @@ The execution flow is **data → training → checkpoint → evaluation / interv
 | Model identity records | [configs/paper/checkpoints.json](configs/paper/checkpoints.json): recorded hashes; weight files are not included |
 | Table/figure analysis code and inputs for new runs | [Paper-to-code map](docs/PAPER_MAP.md), [reproduction guide](docs/REPRODUCE.md) |
 
-Unpublished manuscripts and previous training runs, logs and weight files are not included. Evaluation requires training a model or supplying a compatible checkpoint. `figures/` contains PNGs and their index. Previous detection summaries, branch-analysis and CF inputs, and historical images are not included. Recomputing table values requires new analysis with the appropriate data and checkpoints, or separately supplied original analysis inputs.
+Unpublished manuscripts and full trained model checkpoints are not included. Tracked `.log` files and archived `.log` entries have been removed. `figures/` contains six final PNGs and their index. Historical archives still contain numerical results, partial learned weights and older figures pending publication review. They are not a complete ready-to-run reproduction package. [Removal scope and remaining materials](docs/PUBLICATION_SCOPE.md).
 
 ## Citation and reuse
 

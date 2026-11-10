@@ -40,7 +40,6 @@ _MODULE_EXPORTS = {
         "compute_alpha_inverse_freq", "find_threshold_high_precision",
         "find_threshold_youden", "find_threshold_cost",
     ],
-    "loggers": ["generate_id", "find_save_path", "logger", "read_log"],
     "reporting": [
         "generate_full_report", "save_history_csv", "save_predictions_csv",
         "save_confusion_matrix", "save_learning_curves", "cam_diagnostic",

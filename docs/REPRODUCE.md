@@ -19,7 +19,7 @@ python scripts/verify_baseline_models.py --device cpu
 python scripts/verify_preservation.py
 ```
 
-위 점검은 기존 학습 가중치 없이 실행할 수 있다. 기존 run과 checkpoint 파일은 배포하지 않으므로 학습된 모델의 적재·평가에는 별도로 준비한 파일이 필요하다. 보존 검사는 남겨 둔 파일의 해시를 확인하며 논문 성능을 검증하는 명령이 아니다.
+위 점검은 기존 학습 가중치 없이 실행할 수 있다. 전체 모델 checkpoint 파일은 배포하지 않으므로 학습된 모델의 적재·평가에는 별도로 준비한 파일이 필요하다. 보존 검사는 남겨 둔 파일의 해시를 확인하며 논문 성능을 검증하는 명령이 아니다.
 
 Windows에서 검증에 사용한 환경은 Python 3.12, CPU PyTorch 2.6.0이다. 재현용 의존성 제약은 `constraints-validated.txt`에 있다. 이는 원래 학습 환경의 lockfile이 아니다.
 
@@ -51,7 +51,7 @@ python scripts/train_microstructure.py "@configs/paper/toxic.args" --seed 1 --na
 python scripts/train_microstructure.py "@configs/paper/vacuum.args" --seed 1 --name paper_vacuum_seed1
 ```
 
-새 학습의 출력은 `loggers/`에 생성되며 `.gitignore`로 Git 추적에서 제외한다. 원고와 기존 학습 결과는 현재 배포하지 않는다.
+Ours 학습 출력은 `runs/NAME/`에 생성되며 `.gitignore`로 Git 추적에서 제외한다. `--output-dir`으로 다른 경로를 지정할 수 있다. 같은 이름·출력 폴더를 재사용하면 중단하므로 run마다 새 이름 또는 경로를 쓴다. YAML 실행 기록은 생성하지 않는다. 기존 결과 압축파일은 공개 범위 검토 중이며, [현재 범위](PUBLICATION_SCOPE.md)를 참고한다.
 
 `@` 파일은 표준 argparse의 인자 파일이며 한 줄에 한 인자를 저장한다. 따옴표는 PowerShell의 `@` 해석을 피하기 위해 양쪽 셸에서 사용한다. Seed 2와 3도 별도 실행한다.
 
@@ -61,25 +61,17 @@ python scripts/train_microstructure.py "@configs/paper/vacuum.args" --seed 1 --n
 
 ## 5. 고정 checkpoint 평가
 
-먼저 §4의 학습을 실행하거나 호환 checkpoint를 준비한다. 아래 `PATH_TO_TOXIC_SEED1_MODEL.pt`는 예시 자리표시자이며 실제 모델 파일 경로로 바꿔야 한다. 저장소에는 기존 학습 가중치가 포함되어 있지 않다.
-
-```sh
-python scripts/evaluate_ours_checkpoint.py --checkpoint PATH_TO_TOXIC_SEED1_MODEL.pt --test-csv data/FI2010/FI2010_test.csv --confirm-final-test --device cpu --out-json validation_output/toxic_seed1.json --out-npz validation_output/toxic_seed1.npz
-```
-
-`--confirm-final-test`는 실제 test 추론 실행을 명시한다. 과거 결과 파일을 덮어쓰지 않도록 새 출력 경로를 쓴다. Vacuum을 포함한 논문 표의 출처 불일치는 [KNOWN_ISSUES.md](KNOWN_ISSUES.md)에 남긴다.
+기존 공통 로더에 의존한 `evaluate_ours_checkpoint.py`와 `verify_positional_checkpoint.py`는 제거했다. 이 배포는 해당 고정 모델 평가 명령을 제공하지 않는다. `aggregate_final_test.py`는 별도로 준비된 평가 JSON을 집계하는 도구로 남아 있으며 추론 도구를 대신하지 않는다. 제거 범위는 [공개 범위 안내](PUBLICATION_SCOPE.md)를 참고한다.
 
 ## 6. 고신뢰 경보와 분기 분석
 
-아래 명령은 PowerShell/Bash 공통이며 실제 추론을 수행한다. `PATH_TO_TOXIC_SEED1_MODEL.pt`를 준비한 toxic seed 1 모델의 실제 경로로 바꾼다.
+독립 구현을 사용하는 아래 CF 명령은 유지한다. `PATH_TO_TOXIC_SEED1_MODEL.pt`는 실제 모델 파일로 바꾼다. 입력 데이터와 호환 모델을 별도로 준비해야 한다.
 
 ```sh
 python -m lob_xai.counterfactual_test --model ours --ckpt PATH_TO_TOXIC_SEED1_MODEL.pt --task toxic --seed 1 --direction both --device cpu --out validation_output/toxic_seed1_cf.png
-python scripts/probe_branch_structure.py --ckpt PATH_TO_TOXIC_SEED1_MODEL.pt --task toxic --k 10 --seed 1 --target 1 --config-out validation_output/branch_config.json
-python scripts/analyze_branch_importance.py --ckpt PATH_TO_TOXIC_SEED1_MODEL.pt --task toxic --k 10 --seed 1 --target 1 --config validation_output/branch_config.json --baseline mean --out-dir validation_output/branch_audit
 ```
 
-`analyze_branch_importance.py`는 과거 `axis_a_min.py`의 이름을 역할에 맞게 바꾼 실행 파일이다. 기존 `axisA_min_*` 출력 이름은 분석 코드와의 연결을 위해 유지한다. 현재 원고의 학습 평균 특징 대체·signed drop-one·Kendall 비교에 대응한다. 고신뢰 CF 결과를 신뢰도 층화 결과와 합치지 않는다. 분기 표에는 signed 원자료를 사용한다.
+기존 분기 probe·분기 중요도 계산·CAM sanity 명령은 공통 로더와 함께 제거했다. `plot_branch_importance.py`는 이미 준비된 분석 CSV와 CAM 시간 NPZ 캐시만 읽는다. 캐시가 없으면 계산을 새로 수행하지 않고 중단한다. 고신뢰 CF 결과와 신뢰도 층화 결과는 서로 다른 표본군이므로 합치지 않는다.
 
 ## 7. 데이터가 필요한 그림
 

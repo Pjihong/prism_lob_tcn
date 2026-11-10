@@ -7,7 +7,7 @@
 |---|---|---|
 | `toxic.args` | `scripts/train_microstructure.py` | Toxic 과제의 학습 인자 |
 | `vacuum.args` | 같은 학습 스크립트 | Vacuum 과제의 학습 인자 |
-| `checkpoints.json` | `scripts/verify_positional_checkpoint.py --manifest` | 기존 논문 모델 6개의 경로·SHA-256 식별 기록 |
+| `checkpoints.json` | 수동 식별 기록 | 기존 논문 모델 6개의 경로·SHA-256 식별 기록 |
 
 ```sh
 python scripts/train_microstructure.py "@configs/paper/toxic.args" --seed 1
@@ -22,11 +22,6 @@ python scripts/train_microstructure.py "@configs/paper/vacuum.args" --seed 1
 `checkpoints.json`은 학습 가중치가 아닙니다. 과거 `frozen/`의 현재 논문 모델 목록을 이곳으로 옮겼습니다.
 여기서 frozen은 **선택한 모델과 실험 조건을 고정해 평가에 사용하는 것**을 뜻하며,
 모든 파라미터에 `requires_grad=False`를 설정한다는 의미가 아닙니다.
-기존 가중치는 배포하지 않으므로 목록에 있는 파일을 별도로 준비한 경우에만 다음 검사를 실행합니다.
+전체 모델 가중치는 배포하지 않습니다. 이 목록을 읽던 공통 checkpoint 검증 명령은 제거했으며, 목록 자체는 과거 모델 식별 기록으로 유지합니다. 새 모델의 해시는 달라질 수 있습니다.
 
-```sh
-python scripts/verify_positional_checkpoint.py --manifest configs/paper/checkpoints.json
-```
-
-새로 학습한 모델은 해시가 달라질 수 있습니다. 그 파일을 검증하려면 `--checkpoint 실제경로/model.pt`를 사용하세요.
-전체 순서는 [실행·재현 안내](../../docs/REPRODUCE.md)를 따릅니다.
+학습 출력은 `runs/NAME/` 또는 `--output-dir`입니다. 각 seed 실행에 서로 다른 `--name` 또는 출력 경로를 지정하세요. 이미 있는 출력 폴더는 재사용하지 않습니다. 전체 순서는 [실행 안내](../../docs/REPRODUCE.md)를 따릅니다.

@@ -4,7 +4,6 @@ set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
-export LOB_XAI_ROOT="$ROOT"
 
 : "${EXPERIMENT_POOL:?set EXPERIMENT_POOL=multi_scale or positional}"
 MODE="${MODE:-screen}"
@@ -25,7 +24,7 @@ esac
 [[ -f "$TRAIN_CSV" ]] || { echo "TRAIN_CSV not found: $TRAIN_CSV" >&2; exit 2; }
 [[ -f "$TEST_CSV" ]] || { echo "TEST_CSV not found: $TEST_CSV" >&2; exit 2; }
 
-mkdir -p logs figures loggers/results
+mkdir -p figures runs
 shopt -s nullglob
 set -o pipefail
 
@@ -47,14 +46,10 @@ run_cell () {
 
   local tag="poolab_${EXPERIMENT_POOL}_${MODE}_"
   local name="${tag}${task}_k${k}_db2_${norm}_w1_pool${pool}_seed${seed}"
-  local completed=(loggers/results/${name}_*/summary.json)
-  if (( ${#completed[@]} == 1 )); then
-    echo "[skip] completed: ${completed[0]}"
+  local output_dir="runs/$name"
+  if [[ -f "$output_dir/summary.json" ]]; then
+    echo "[skip] completed: $output_dir/summary.json"
     return
-  fi
-  if (( ${#completed[@]} > 1 )); then
-    echo "[error] duplicate completed runs for $name; move duplicates before continuing" >&2
-    exit 3
   fi
 
   python -u scripts/train_microstructure.py \
@@ -88,7 +83,7 @@ run_cell () {
     --dev-only \
     --skip-report \
     --name "$name" \
-    2>&1 | tee "logs/${name}.log"
+    --output-dir "$output_dir"
 }
 
 SECONDS=0
@@ -102,18 +97,9 @@ done
 TAG="poolab_${EXPERIMENT_POOL}_${MODE}_"
 OUT_CSV="figures/${TAG}validation.csv"
 python -u scripts/collect_branch_dev_results.py \
-  --results-dir loggers/results \
+  --results-dir runs \
   --name-contains "$TAG" \
   --out-csv "$OUT_CSV"
-
-CHECKPOINTS=(loggers/results/${TAG}*pool${EXPERIMENT_POOL}_seed*/model.pt)
-if (( ${#CHECKPOINTS[@]} == 0 )); then
-  echo "[error] no $EXPERIMENT_POOL checkpoints found" >&2
-  exit 4
-fi
-python -u scripts/inspect_pool_weights.py \
-  --checkpoints "${CHECKPOINTS[@]}" \
-  --out-json "figures/${TAG}learned_weights.json"
 
 printf '[done] elapsed=%02d:%02d:%02d\n' \
   "$((SECONDS/3600))" "$(((SECONDS%3600)/60))" "$((SECONDS%60))"

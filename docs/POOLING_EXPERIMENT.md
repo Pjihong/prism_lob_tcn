@@ -27,7 +27,7 @@ EXPERIMENT_POOL=positional MODE=full DEVICE=cuda \
 bash scripts/run_pooling_experiment.sh
 ```
 
-스크립트는 먼저 forward/backward/strict-reload smoke test를 수행하고, 모든 cell을 학습한 뒤 validation CSV를 `figures/` 아래에 기록하고 학습된 시간 가중치를 JSON으로 내보낸다. 완료된 cell은 안전 재시작 시 건너뛰고, 중복 cell은 조용히 평균되지 않고 즉시 실패한다.
+스크립트는 먼저 forward/backward/strict-reload smoke test를 수행하고, 모든 cell을 학습한 뒤 validation CSV를 `figures/` 아래에 기록한다. 공통 로더를 사용하던 시간 가중치 JSON 내보내기는 제거했다. 완료된 cell은 안전 재시작 시 건너뛰고, 중복 cell은 조용히 평균되지 않고 즉시 실패한다.
 
 ## 사전 등록 판정 기준 (paper 모델 교체 gate)
 

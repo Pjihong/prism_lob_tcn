@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Render branch evidence, replacement effects and ranking agreement.
 
-Inputs: analyze_branch_importance CSVs and checkpoints with a verified
-branch config; --from-cache reuses previously computed temporal CAM arrays.
+Inputs: saved branch-summary/window CSVs and temporal CAM NPZ arrays.
+This renderer only reads supplied results; checkpoint inference was removed.
 Panels show cohort-mean |CAM|, attribution/replacement shares, and the
 per-window Kendall distribution with its predeclared sign test.
 Outputs: PNG/PDF and supporting numerical files under --out-dir.
@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import glob
 import json
 import os
 
@@ -39,87 +38,22 @@ INK, MUTED = "#1a1a1a", "#767676"
 
 
 # ---------------------------------------------------------------------------
-# panel (a) data: cohort-mean |CAM_b(t)| per seed (checkpoint -> npz cache)
+# panel (a) data: saved cohort-mean |CAM_b(t)| per seed
 # ---------------------------------------------------------------------------
-def compute_cam_time(args, seed: int, cache_path: str) -> dict:
-    """Compute cohort-mean |CAM_b(t)| for one seed and cache it as npz."""
-    import torch
-    from lob_xai.checkpoints import load_micro_windows_in_order, load_ours_model
-    from lob_xai.branch_analysis import (BranchAdapter, architecture_signature,
-                                   load_config, find_ckpt, validate_run_protocol)
-    from lob_xai.evaluation_protocol import select_top_confidence_alerts
-    from lob_xai.provenance import sha256_file
-
-    cfg = load_config(args.config)
-    if not cfg.get("verified", False):
-        raise SystemExit("[branch-imp] branch_config.json is not verified; run the probe first")
-    n = cfg["n_branches"]
-    bnames = cfg["branch_names"]
-
-    if args.ckpt_template:
-        hits = sorted(glob.glob(args.ckpt_template.format(seed=seed)))
-        if not hits:
-            raise SystemExit(f"[branch-imp] no checkpoint matches "
-                             f"{args.ckpt_template.format(seed=seed)!r}")
-        if len(hits) > 1:
-            print(f"[branch-imp][warn] {len(hits)} matches for seed {seed}; using {hits[-1]}")
-        ck = hits[-1]
-    else:
-        ck = find_ckpt(args.results_root, "ours", args.task, seed, args.k)
-        if ck is None:
-            raise SystemExit(f"[branch-imp] no ours ckpt for {args.task} seed{seed} k{args.k}")
-
-    model, _, _ = load_ours_model(ck, args.device)
-    if cfg.get("architecture_sha256") != architecture_signature(model):
-        raise SystemExit("branch_config architecture does not match this checkpoint")
-
-    X, y, class_names, ck_cfg = load_micro_windows_in_order(ck, args.test_csv, task=args.task)
-    validate_run_protocol(ck_cfg, task=args.task, k=args.k, seed=seed)
-
-    # Identical cohort rule to axis_a_min.py: correct target alerts, most
-    # confident first.
-    with torch.no_grad():
-        probs = []
-        for s in range(0, len(X), 256):
-            xb = torch.from_numpy(np.asarray(X[s:s + 256])).float().to(args.device)
-            probs.append(torch.softmax(model(xb), -1).cpu().numpy())
-        probs = np.concatenate(probs)
-    sel = select_top_confidence_alerts(probs, y, args.target, args.n_windows,
-                                       require_correct=True)
-    if len(sel) == 0:
-        raise SystemExit("[branch-imp] no eligible target alerts")
-    Xs = X[sel]
-    print(f"[branch-imp] seed {seed}: ckpt={ck}  cohort n={len(Xs)}")
-
-    adapter = BranchAdapter(model, cfg, args.device)
-    try:
-        s0 = adapter.branch_temporal(Xs, args.target)     # idx -> [N, T] signed CAM
-    finally:
-        adapter.close()
-
-    m = np.stack([np.abs(s0[i]).mean(axis=0) for i in range(n)], axis=0)  # [n, T]
-    np.savez(cache_path,
-             cam_time=m, branch_names=np.array(bnames), n_cohort=len(Xs),
-             checkpoint=ck, checkpoint_sha256=sha256_file(ck),
-             task=args.task, k=args.k, seed=seed, target=args.target)
-    print(f"[branch-imp] cached -> {cache_path}")
-    return {"cam_time": m, "branch_names": list(bnames), "n_cohort": len(Xs),
-            "checkpoint": ck, "checkpoint_sha256": sha256_file(ck)}
 
 
 def load_cam_time(args, seed: int) -> dict:
+    """Read a required temporal CAM cache without loading any model."""
     cache_path = os.path.join(
         args.out_dir, f"cam_time_{args.task}_k{args.k}_seed{seed}.npz")
-    if os.path.exists(cache_path) or args.from_cache:
-        if not os.path.exists(cache_path):
-            raise SystemExit(f"[branch-imp] --from-cache but {cache_path} is missing")
-        z = np.load(cache_path, allow_pickle=False)
+    if not os.path.isfile(cache_path):
+        raise SystemExit(f"[branch-imp] required saved CAM cache is missing: {cache_path}")
+    with np.load(cache_path, allow_pickle=False) as z:
         return {"cam_time": z["cam_time"],
                 "branch_names": [str(b) for b in z["branch_names"]],
                 "n_cohort": int(z["n_cohort"]),
                 "checkpoint": str(z["checkpoint"]),
                 "checkpoint_sha256": str(z["checkpoint_sha256"])}
-    return compute_cam_time(args, seed, cache_path)
 
 
 # ---------------------------------------------------------------------------
@@ -203,17 +137,6 @@ def main():
     ap.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3])
     ap.add_argument("--axis-a-dir", default="figures/axis_a_final")
     ap.add_argument("--out-dir", default="figure_revision_output/branch_importance")
-    # panel (a) compute options
-    ap.add_argument("--ckpt-template", default=None,
-                    help="glob with {seed}, e.g. "
-                         "'loggers/results/final_toxic_multiscale_seed{seed}_*/model.pt'")
-    ap.add_argument("--results-root", default="loggers/results")
-    ap.add_argument("--config", default="branch_config.json")
-    ap.add_argument("--test-csv", default="data/FI2010/FI2010_test.csv")
-    ap.add_argument("--device", default="cpu")
-    ap.add_argument("--n-windows", type=int, default=400)
-    ap.add_argument("--from-cache", action="store_true",
-                    help="require the npz cache; never touch checkpoints")
     ap.add_argument("--smooth", type=int, default=0,
                     help="centered moving-average half-width for panel (a) "
                          "display only (0 = raw)")

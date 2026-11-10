@@ -12,7 +12,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from .loggers import logger as yaml_logger
 from .metrics import (
     _accuracy,
     _f1_macro,
@@ -212,7 +211,6 @@ def train(
     device: torch.device = torch.device("cpu"),
     early_stop_patience: int = 10,
     n_classes: int = 3,
-    model_id: str = "model",
     use_class_weights: bool = True,
     use_focal: bool = False,
     focal_gamma: float = 2.0,
@@ -375,7 +373,6 @@ def train(
         print(f"[train] restored best checkpoint at epoch {best_epoch} "
               f"({early_stop_metric}={best_score:.4f})")
 
-    yaml_logger(model_id, "training_history", history)
     return history
 
 

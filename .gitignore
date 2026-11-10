@@ -19,3 +19,11 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Private run outputs and log files; existing tracked archives need separate review.
+/runs/
+*.log
+*.pt
+*.pth
+*.ckpt
+*.safetensors

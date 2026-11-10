@@ -53,7 +53,7 @@ def _label(sig: tuple) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results-dir", default="loggers/results")
+    ap.add_argument("--results-dir", default="runs")
     ap.add_argument("--name-contains", default="branchdev_")
     ap.add_argument("--out-csv", default="figures/branch_dev_validation.csv")
     ap.add_argument("--allow-unsealed", action="store_true",

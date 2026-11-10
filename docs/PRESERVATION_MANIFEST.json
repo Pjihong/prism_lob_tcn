@@ -16,7 +16,7 @@
     "disposition": "refactored",
     "destination": "lob_xai_viz/README.md",
     "refactored_files": {
-      "lob_xai_viz/README.md": "00cc2d53127f00b6c14a594588f2c0ccb7b2070fb763a71855527645f66eb93b"
+      "lob_xai_viz/README.md": "9bcc4604c19fb751b7f5cb482b96e2c338853c39329d43491eb090b9b5b2e1c9"
     }
   },
   {
@@ -215,11 +215,12 @@
     "entry": "lob-xai/scripts/common/axis_a_min.py",
     "size": 15922,
     "sha256": "dd0d9d41636bf0ff10ed4953ad8bdb6e33a1d46cf9b0c27c84c33c1abc232ac6",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "scripts/analyze_branch_importance.py",
-    "refactored_files": {
-      "scripts/analyze_branch_importance.py": "0bce3b7e7aee41e83f4e5b1aaa27600ed506239eda46d022d4a87cd0d755e522"
-    }
+    "removed_current_files": [
+      "scripts/analyze_branch_importance.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -238,7 +239,7 @@
     "disposition": "refactored",
     "destination": "lob_xai_viz/plot_branch_importance.py",
     "refactored_files": {
-      "lob_xai_viz/plot_branch_importance.py": "f9f69a29acff06b16f28aa907295a1edfc709f21362ae865d4572bf718ee61da"
+      "lob_xai_viz/plot_branch_importance.py": "f66a404e0ae8a53c3db57d3b97bf529742319717807a1610d7e49bb083cdafc6"
     }
   },
   {
@@ -255,11 +256,12 @@
     "entry": "lob-xai/scripts/common/probe_branch_structure.py",
     "size": 6285,
     "sha256": "515859bf836322c2d5cae1958a279a7935c3323d904d89e9a4e4d594c855d3b1",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "scripts/probe_branch_structure.py",
-    "refactored_files": {
-      "scripts/probe_branch_structure.py": "f2d3c3d2b4def7d99d2534ca15d0e04a84602934a649a257bacec1a78d53627d"
-    }
+    "removed_current_files": [
+      "scripts/probe_branch_structure.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -318,7 +320,7 @@
     "disposition": "refactored",
     "destination": "lob_xai/branch_analysis.py",
     "refactored_files": {
-      "lob_xai/branch_analysis.py": "ca7393b7c0379784d31e5fadda240989a873fd0b6ff1305de24241d2875a9cb6"
+      "lob_xai/branch_analysis.py": "3b8b92a083cf826a578e2cf1298f46106292f1f8017d22c6b257403033238699"
     }
   },
   {
@@ -335,11 +337,12 @@
     "entry": "lob-xai/scripts/common/cam_sanity_checks.py",
     "size": 9707,
     "sha256": "656fcee04d6d99b02551c76b21d8b829a5967aed937863f30ba68ba28188a23f",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "scripts/cam_sanity_checks.py",
-    "refactored_files": {
-      "scripts/cam_sanity_checks.py": "7d8efa9a8689739434898ab448f5b3bdeb7633e72bf9c44c251ea3c14fc52a6e"
-    }
+    "removed_current_files": [
+      "scripts/cam_sanity_checks.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -518,16 +521,24 @@
     "entry": "lob-xai/scripts/run_pooling_experiment.sh",
     "size": 3712,
     "sha256": "158740a2c4dbf0ef77d4399a30eb2d412cd1e36e49256b5a9c17bb5312392fa4",
-    "disposition": "preserved",
-    "destination": "scripts/run_pooling_experiment.sh"
+    "disposition": "refactored",
+    "destination": "scripts/run_pooling_experiment.sh",
+    "refactored_files": {
+      "scripts/run_pooling_experiment.sh": "4ccbc31f64d2a7194353230659540406e731ce70586c9d091dc41b8dc9d43776"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "lob-xai.zip",
     "entry": "lob-xai/scripts/collect_branch_dev_results.py",
     "size": 5779,
     "sha256": "df6e03e77aa0011920e9bc345d24f0198f2641f763f503b40eb25bc3307a7e73",
-    "disposition": "preserved",
-    "destination": "scripts/collect_branch_dev_results.py"
+    "disposition": "refactored",
+    "destination": "scripts/collect_branch_dev_results.py",
+    "refactored_files": {
+      "scripts/collect_branch_dev_results.py": "36e51278cea14eef62710cd9e6bd6349df744632343d902b835cbc84869f735e"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "lob-xai.zip",
@@ -537,7 +548,7 @@
     "disposition": "refactored",
     "destination": "scripts/run_response_carpet.sh",
     "refactored_files": {
-      "scripts/run_response_carpet.sh": "cf2d3535d6a1a2318b83412ef063c99471807ecf8df46697e0ee1336a708129e"
+      "scripts/run_response_carpet.sh": "3a8dcbeba36c94bbaeff48e7b892e45b0b7045bee692d5e7fc538f76cd2c77bb"
     }
   },
   {
@@ -545,11 +556,12 @@
     "entry": "lob-xai/scripts/inspect_pool_weights.py",
     "size": 3601,
     "sha256": "f3b5723974c676ba571f7be701e59c0d28a08793f78047b74d3574c599c42ba8",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "scripts/inspect_pool_weights.py",
-    "refactored_files": {
-      "scripts/inspect_pool_weights.py": "9523b203ae897e25067991867119d596bfdacc37189bfb103ba1340f8b0c6191"
-    }
+    "removed_current_files": [
+      "scripts/inspect_pool_weights.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -564,11 +576,12 @@
     "entry": "lob-xai/scripts/verify_positional_checkpoint.py",
     "size": 6440,
     "sha256": "756a0577665ccbace030080fd5606c19d6cafc1dd048403f0a9b13c3a15dc397",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "scripts/verify_positional_checkpoint.py",
-    "refactored_files": {
-      "scripts/verify_positional_checkpoint.py": "17c4ceeba15410a913a4e12a057040a9c49b1bd15fa901761e0a5bf3a621c032"
-    }
+    "removed_current_files": [
+      "scripts/verify_positional_checkpoint.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -586,7 +599,7 @@
     "disposition": "refactored",
     "destination": "scripts/train_microstructure.py",
     "refactored_files": {
-      "scripts/train_microstructure.py": "e758035f12b3df7d2b9c25ac3abab2be7cce1b31764d328d525a457879fd5b6a"
+      "scripts/train_microstructure.py": "a9525f0bf513263d50adfb8597be103f8d76339eba173232ebbe575625442529"
     }
   },
   {
@@ -594,11 +607,12 @@
     "entry": "lob-xai/scripts/evaluate_ours_checkpoint.py",
     "size": 4385,
     "sha256": "ac15c9393fdf12f4ba230e4446086575c07774b342a408ef9d8b29c52659bae3",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "scripts/evaluate_ours_checkpoint.py",
-    "refactored_files": {
-      "scripts/evaluate_ours_checkpoint.py": "fc1d13f59677ac930c8054a04d4dc8629cbce30e04d9e7802b28fea2463dd959"
-    }
+    "removed_current_files": [
+      "scripts/evaluate_ours_checkpoint.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -7576,11 +7590,12 @@
     "entry": "lob-xai/lob_xai_viz/viz_micro_loader.py",
     "size": 7488,
     "sha256": "f4265439c29e1fe69b4dec00c6ae62b8e0e9eb8d91f923807a9d03a528ee3823",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "lob_xai/checkpoints.py",
-    "refactored_files": {
-      "lob_xai/checkpoints.py": "a6c157e6027c67a9e4971fc79f5ba489df3b2a1897003d4ad8b407c747b91937"
-    }
+    "removed_current_files": [
+      "lob_xai/checkpoints.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -7707,8 +7722,9 @@
     "entry": "lob-xai/logs_cf_mirror.log",
     "size": 396,
     "sha256": "68665047d27167fa8109149382299c57605fd9ab867f656f3a9c3ac4658eaf72",
-    "disposition": "preserved",
-    "destination": "legacy/logs/logs_cf_mirror.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/logs_cf_mirror.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -7726,8 +7742,9 @@
     "entry": "lob-xai/logs_alert_card.log",
     "size": 638,
     "sha256": "689584ad9af1d362c276262908890882f2a2ace500e01c26d4432543ce0554f6",
-    "disposition": "preserved",
-    "destination": "legacy/logs/logs_alert_card.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/logs_alert_card.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -7830,16 +7847,18 @@
     "entry": "lob-xai/logs_ins.log",
     "size": 18793,
     "sha256": "8fa5dd61401b2179a78d05105cbf05fb9b71e66d7622c38ae31340565d6f75d9",
-    "disposition": "preserved",
-    "destination": "legacy/logs/logs_ins.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/logs_ins.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
     "entry": "lob-xai/fix5.log",
     "size": 1880,
     "sha256": "68fb626add283b3c3a3602f95c1e886dc4bec2597ed5a095d407d0e777f8d009",
-    "disposition": "preserved",
-    "destination": "legacy/logs/fix5.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/fix5.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -7912,7 +7931,7 @@
     "disposition": "refactored",
     "destination": "docs/BRANCH_PERFORMANCE_EXPERIMENT.md",
     "refactored_files": {
-      "docs/BRANCH_PERFORMANCE_EXPERIMENT.md": "a6254ddad14d46c0b95da7a0b8d017b6b0c6908145a9762afa0d5270ac31999d"
+      "docs/BRANCH_PERFORMANCE_EXPERIMENT.md": "d442b05d87bdff2a22f5f397a491c1431c38695d92836c7a7181c5bbf89ba74b"
     }
   },
   {
@@ -7964,8 +7983,12 @@
     "entry": "lob-xai/docs/POOLING_EXPERIMENT.md",
     "size": 2370,
     "sha256": "0ecf680fb5d17cd0f0d012251db2555eb3e726dee983eae2dcd30736eb485bca",
-    "disposition": "preserved",
-    "destination": "docs/POOLING_EXPERIMENT.md"
+    "disposition": "refactored",
+    "destination": "docs/POOLING_EXPERIMENT.md",
+    "refactored_files": {
+      "docs/POOLING_EXPERIMENT.md": "2e97b638b9b08db6c0043b98ca407051c5723036963a290905eec18d1e3d23e2"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "lob-xai.zip",
@@ -10403,8 +10426,9 @@
     "entry": "lob-xai/fix6.log",
     "size": 1877,
     "sha256": "a45fe8f650020875c23f7d6b6eb9ff9ed8dbd5d65262d34c7ce893b099ed5717",
-    "disposition": "preserved",
-    "destination": "legacy/logs/fix6.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/fix6.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -10469,8 +10493,12 @@
     "entry": "lob-xai/lob_xai/__init__.py",
     "size": 2857,
     "sha256": "96740e09c4158bb3544c6da61b0481d38fba6d56ab0f968b7e279440ac4b7f84",
-    "disposition": "preserved",
-    "destination": "lob_xai/__init__.py"
+    "disposition": "refactored",
+    "destination": "lob_xai/__init__.py",
+    "refactored_files": {
+      "lob_xai/__init__.py": "b203b64ffdf0537094c0837331eb19fbd59bcf890a30f239217c2c0878f5c73d"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "lob-xai.zip",
@@ -10545,11 +10573,12 @@
     "entry": "lob-xai/lob_xai/loggers.py",
     "size": 2681,
     "sha256": "1f2c5c38c38097f7160e04d1c3373a8fd17098179d480402e899549a550b3f2d",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "lob_xai/loggers.py",
-    "refactored_files": {
-      "lob_xai/loggers.py": "1dc8922d87dfedf87340bba178162ce4f82627bbf1fb1f9296093855a1990955"
-    }
+    "removed_current_files": [
+      "lob_xai/loggers.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -10714,7 +10743,7 @@
     "disposition": "refactored",
     "destination": "lob_xai/training.py",
     "refactored_files": {
-      "lob_xai/training.py": "ee1752414683e8fec4d430523bac4e7f679557cfa247a41ae307a76f8b2870a0",
+      "lob_xai/training.py": "0a749a64e63fdce155510c84ae4991b7aa1db55c3ade85dfeb5bbc6a53f4f301",
       "lob_xai/metrics.py": "076ad09f2cfa88611f312635dea422b2e6066187c6c9a6c0e4e9386ed3353f55"
     }
   },
@@ -10940,8 +10969,9 @@
     "entry": "lob-xai/logs_branch_importance.log",
     "size": 878,
     "sha256": "49614fb1932683c81b9ecde585a6d6b10aa50580b7e6d45506e9ae49d80b1a24",
-    "disposition": "preserved",
-    "destination": "legacy/logs/logs_branch_importance.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/logs_branch_importance.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -10957,8 +10987,9 @@
     "entry": "lob-xai/rerun_kit/run_all.log",
     "size": 50397,
     "sha256": "488a24400505e32be5f5af3ec3e883b3278d298211729268c42aead826f99fd6",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/run_all.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/rerun_artifacts/run_all.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11015,8 +11046,9 @@
     "entry": "lob-xai/rerun_kit/fix2.log",
     "size": 15437,
     "sha256": "3d5c29f36124225c11354fb396e82ef3a499549775fb4a747d9dc101e1dd5625",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/fix2.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/rerun_artifacts/fix2.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11066,8 +11098,12 @@
     "entry": "lob-xai/rerun_kit/positional_toxic_results_20260825.tar.gz",
     "size": 5975509,
     "sha256": "81cd45d741c3515cd5a3b8d0fc419385d935c49a03dffba16504d5d0f35584d4",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/positional_toxic_results_20260825.tar.gz"
+    "disposition": "refactored",
+    "destination": "legacy/rerun_artifacts/positional_toxic_results_20260825.tar.gz",
+    "refactored_files": {
+      "legacy/rerun_artifacts/positional_toxic_results_20260825.tar.gz": "f9751848671d9c6c57122b8257ec6f7d0bc864bcd2fe1e1924598435059a62e8"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "lob-xai.zip",
@@ -11082,8 +11118,9 @@
     "entry": "lob-xai/rerun_kit/train.log",
     "size": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/train.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/rerun_artifacts/train.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11108,8 +11145,9 @@
     "entry": "lob-xai/rerun_kit/fix_30_60.log",
     "size": 27144,
     "sha256": "587f786b93673fafabfd05345d808f7a313f7d89ce049ab9b760516c1498a344",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/fix_30_60.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/rerun_artifacts/fix_30_60.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11125,8 +11163,9 @@
     "entry": "lob-xai/rerun_kit/fix4.log",
     "size": 9686,
     "sha256": "6e0283cb7900b028fe5ea21344501560135fb0a62f4f56ca35b7cfd96a167053",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/fix4.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/rerun_artifacts/fix4.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11159,8 +11198,9 @@
     "entry": "lob-xai/rerun_kit/fix3.log",
     "size": 16605,
     "sha256": "d481d962f76daa093b327d7b3fc6620eb99ac2fa2b056b06cde6f3224d6d0cba",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/fix3.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/rerun_artifacts/fix3.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11207,8 +11247,12 @@
     "entry": "lob-xai/rerun_kit/positional_final_results_20260825_2035.tar.gz",
     "size": 5057632,
     "sha256": "d2b9e7f63ac0737f0aee90a007be9111420c588dfd4971d961bec8b71d60f012",
-    "disposition": "preserved",
-    "destination": "legacy/rerun_artifacts/positional_final_results_20260825_2035.tar.gz"
+    "disposition": "refactored",
+    "destination": "legacy/rerun_artifacts/positional_final_results_20260825_2035.tar.gz",
+    "refactored_files": {
+      "legacy/rerun_artifacts/positional_final_results_20260825_2035.tar.gz": "ef9be602a923cf97f4e447159b46ff9fc8a828b098c1ecd8c07f06b5fba8790a"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "lob-xai.zip",
@@ -11233,8 +11277,9 @@
     "entry": "lob-xai/logs_wabl_network.log",
     "size": 745,
     "sha256": "3db44b38c865138829c4b4a7729b4de25bc8bf3d28d23da7f76498a7fe2408a2",
-    "disposition": "preserved",
-    "destination": "legacy/logs/logs_wabl_network.log"
+    "disposition": "removed_by_request",
+    "destination": "legacy/logs/logs_wabl_network.log",
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "lob-xai.zip",
@@ -11485,8 +11530,12 @@
     "entry": "__init__.py",
     "size": 2857,
     "sha256": "96740e09c4158bb3544c6da61b0481d38fba6d56ab0f968b7e279440ac4b7f84",
-    "disposition": "deduplicated",
-    "destination": "lob_xai/__init__.py"
+    "disposition": "refactored",
+    "destination": "lob_xai/__init__.py",
+    "refactored_files": {
+      "lob_xai/__init__.py": "b203b64ffdf0537094c0837331eb19fbd59bcf890a30f239217c2c0878f5c73d"
+    },
+    "change_reason": "2026-11-10: authorized removal and matching current documentation; original source hash retained."
   },
   {
     "archive": "my_code.zip",
@@ -11561,11 +11610,12 @@
     "entry": "loggers.py",
     "size": 2681,
     "sha256": "1f2c5c38c38097f7160e04d1c3373a8fd17098179d480402e899549a550b3f2d",
-    "disposition": "refactored",
+    "disposition": "removed_by_request",
     "destination": "lob_xai/loggers.py",
-    "refactored_files": {
-      "lob_xai/loggers.py": "1dc8922d87dfedf87340bba178162ce4f82627bbf1fb1f9296093855a1990955"
-    }
+    "removed_current_files": [
+      "lob_xai/loggers.py"
+    ],
+    "removal_reason": "2026-11-10: user approved log/module/dependent-function removal."
   },
   {
     "archive": "my_code.zip",
@@ -11730,7 +11780,7 @@
     "disposition": "refactored",
     "destination": "lob_xai/training.py",
     "refactored_files": {
-      "lob_xai/training.py": "ee1752414683e8fec4d430523bac4e7f679557cfa247a41ae307a76f8b2870a0",
+      "lob_xai/training.py": "0a749a64e63fdce155510c84ae4991b7aa1db55c3ade85dfeb5bbc6a53f4f301",
       "lob_xai/metrics.py": "076ad09f2cfa88611f312635dea422b2e6066187c6c9a6c0e4e9386ed3353f55"
     }
   },

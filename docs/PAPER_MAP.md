@@ -2,18 +2,18 @@
 
 아래 번호와 label은 2026-10-21 수정안과 코드의 연결을 위한 식별자입니다. 미공개 원고는 저장소에서 제공하지 않으며 공개 후 링크와 최종 번호를 갱신할 예정입니다. [모델 해시 기록](../configs/paper/checkpoints.json)은 파일 식별 정보이며 학습 가중치는 포함하지 않습니다.
 
-새 평가·귀속·개입에는 직접 학습하거나 별도로 공급한 checkpoint가 필요합니다. `figures/`는 논문용 PNG만 제공하는 폴더입니다. 과거 표 집계·곡선 입력 파일은 제공하지 않으므로 아래 표는 **구현 위치와 새 실행에 필요한 입력**을 안내합니다. PNG에서 원래 수치를 복원하거나 모든 표를 자동 재현할 수 있다는 뜻은 아닙니다.
+새 평가·귀속·개입에는 직접 학습하거나 별도로 공급한 checkpoint가 필요합니다. `figures/`는 논문용 PNG만 제공하는 폴더입니다. 과거 압축파일의 수치·그림은 공개 검토 중입니다. 아래 표는 **현재 유지한 구현과 필요한 입력**을 안내하며, 제거한 실행 경로는 명시합니다. PNG에서 원래 수치를 복원하거나 모든 표를 자동 재현할 수 있다는 뜻은 아닙니다.
 
 ## 표와 분석 코드
 
 | 원고 / label | 내용 | 구현·실행 경로 | 필요한 입력과 현재 범위 |
 |---|---|---|---|
-| 표 1 `tab:detection` | 탐지 성능 | [고정 checkpoint 평가](REPRODUCE.md#5-고정-checkpoint-평가) → `scripts/aggregate_final_test.py` | 데이터·checkpoint로 평가 JSON을 새로 생성해야 함. Vacuum 수치와 baseline run 선택은 미확정 |
-| 표 2 `tab:cf_main` | 고신뢰 삭제·삽입 전환·회복률 | [개입 실험](REPRODUCE.md#6-고신뢰-경보와-분기-분석), `lob_xai/counterfactual_test.py` | 데이터·checkpoint가 필요하며 과거 요약 CSV는 미포함 |
+| 표 1 `tab:detection` | 탐지 성능 | [고정 checkpoint 평가](REPRODUCE.md#5-고정-checkpoint-평가) → `scripts/aggregate_final_test.py` | 공통 checkpoint 평가 명령은 제거됨. 집계는 별도로 준비한 평가 JSON이 필요. Vacuum 출처와 baseline run 선택은 미확정 |
+| 표 2 `tab:cf_main` | 고신뢰 삭제·삽입 전환·회복률 | [개입 실험](REPRODUCE.md#6-고신뢰-경보와-분기-분석), `lob_xai/counterfactual_test.py` | 새 실행에는 데이터·checkpoint가 필요. 일부 과거 요약 CSV는 압축 안에 검토 대기 중이며 전체 재현 입력으로 안내하지 않음 |
 | 표 3 `tab:cf_appendix` | 고신뢰 ΔAUC와 층화 삭제 전환율 | 위 개입 실험, `scripts/run_cf_response_carpet.py`, `scripts/cf_effect_stats.py` | 두 표본군의 분석 결과를 각각 생성해야 함. 완성 TeX 표 자동 생성기는 없음 |
 | 표 4 `tab:tuned_hparams` | 학습 설정 | [논문 설정](../configs/paper/README.md), `scripts/train_baseline_microstructure.py` | 설정과 checkpoint metadata를 대조. TLOB optimizer 예외는 별도 |
 | 표 5 `tab:cf_figure_samples` | CF 그림의 방향별 표본 수 | `lob_xai_viz/render.py --only cf` | 기존 CF 원자료를 별도로 공급해야 재집계 가능. 원고의 수치만으로 새 실험의 표본 수를 정하지 않음 |
-| 표 6 `tab:branch_importance` | Toxic-up 분기 비중·대체 효과 | `scripts/probe_branch_structure.py`, `scripts/analyze_branch_importance.py` | 데이터·checkpoint로 signed CSV를 새로 생성해야 함. 관련 그림 폴더를 제거해도 표의 분석 코드는 유지 |
+| 표 6 `tab:branch_importance` | Toxic-up 분기 비중·대체 효과 | 공통 로더 의존 실행 명령 제거 | 새 분기 분석 CLI는 현재 배포에서 제공하지 않음. 기존 CSV·NPZ 캐시 기반 그림만 지원 |
 
 `aggregate_final_test.py`는 한 입력 폴더에 두 과제의 seed 1–3 평가 JSON을 요구합니다. 서로 다른 모델이나 설정의 결과를 섞지 말고, 최종 checkpoint와 수치의 일치 여부를 먼저 확인하세요.
 
