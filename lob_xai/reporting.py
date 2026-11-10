@@ -322,7 +322,7 @@ def save_summary_json(
     out = dict(
         model_id=model_id,
         backbone=config.get("backbone", "cnn"),
-        pool=config.get("pool", "attention"),
+        pool=config.get("pool"),
         n_epochs_trained=len(h["epoch"]),
         test=test_metrics,
         train_summary=dict(

@@ -27,8 +27,7 @@ _MODULE_EXPORTS = {
     ],
     "models": [
         "LOBBranchModel", "LOBBranchCNN", "CNNBranch", "TCNBranch", "TCNBlock",
-        "AttentionPool1D", "AvgPool1D", "MaxPool1D", "AvgLastPool1D",
-        "MultiScaleTailPool1D", "LearnedPositionalPool1D", "BranchLocalPool1D",
+        "LearnedPositionalPool1D", "BranchLocalPool1D",
         "ChannelLayerNorm1D", "make_branch", "make_pool",
     ],
     "gradcam": [

@@ -4,14 +4,14 @@ import re
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-# Historical manuscripts/logs quote obsolete paths; they are explicitly archival.
+# Current reader-facing documentation distributed with the public code.
 CURRENT = (
     "README.md", "README.ko.md",
     "docs/README.md", "docs/REPRODUCE.md", "docs/DATA.md",
     "docs/PAPER_MAP.md", "docs/KNOWN_ISSUES.md",
     "docs/PUBLICATION_SCOPE.md",
     "configs/paper/README.md", "figures/README.md", "scripts/README.md",
-    "legacy/README.md", "lob_xai_viz/README.md",
+    "lob_xai_viz/README.md",
 )
 
 

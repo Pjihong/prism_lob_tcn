@@ -443,6 +443,11 @@ def build_ours(ckpt, device, task):
     ck = torch.load(ckpt, map_location=device, weights_only=False)
     cfg = ck.get("config", {}) or {}
     meta = ck.get("meta", {}) or {}
+    if cfg.get("pool") != "positional":
+        raise ValueError(
+            "checkpoint config must explicitly declare pool='positional'; "
+            f"found {cfg.get('pool')!r}"
+        )
     ck_task = cfg.get("task") or meta.get("task")
     if ck_task and ck_task != task:
         raise ValueError(f"checkpoint task={ck_task!r}, requested task={task!r}")
@@ -454,7 +459,7 @@ def build_ours(ckpt, device, task):
     bidx = meta.get("branch_indices") or make_branching_scheme(
         cfg.get("branching_scheme", "type4"), n_features=40)
     m = LOBBranchModel(n_features=40, n_classes=int(nc),
-                       backbone=cfg.get("backbone", "tcn"), pool=cfg.get("pool", "avg"),
+                       backbone=cfg.get("backbone", "tcn"), pool="positional",
                        cnn_channels=tuple(cfg.get("cnn_channels", (32, 32, 64))),
                        cnn_kernel=cfg.get("cnn_kernel", 3),
                        cnn_dropout=cfg.get("cnn_dropout", 0.1),
@@ -466,10 +471,7 @@ def build_ours(ckpt, device, task):
                        interaction_channels=int(
                            cfg.get("interaction_channels", 0)
                        ),
-                       seq_len=int(cfg.get("seq_len", 100)),
-                       pool_windows=tuple(
-                           cfg.get("pool_windows", (8, 32, 100))
-                       )).to(device)
+                       seq_len=int(cfg.get("seq_len", 100))).to(device)
     m.load_state_dict(ck["model_state"], strict=True)
     m.eval()
     return m, int(nc)
@@ -760,9 +762,10 @@ def _load_model_and_data(args, ap, device):
         if args.model == "ours":
             bidx = make_branching_scheme("type4", 40)
             model = LOBBranchModel(n_features=40, n_classes=len(classes),
-                                   backbone="tcn", pool="avg",
+                                   backbone="tcn", pool="positional",
                                    cnn_channels=(32, 32, 64), cnn_kernel=3,
-                                   branch_indices=bidx).to(device).eval()
+                                   branch_indices=bidx,
+                                   seq_len=args.seq_len).to(device).eval()
         else:
             from models.deeplob import build_deeplob
             model = build_deeplob(n_classes=len(classes)).to(device).eval()

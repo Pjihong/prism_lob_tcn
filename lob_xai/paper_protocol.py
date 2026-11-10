@@ -1,7 +1,6 @@
-"""Shared experiment constants and compatibility defaults for Prism-LOB.
+"""Shared experiment constants for the positional Prism-LOB model.
 
-TRAINING.pool remains GAP for historical callers; current manuscript training
-uses configs/paper/{toxic,vacuum}.args. The 70:15 weights define the split
+Training defaults match configs/paper/{toxic,vacuum}.args. The 70:15 weights define the split
 inside the development file, not the proportions including the separate test
 file. Inspect saved run configuration and checkpoint hashes when selecting
 published results; these constants do not identify a particular trained model.
@@ -42,7 +41,7 @@ class TrainingProtocol:
     kernel_size: int = 3
     dilation_base: int = 2
     dropout: float = 0.1
-    pool: str = "avg"  # Compatibility default; paper presets select positional.
+    pool: str = "positional"
     loss: str = "ce_weighted"
     optimizer: str = "adamw"
     scheduler: str = "cosine"
@@ -105,7 +104,7 @@ def ours_parameter_count(n_classes: int) -> int:
         if prev != out:
             per_branch += prev * out + out  # biased 1x1 residual projection
         prev = out
-    total = n_branches * per_branch
+    total = n_branches * per_branch + n_branches * DATA.seq_len
     head_in = n_branches * TRAINING.channels[-1]
     for hidden in TRAINING.fc_hidden:
         total += head_in * hidden + hidden
@@ -124,16 +123,14 @@ def branch_variant_parameter_count(
     tcn_norm: str = "none",
     interaction_channels: int = 0,
     seq_len: int = DATA.seq_len,
-    pool_windows: Sequence[int] = (8, 32, 100),
     n_features: int = DATA.n_features,
     n_branches: int = 4,
 ) -> int:
-    """Analytic trainable-parameter count for opt-in branch-TCN variants.
+    """Analytic count for a branch TCN with positional readout.
 
-    This covers identity input normalization, the residual TCN implemented in
-    :mod:`lob_xai.models`, fixed/attention readouts, and the optional 1x1
-    interaction stream.  DAIN/conditional-RevIN parameters are intentionally
-    outside this contract and should be measured from the instantiated model.
+    This covers identity input normalization and the residual TCN implemented
+    in :mod:`lob_xai.models`. DAIN/conditional-RevIN parameters are outside
+    this contract and should be measured from the instantiated model.
     """
     n_classes = int(n_classes)
     channels = tuple(int(x) for x in channels)
@@ -143,17 +140,16 @@ def branch_variant_parameter_count(
     kernel_size = int(kernel_size)
     interaction_channels = int(interaction_channels)
     seq_len = int(seq_len)
-    pool_windows = tuple(int(x) for x in pool_windows)
     if n_classes < 2 or not channels or any(x <= 0 for x in channels):
         raise ValueError("invalid class count or channel configuration")
     if n_features <= 0 or n_branches <= 0 or n_features % n_branches:
         raise ValueError("n_features must divide evenly across branches")
-    if kernel_size <= 0 or interaction_channels < 0 or seq_len <= 0:
-        raise ValueError("invalid kernel or interaction width")
-    if not pool_windows or any(x <= 0 for x in pool_windows):
-        raise ValueError("pool windows must be positive")
-    if len(set(pool_windows)) != len(pool_windows):
-        raise ValueError("pool windows must be unique")
+    if kernel_size <= 0 or seq_len <= 0:
+        raise ValueError("kernel size and sequence length must be positive")
+    if pool != "positional":
+        raise ValueError("only positional readout is supported")
+    if interaction_channels != 0:
+        raise ValueError("positional readout requires interaction_channels=0")
     norm = str(tcn_norm).lower()
     if norm not in {"none", "layer", "layernorm", "batch", "batchnorm"}:
         raise ValueError("unknown TCN normalization")
@@ -171,29 +167,7 @@ def branch_variant_parameter_count(
     total = n_branches * per_branch
 
     readout_channels = n_branches * channels[-1]
-    if interaction_channels:
-        total += readout_channels * interaction_channels + interaction_channels
-        if norm != "none":
-            total += 2 * interaction_channels
-        readout_channels += interaction_channels
-
-    pool = str(pool).lower()
-    if pool == "attention":
-        total += readout_channels + 1
-    elif pool in {"avg", "max"}:
-        pass
-    elif pool in {"avg_last", "avg+last"}:
-        readout_channels *= 2
-    elif pool == "multi_scale":
-        if interaction_channels:
-            raise ValueError("branch-local pooling forbids interaction_channels")
-        total += n_branches * len(pool_windows)
-    elif pool == "positional":
-        if interaction_channels:
-            raise ValueError("branch-local pooling forbids interaction_channels")
-        total += n_branches * seq_len
-    else:
-        raise ValueError("unknown pooling strategy")
+    total += n_branches * seq_len
 
     for hidden in fc_hidden:
         if hidden <= 0:
@@ -343,9 +317,7 @@ def assert_paper_split(n_train: int, n_valid: int, n_test: int, tolerance: float
     The provided FI-2010 files are a development CSV (362,400 rows) plus a
     separate test CSV (31,937 rows), so a combined-row 70/15/15 split is not
     reconstructible from them; the realized overall fractions are
-    75.7/16.2/8.1.  Every frozen run in this project (devsel, poolab, donor
-    pools) was produced under exactly that reality, so the enforceable
-    contract is:
+    75.7/16.2/8.1. The enforceable contract is:
 
     1. the chronological within-development split matches
        ``DATA.validation_fraction_within_development_file`` (= 0.15/0.85);

@@ -20,10 +20,22 @@ Thumbs.db
 .env.*
 !.env.example
 
-# Private run outputs and log files; existing tracked archives need separate review.
+# Private run outputs, logs, and model weights.
 /runs/
 *.log
 *.pt
 *.pth
 *.ckpt
 *.safetensors
+
+# Private artifacts and numerical outputs; selected figure PNGs remain public.
+/private_archive/
+/legacy/
+/audit/
+/figures/**/*.csv
+/figures/**/*.npz
+/figures/**/*.npy
+/figures/**/*.json
+*.tar
+*.tar.gz
+*.zip

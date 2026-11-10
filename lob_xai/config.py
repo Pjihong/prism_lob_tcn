@@ -1,7 +1,6 @@
 """Configuration for FI-2010 training and attribution.
 
-Config retains GAP defaults for compatibility with historical experiments.
-The current manuscript uses positional readout and identity input normalization;
+Config uses positional readout and identity input normalization;
 use configs/paper/{toxic,vacuum}.args with scripts/train_microstructure.py.
 Inputs: data paths and model/training options.
 Outputs: a configuration object; no data is loaded at import time.
@@ -46,8 +45,7 @@ class Config:
 
     # ── 모델 backbone ─────────────────────────────────────────
     backbone: str = "tcn"           # paper model: dilated temporal CNN
-    pool: str = TRAINING.pool        # legacy GAP default; paper preset selects positional
-    pool_windows: Tuple[int, ...] = (8, 32, 100)
+    pool: str = TRAINING.pool        # positional is the supported readout
     n_branches: int = 4             # ★ kept for backward compat; auto-overridden
                                     #    by len(branching_scheme) at build time
     cnn_channels: Tuple[int, ...] = TRAINING.channels
@@ -82,3 +80,7 @@ class Config:
     seed: int = TRAINING.seeds[0]
     device: str = "auto"
     num_workers: int = 0
+
+    def __post_init__(self):
+        if self.pool != "positional":
+            raise ValueError("only positional readout is supported")

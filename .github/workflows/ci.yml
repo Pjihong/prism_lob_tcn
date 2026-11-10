@@ -26,6 +26,5 @@ jobs:
       - name: Pooling smoke (forward/backward/strict-reload/param count)
         run: |
           PYTHONPATH=. python scripts/smoke_pooling.py --pool positional
-          PYTHONPATH=. python scripts/smoke_pooling.py --pool multi_scale
       - name: Baseline builders (DeepLOB / TLOB / BiN-CTABL)
         run: PYTHONPATH=. python scripts/verify_baseline_models.py --device cpu

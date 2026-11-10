@@ -427,12 +427,13 @@ def main() -> None:
                 n_features=40,
                 n_classes=len(classes),
                 backbone="tcn",
-                pool="avg",
+                pool="positional",
                 cnn_channels=(32, 32, 64),
                 cnn_kernel=3,
                 branch_indices=make_branching_scheme("type4", 40),
+                seq_len=DATA.seq_len,
             ).to(device).eval()
-            pool_name = "avg-demo"
+            pool_name = "positional"
         else:
             from models.deeplob import build_deeplob
 

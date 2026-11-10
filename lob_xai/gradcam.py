@@ -96,7 +96,7 @@ class TimeSeriesGradCAM:
 
     # ── Locate target temporal representation ────────────────────
     def _find_target_layer(self, branch_idx: int) -> nn.Module:
-        """Return the paper-defined pre-GAP branch representation.
+        """Return the paper-defined pre-readout branch representation.
 
         The old implementation selected the last registered Conv1d.  In a
         residual TCN that can be the 1x1 shortcut rather than the temporal

@@ -1,10 +1,13 @@
 """Contracts for paper argument files and reader-facing documentation."""
+from contextlib import redirect_stderr
+import io
 from pathlib import Path
 import tempfile
 import unittest
 
 from scripts.check_docs import broken_links
 from scripts.train_microstructure import build_parser
+from scripts.collect_branch_dev_results import _signature
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,7 +28,21 @@ class ReaderWorkflowTests(unittest.TestCase):
                 self.assertTrue(args.enforce_paper_split)
                 self.assertTrue(args.dev_only)
                 self.assertEqual(args.seed, 3)
-        self.assertEqual(build_parser().parse_args(["--task", "toxic"]).pool, "avg")
+        self.assertEqual(build_parser().parse_args(["--task", "toxic"]).pool, "positional")
+
+    def test_cli_rejects_unsupported_model_settings(self):
+        for args in (["--pool", "avg"], ["--interaction-channels", "64"],
+                     ["--pool-windows", "10", "30", "100"]):
+            with self.subTest(args=args), redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit) as error:
+                    build_parser().parse_args(["--task", "toxic", *args])
+                self.assertEqual(error.exception.code, 2)
+
+    def test_collector_requires_explicit_positional_configuration(self):
+        for config in ({}, {"pool": "avg"}, {"pool": "positional", "interaction_channels": 64}):
+            with self.assertRaisesRegex(ValueError, "positional"):
+                _signature(config)
+        self.assertIn("positional", _signature({"pool": "positional"}))
 
     def test_document_checker_catches_missing_targets_and_ignores_examples(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fast architecture/gradient/state-dict smoke test for new pool modules."""
+"""Fast architecture/gradient/state-dict smoke test for positional readout."""
 from __future__ import annotations
 
 import argparse
@@ -18,17 +18,14 @@ from lob_xai.models import LOBBranchModel
 
 
 EXPECTED = {
-    ("toxic", "multi_scale"): 142_051,
     ("toxic", "positional"): 142_439,
-    ("vacuum", "multi_scale"): 141_902,
     ("vacuum", "positional"): 142_290,
 }
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--pool", required=True,
-                    choices=["multi_scale", "positional"])
+    ap.add_argument("--pool", default="positional", choices=["positional"])
     args = ap.parse_args()
 
     for task, n_classes, input_norm in (
@@ -40,7 +37,6 @@ def main() -> None:
             cnn_channels=(32, 32, 64), cnn_kernel=3, cnn_dropout=0.1,
             fc_hidden=(64,), tcn_dilation_base=2, tcn_norm="none",
             input_norm=input_norm, interaction_channels=0, seq_len=100,
-            pool_windows=(8, 32, 100),
         )
         params = sum(p.numel() for p in model.parameters())
         assert params == EXPECTED[(task, args.pool)], (task, params)

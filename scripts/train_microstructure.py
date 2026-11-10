@@ -5,7 +5,7 @@ Inputs: indexed FI-2010 development/test CSVs and CLI or @file arguments.
 Outputs: checkpoint, configuration and metrics in --output-dir (default: runs/NAME).
 No YAML run log is written. Existing output directories are never reused.
 Scope: paper presets use positional/identity and validation-only selection.
-Without a preset, GAP remains the compatibility default. See docs/REPRODUCE.md.
+Positional readout is the constructor and CLI default. See docs/REPRODUCE.md.
 """
 from __future__ import annotations
 import argparse
@@ -73,11 +73,8 @@ def build_parser():
 
     # Model — ALWAYS type4. topdeep8 is dropped.
     ap.add_argument("--backbone", default="tcn", choices=["cnn", "tcn"])
-    ap.add_argument("--pool", default=TRAINING.pool,
-                    choices=["attention", "avg", "max", "avg_last",
-                             "multi_scale", "positional"])
-    ap.add_argument("--pool-windows", type=int, nargs="+", default=[8, 32, 100],
-                    help="tail windows for branch-local multi_scale pooling")
+    ap.add_argument("--pool", default=TRAINING.pool, choices=["positional"],
+                    help="positional readout (the supported model)")
     ap.add_argument("--cnn-channels", type=int, nargs="+",
                     default=list(TRAINING.channels))
     ap.add_argument("--cnn-kernel", type=int, default=TRAINING.kernel_size)
@@ -89,9 +86,8 @@ def build_parser():
                     choices=["none", "layer", "batch"])
     ap.add_argument("--input-norm", default="identity",
                     choices=["identity", "dain", "revin_c"])
-    ap.add_argument("--interaction-channels", type=int, default=0,
-                    help="0 preserves strict four-branch late fusion; a small "
-                         "value such as 64 adds an explicit interaction stream")
+    ap.add_argument("--interaction-channels", type=int, default=0, choices=[0],
+                    help="positional readout uses independent branches (0)")
 
     # Loss / optimization
     ap.add_argument("--loss", default=TRAINING.loss,
@@ -137,14 +133,6 @@ def main():
     args = ap.parse_args()
     if args.k is None:
         args.k = DATA.toxic_horizon if args.task == "toxic" else DATA.vacuum_horizon
-    if args.interaction_channels < 0:
-        ap.error("--interaction-channels must be >= 0")
-    if not args.pool_windows or any(x <= 0 for x in args.pool_windows):
-        ap.error("--pool-windows values must be positive")
-    if len(set(args.pool_windows)) != len(args.pool_windows):
-        ap.error("--pool-windows values must be unique")
-    if args.pool in {"multi_scale", "positional"} and args.interaction_channels:
-        ap.error("branch-local pooling requires --interaction-channels 0")
     if args.class_weight_power < 0:
         ap.error("--class-weight-power must be >= 0")
     if args.grad_clip_norm is not None and args.grad_clip_norm <= 0:
@@ -158,8 +146,6 @@ def main():
     print(f"[main] task          = {args.task}")
     print(f"[main] device        = {device}")
     print(f"[main] backbone/pool = {args.backbone} / {args.pool}")
-    if args.pool == "multi_scale":
-        print(f"[main] pool windows  = {args.pool_windows}")
     print(f"[main] channels/norm = {args.cnn_channels} / {args.tcn_norm}")
     print(f"[main] interaction   = {args.interaction_channels}")
     print(f"[main] branching     = type4 (ALWAYS — topdeep8 dropped)")
@@ -187,7 +173,6 @@ def main():
     cfg_log = dict(
         task=args.task, k=args.k, tick_size=args.tick_size,
         backbone=args.backbone, pool=args.pool, branching_scheme="type4",
-        pool_windows=tuple(args.pool_windows),
         loss=args.loss, focal_gamma=args.focal_gamma,
         epochs=args.epochs, batch_size=args.batch_size, lr=args.lr,
         weight_decay=args.weight_decay, seed=args.seed,
@@ -279,7 +264,6 @@ def main():
         tcn_norm=args.tcn_norm,
         interaction_channels=args.interaction_channels,
         seq_len=args.seq_len,
-        pool_windows=tuple(args.pool_windows),
     )
     n_params = sum(p.numel() for p in model.parameters())
     print(f"[main] model params = {n_params:,}")
@@ -372,7 +356,6 @@ def main():
         cfg_for_report = dict(
             n_features=40, n_classes=n_classes, seq_len=args.seq_len,
             backbone=args.backbone, pool=args.pool,
-            pool_windows=tuple(args.pool_windows),
             cnn_channels=tuple(args.cnn_channels),
             cnn_kernel=args.cnn_kernel, cnn_dropout=args.cnn_dropout,
             fc_hidden=tuple(args.fc_hidden),

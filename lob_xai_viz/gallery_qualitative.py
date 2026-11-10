@@ -305,16 +305,6 @@ def main():
     plt.close(fig)
     print(f"[saved] {f2}")
 
-    # ── 일관성 자동 검증: seed1 toxic_up rank-1 == 본문 알림 카드(#20152) 기대
-    if args.task == "toxic":
-        got = stats["per_seed"][1].get("toxic_up", {}).get("rank1_window")
-        if got == 20152:
-            print("[check] seed1 toxic_up rank-1 = #20152 — v3 알림 카드와 동일 ✓")
-        else:
-            print(f"[check][주의] seed1 toxic_up rank-1 = #{got} (알림 카드는 "
-                  "#20152). 코호트 규칙/체크포인트가 다르면 값이 달라질 수 있음 — "
-                  "확인 필요")
-
     # ── 캡션용 집계 문장
     def rng_pct(key, cls):
         vals = [stats["per_seed"][s][cls][key] * 100 for s in (1, 2, 3)

@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
-shopt -s nullglob
 
 ROOT="${ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 BASE_ROOT="${BASE_ROOT:-$ROOT}"     # data location only
 TRAIN_CSV="${TRAIN_CSV:-$BASE_ROOT/data/FI2010/FI2010_train.csv}"
 TEST_CSV="${TEST_CSV:-$BASE_ROOT/data/FI2010/FI2010_test.csv}"
 
-# Checkpoint run-name prefixes (seed number + _*/model.pt is appended).
-# Defaults target the paper-protocol frozen runs in $ROOT/loggers/results.
-# Override any prefix to audit a different checkpoint family; also set
-# CKPT_SET so outputs never collide with another family's completed runs.
-CKPT_SET="${CKPT_SET:-paper_positional}"
-OURS_TOXIC_PREFIX="${OURS_TOXIC_PREFIX:-$ROOT/loggers/results/final_toxic_positional_seed}"
-OURS_VACUUM_PREFIX="${OURS_VACUUM_PREFIX:-$ROOT/loggers/results/final_vacuum_positional_seed}"
-DEEPLOB_TOXIC_PREFIX="${DEEPLOB_TOXIC_PREFIX:-$ROOT/loggers/results/deeplob_toxic_seed}"
-DEEPLOB_VACUUM_PREFIX="${DEEPLOB_VACUUM_PREFIX:-$ROOT/loggers/results/deeplob_vacuum_seed}"
+# Set a checkpoint path template for each selected model/task combination.
+# Literal {seed} is replaced by the seed number; wildcards are not expanded.
+# Example: OURS_TOXIC_TEMPLATE='/private/ours/toxic/seed{seed}/model.pt'
+# Use a distinct CKPT_SET label for each checkpoint family.
+CKPT_SET="${CKPT_SET:-custom}"
+OURS_TOXIC_TEMPLATE="${OURS_TOXIC_TEMPLATE:-}"
+OURS_VACUUM_TEMPLATE="${OURS_VACUUM_TEMPLATE:-}"
+DEEPLOB_TOXIC_TEMPLATE="${DEEPLOB_TOXIC_TEMPLATE:-}"
+DEEPLOB_VACUUM_TEMPLATE="${DEEPLOB_VACUUM_TEMPLATE:-}"
 
 MODE="${MODE:-smoke}"               # smoke | screen | full
 MODELS="${MODELS:-ours deeplob}"    # ours, deeplob, or both
@@ -71,39 +70,35 @@ test -s "$SCRIPT" || {
 test -f "$TRAIN_CSV" || { echo "[error] missing $TRAIN_CSV" >&2; exit 1; }
 test -f "$TEST_CSV" || { echo "[error] missing $TEST_CSV" >&2; exit 1; }
 
-mkdir -p "figures/cf_response_carpet/$CKPT_SET/$MODE"
-
-find_one () {
-  local label="$1"
-  shift
-  local hits=("$@")
-  if (( ${#hits[@]} != 1 )); then
-    echo "[error] $label: expected one checkpoint, found ${#hits[@]}" >&2
-    printf '  %s\n' "${hits[@]:-<none>}" >&2
-    exit 1
-  fi
-  printf '%s\n' "${hits[0]}"
-}
-
 resolve_ckpt () {
   local model="$1"
   local task="$2"
   local seed="$3"
-  local hits=()
+  local template=""
+  local checkpoint=""
 
   if [[ "$model" == "ours" && "$task" == "toxic" ]]; then
-    hits=( "$OURS_TOXIC_PREFIX""$seed"_*/model.pt )
+    template="$OURS_TOXIC_TEMPLATE"
   elif [[ "$model" == "ours" && "$task" == "vacuum" ]]; then
-    hits=( "$OURS_VACUUM_PREFIX""$seed"_*/model.pt )
+    template="$OURS_VACUUM_TEMPLATE"
   elif [[ "$model" == "deeplob" && "$task" == "toxic" ]]; then
-    hits=( "$DEEPLOB_TOXIC_PREFIX""$seed"_*/model.pt )
+    template="$DEEPLOB_TOXIC_TEMPLATE"
   elif [[ "$model" == "deeplob" && "$task" == "vacuum" ]]; then
-    hits=( "$DEEPLOB_VACUUM_PREFIX""$seed"_*/model.pt )
+    template="$DEEPLOB_VACUUM_TEMPLATE"
   else
     echo "[error] unsupported model/task: $model/$task" >&2
     exit 2
   fi
-  find_one "$model/$task/seed$seed" "${hits[@]}"
+  if [[ -z "$template" ]]; then
+    echo "[error] set the checkpoint template for $model/$task before running" >&2
+    exit 2
+  fi
+  checkpoint="${template//\{seed\}/$seed}"
+  if [[ ! -f "$checkpoint" ]]; then
+    echo "[error] missing checkpoint: $checkpoint" >&2
+    exit 1
+  fi
+  printf '%s\n' "$checkpoint"
 }
 
 SECONDS=0
@@ -112,7 +107,7 @@ for model in $MODELS; do
     for seed in $SEEDS; do
       ckpt="$(resolve_ckpt "$model" "$task" "$seed")"
       run_tag="${model}_${task}_${METHOD}_${COHORT}_seed${seed}_n${N_WINDOWS}_p${POOL_SIZE}_m${MC}_k${NEIGHBORS_K}_q${Q_MAX}"
-      out_dir="figures/cf_response_carpet/$CKPT_SET/$MODE/$run_tag"
+      out_dir="figure_revision_output/cf_response_carpet/$CKPT_SET/$MODE/$run_tag"
 
       if [[ -s "$out_dir/run_manifest.json" ]] &&
          grep -q '"status": "complete"' "$out_dir/run_manifest.json"; then

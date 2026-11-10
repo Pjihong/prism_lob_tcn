@@ -33,13 +33,14 @@ class PaperProtocolTests(unittest.TestCase):
 
     def test_manuscript_defaults(self):
         self.assertEqual(TRAINING.seeds, (1, 2, 3))
+        self.assertEqual(TRAINING.pool, "positional")
         self.assertEqual(COUNTERFACTUAL.deletion_grid[0], 0.05)
         self.assertEqual(COUNTERFACTUAL.deletion_grid[-1], 0.50)
         self.assertGreaterEqual(COUNTERFACTUAL.neighbor_candidates,
                                 COUNTERFACTUAL.mc_samples)
         self.assertEqual(TRAINING.branch_temporal_receptive_field, 29)
-        self.assertEqual(ours_parameter_count(3), 141_955)
-        self.assertEqual(ours_parameter_count(2), 141_890)
+        self.assertEqual(ours_parameter_count(3), 142_355)
+        self.assertEqual(ours_parameter_count(2), 142_290)
         self.assertEqual(deeplob_parameter_count(3), 143_907)
         self.assertEqual(deeplob_parameter_count(2), 143_842)
         self.assertEqual(tlob_parameter_count(3), 1_798_866)
@@ -47,47 +48,14 @@ class PaperProtocolTests(unittest.TestCase):
         self.assertEqual(bin_ctabl_parameter_count(3), 12_526)
         self.assertEqual(bin_ctabl_parameter_count(2), 12_405)
 
-    def test_branch_upgrade_parameter_counts(self):
-        self.assertEqual(branch_variant_parameter_count(3), 141_955)
+    def test_positional_parameter_counts(self):
+        self.assertEqual(branch_variant_parameter_count(3), 142_355)
+        self.assertEqual(branch_variant_parameter_count(2), 142_290)
         self.assertEqual(
-            branch_variant_parameter_count(3, pool="multi_scale"), 141_967
+            branch_variant_parameter_count(3, tcn_norm="layer"), 144_403
         )
-        self.assertEqual(
-            branch_variant_parameter_count(3, pool="positional"), 142_355
-        )
-        self.assertEqual(
-            branch_variant_parameter_count(2, pool="multi_scale"), 141_902
-        )
-        self.assertEqual(
-            branch_variant_parameter_count(2, pool="positional"), 142_290
-        )
-        self.assertEqual(
-            branch_variant_parameter_count(3, tcn_norm="layer"), 144_003
-        )
-        self.assertEqual(
-            branch_variant_parameter_count(
-                3, tcn_norm="layer", pool="avg_last"
-            ),
-            160_387,
-        )
-        self.assertEqual(
-            branch_variant_parameter_count(
-                3, tcn_norm="layer", pool="avg_last",
-                interaction_channels=64,
-            ),
-            185_155,
-        )
-        self.assertEqual(
-            branch_variant_parameter_count(
-                3, channels=(32, 32, 64, 64), tcn_norm="layer",
-                pool="avg_last", interaction_channels=64,
-            ),
-            284_995,
-        )
-        with self.assertRaises(ValueError):
-            branch_variant_parameter_count(
-                3, pool="multi_scale", interaction_channels=8
-            )
+        with self.assertRaisesRegex(ValueError, "interaction_channels=0"):
+            branch_variant_parameter_count(3, interaction_channels=8)
 
 
 if __name__ == "__main__":

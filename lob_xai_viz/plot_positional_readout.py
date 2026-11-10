@@ -240,7 +240,7 @@ def _verify_config(config: Dict[str, Any], task: str, path: Path) -> None:
     if found_task is not None and str(found_task) != task:
         raise ValueError(f"{path}: task={found_task!r}, expected {task!r}")
     found_pool = config.get("pool")
-    if found_pool is not None and str(found_pool) != "positional":
+    if found_pool != "positional":
         raise ValueError(f"{path}: pool={found_pool!r}, expected 'positional'")
 
 
@@ -265,11 +265,11 @@ def _write_csv(
     path: Path, weights: np.ndarray, seeds: Sequence[int]
 ) -> None:
     time_length = weights.shape[-1]
-    gap = 1.0 / time_length
+    uniform = 1.0 / time_length
     with path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(
-            ["seed", "branch", "timestep", "lag", "weight", "weight_over_gap"]
+            ["seed", "branch", "timestep", "lag", "weight", "weight_over_uniform"]
         )
         for si, seed in enumerate(seeds):
             for bi, branch in enumerate(BRANCH_NAMES):
@@ -281,7 +281,7 @@ def _write_csv(
                             timestep,
                             time_length - 1 - timestep,
                             f"{weights[si, bi, timestep]:.12g}",
-                            f"{weights[si, bi, timestep] / gap:.12g}",
+                            f"{weights[si, bi, timestep] / uniform:.12g}",
                         ]
                     )
 
@@ -305,10 +305,10 @@ def _summary_payload(
             "not per-window saliency."
         ),
         "time_length": time_length,
-        "gap_weight_per_timestep": 1.0 / time_length,
-        "gap_last8": min(8, time_length) / time_length,
-        "gap_last32": min(32, time_length) / time_length,
-        "gap_expected_lag": (time_length - 1) / 2.0,
+        "uniform_weight_per_timestep": 1.0 / time_length,
+        "uniform_last8": min(8, time_length) / time_length,
+        "uniform_last32": min(32, time_length) / time_length,
+        "uniform_expected_lag": (time_length - 1) / 2.0,
         "checkpoints": [],
         "aggregate": {},
     }
@@ -370,8 +370,8 @@ def _plot(
     )
 
     n_seed, _, time_length = weights.shape
-    gap = 1.0 / time_length
-    relative = weights / gap
+    uniform = 1.0 / time_length
+    relative = weights / uniform
     metrics = _metrics(weights)
     mean = relative.mean(axis=0)
     sd = relative.std(axis=0, ddof=1) if n_seed > 1 else np.zeros_like(mean)
@@ -431,7 +431,7 @@ def _plot(
         axis.text(
             0.02,
             0.96,
-            f"last-8: {last8_ratio:.2f}× GAP\nE[lag]: {lag_mean:.1f}",
+            f"last-8: {last8_ratio:.2f}× uniform\nE[lag]: {lag_mean:.1f}",
             transform=axis.transAxes,
             ha="left",
             va="top",
@@ -454,7 +454,7 @@ def _plot(
         Line2D([0], [0], color="#374151", linewidth=2.0,
                label="3-seed mean"),
         Line2D([0], [0], color="#4B5563", linewidth=1.0, linestyle="--",
-               label="GAP"),
+               label="Uniform (1/T)"),
     ]
     fig.legend(
         handles=profile_legend,
@@ -479,8 +479,8 @@ def _plot(
         ("Last 8", "o", metrics["last8"], min(8, time_length) / time_length),
         ("Last 32", "s", metrics["last32"], min(32, time_length) / time_length),
     ]
-    for offset, (label, marker, values, gap_mass) in zip(offsets, marker_info):
-        ratio = values / gap_mass
+    for offset, (label, marker, values, uniform_mass) in zip(offsets, marker_info):
+        ratio = values / uniform_mass
         means = ratio.mean(axis=0)
         errors = (
             ratio.std(axis=0, ddof=1)
@@ -501,7 +501,7 @@ def _plot(
     ax_mass.axvline(1.0, color="#4B5563", linewidth=1.0, linestyle="--")
     ax_mass.set_yticks(y_base, [BRANCH_LABELS[name] for name in BRANCH_NAMES])
     ax_mass.invert_yaxis()
-    ax_mass.set_xlabel("Recency mass relative to GAP")
+    ax_mass.set_xlabel("Recency mass relative to uniform weights")
     ax_mass.set_title("(b) Recency enrichment", loc="left", fontweight="semibold")
     ax_mass.grid(axis="x", color="#D1D5DB", linewidth=0.6, alpha=0.65)
     ax_mass.spines[["top", "right", "left"]].set_visible(False)
@@ -531,7 +531,7 @@ def _plot(
         color="#4B5563",
         linewidth=1.0,
         linestyle="--",
-        label="GAP",
+        label="Uniform (1/T)",
     )
     ax_lag.set_yticks(y_base, [BRANCH_LABELS[name] for name in BRANCH_NAMES])
     ax_lag.invert_yaxis()

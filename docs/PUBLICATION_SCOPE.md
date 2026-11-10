@@ -1,26 +1,23 @@
-# 공개 범위와 제거된 기능
+# 현재 공개 범위
 
-2026-11-10 사용자 지정에 따라 로그 산출물과 두 공통 모듈 및 직접 의존 기능을 제거했다.
+이 공개판은 positional readout을 사용하는 Prism-LOB 코드, 비교 모델 구현, 실행 설정·테스트·문서와 선택된 PNG 7개를 제공합니다.
 
-## 이번에 제거한 항목
+## 유지하는 자료
 
-- 추적된 `.log` 파일 22개와 결과 압축파일 두 개 안의 `.log` 항목 12건.
-- `lob_xai/loggers.py`: YAML 실행 기록 생성·읽기 기능과 패키지 export.
-- `lob_xai/checkpoints.py`: 공통 checkpoint 모델·데이터 로더.
-- 이 로더에 의존한 `scripts/evaluate_ours_checkpoint.py`, `scripts/verify_positional_checkpoint.py`, `scripts/probe_branch_structure.py`, `scripts/analyze_branch_importance.py`, `scripts/cam_sanity_checks.py`, `scripts/inspect_pool_weights.py`.
-- 해당 로더 전용 테스트와 `docs/validation/regression_probe.py`.
-- `plot_branch_importance.py`의 checkpoint 기반 CAM 캐시 계산. 기존 CSV·NPZ 캐시 렌더링은 유지한다.
+- `lob_xai/`: 데이터·위험 라벨·모델·학습·지표·귀속·독립 CF 구현.
+- `models/`: DeepLOB·TLOB·BiN-CTABL 비교 모델. 각 모델 고유의 내부 계산은 유지합니다.
+- `configs/paper/*.args`: 두 과제의 positional 학습 설정.
+- `scripts/`, `lob_xai_viz/`, `tests/`: 현재 남아 있는 실행·집계·독립 그림 도구와 검사.
+- `figures/`: 기존 최종 그림 6개와 정답·오답 사례 비교 1개. [목록](../figures/README.md)
 
-학습 본체는 유지하며 공통 YAML logger 호출을 제거했다. Ours 학습 출력은 `runs/NAME/` 또는 `--output-dir`에 저장한다. 기존 출력 폴더를 재사용하지 않는다. 같은 이름을 다시 쓰려면 새 출력 경로를 지정한다. 화면 진행 출력과 학습 결과의 메모리상 계산은 남아 있다.
+## 공개하지 않는 자료
 
-이는 모든 모델 로딩·로깅 코드를 없앴다는 뜻은 아니다. 별도 구현을 사용하는 CF·카드·factorization·gallery·positional-readout 도구와 baseline 학습은 남아 있다. 미래에 로컬로 생성되는 모델·예측 산출물도 공개 파일과 구분한다.
+기존 실행 로그·모델 가중치·상세 실험 수치 CSV·NPZ·JSON, 결과 압축파일, 추가·이전 그림, 과거 설정·내부 정리 기록은 로컬 보관본에 보존하고 현재 공개 트리에서 제외했습니다. 기존 결과의 상세 reference JSON과 자동 대조용 renderer·보존 원장 도구도 제공하지 않습니다.
 
-## 아직 검토 중인 자료
+원본 데이터는 이번 정리에서 수정·이동하지 않았습니다. 새 실행은 로컬에 모델과 결과를 만들 수 있으므로 코드가 제공된다는 사실과 생성 산출물의 공개는 별개입니다.
 
-기존 `figures/` PNG 6개와 압축 안의 비로그 파일은 이번 삭제 대상이 아니다. 압축 안의 CSV·JSON·NPZ·과거 그림 및 일부 추출 가중치는 그대로 남아 있으며, 공개 제외 여부는 별도 검토 중이다. 상세 reference JSON과 개인 경로도 아직 일괄 정제하지 않았다.
+## 해석 범위
 
-압축파일을 다시 쓸 때 남겨 둔 모든 멤버의 경로·종류·크기·내용 해시가 동일한지 확인했다. 압축파일 자체의 해시는 바뀐다. 보존 원장은 원래 source 해시를 유지하고 현재 파일의 해시를 별도로 기록한다.
+공개 그림은 보관된 결과의 열람용입니다. 모델 학습부터 논문 표까지의 독립 재현을 보증하지 않으며, 수치·출처의 미해결 사항은 [KNOWN_ISSUES.md](KNOWN_ISSUES.md)에 남깁니다. 선택된 정답·오답 사례는 전체 성능의 대표 표본이 아닙니다.
 
-Git의 현재 파일 삭제는 과거 커밋의 삭제가 아니다. 이번 변경은 이력을 재작성하지 않는다. 과거 검증 로그가 사라져도 그 검증이 새로 실행되거나 과거 과학적 문제가 해결된 것으로 해석하지 않는다.
-
-현재 사용법은 [실행 안내](REPRODUCE.md), 수치·출처의 한계는 [알려진 이슈](KNOWN_ISSUES.md)를 따른다.
+현재 파일을 제외하는 것과 과거 Git 커밋을 삭제하는 것은 별개입니다. 이 문서는 현재 공개 트리의 범위를 설명합니다.

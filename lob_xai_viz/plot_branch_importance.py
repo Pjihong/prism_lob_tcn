@@ -140,12 +140,6 @@ def main():
     ap.add_argument("--smooth", type=int, default=0,
                     help="centered moving-average half-width for panel (a) "
                          "display only (0 = raw)")
-    ap.add_argument("--readout-steps", type=int, nargs="*", default=None,
-                    help="tail-window lengths of a multi_scale readout (e.g. "
-                         "8 32); draws the alpha_t envelope boundaries at "
-                         "t = T-s+1 in panel (a) so the staircase reads as "
-                         "the learned recency envelope, not an artifact. "
-                         "Omit for positional/GAP readouts.")
     args = ap.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
 
@@ -210,20 +204,6 @@ def main():
     ax.axvline(T, color="#bbbbbb", lw=1, ls=":")
     ax.text(T - 0.8, y_max * 1.02, "alert emitted", color=MUTED,
             fontsize=9.5, ha="right")
-    if args.readout_steps:
-        # The staircase is the learned recency envelope (alpha_t law):
-        # HiResCAM(t) = T * alpha_t * Grad-CAM(t); a multi_scale readout makes
-        # alpha_t a step function with jumps at t = T - s + 1.
-        for si, s_len in enumerate(sorted(args.readout_steps, reverse=True)):
-            xb = T - s_len + 1
-            ax.axvline(xb, color="#999999", lw=1, ls=(0, (2, 3)))
-            ax.text(xb - 0.8, y_max * (0.95 - 0.09 * si),
-                    f"last-{s_len} readout window", color=MUTED, fontsize=9,
-                    ha="right")
-        ax.text(0.015, 0.955,
-                "step envelope = learned readout weights "
-                "($\\alpha_t$ law: HiResCAM$(t) = T\\,\\alpha_t\\,$Grad-CAM$(t)$)",
-                transform=ax.transAxes, fontsize=9.5, color=MUTED, va="top")
     ax.set_xlim(1, T * 1.08)
     ax.set_ylim(0, y_max * 1.12)
     ax.set_xlabel(f"window tick  (1 → {T} = alert time)")

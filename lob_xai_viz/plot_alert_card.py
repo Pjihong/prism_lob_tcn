@@ -88,16 +88,12 @@ def main():
     ap.add_argument("--input-branch", default="auto",
                     help="branch shown in the INPUT heatmap "
                          "(auto = largest |CAM| share of this window)")
-    ap.add_argument("--readout-steps", type=int, nargs="*", default=None,
-                    help="multi_scale tail windows (e.g. 8 32) -> envelope "
-                         "boundary lines in the OBSERVATION row")
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--out-dir", default="figure_revision_output/alert_card")
     ap.add_argument("--demo", action="store_true",
                     help="synthetic data + untrained model (watermarked)")
     ap.add_argument("--allow-unverified-data", action="store_true")
     args = ap.parse_args()
-    os.makedirs(args.out_dir, exist_ok=True)
     device = torch.device(args.device)
     classes = TASK_CLASSES[args.task]
     if not 0 <= args.target < len(classes):
@@ -115,9 +111,10 @@ def main():
         pool_X, _ = make_demo(args.task, DATA.seq_len, n=2000, seed=args.seed + 1)
         bidx = make_branching_scheme("type4", 40)
         model = LOBBranchModel(n_features=40, n_classes=len(classes),
-                               backbone="tcn", pool="avg",
+                               backbone="tcn", pool="positional",
                                cnn_channels=(32, 32, 64), cnn_kernel=3,
-                               branch_indices=bidx).to(device).eval()
+                               branch_indices=bidx,
+                               seq_len=DATA.seq_len).to(device).eval()
         branch_indices = bidx
     else:
         if args.ckpt is None:
@@ -287,12 +284,6 @@ def main():
     ax2.text((s_cam + 1 + e_cam) / 2, y_max * 1.02,
              f"CAM top-{args.rho:.0%} span", ha="center", color="#a95c14",
              fontsize=9.5)
-    if args.readout_steps:
-        for si, s_len in enumerate(sorted(args.readout_steps, reverse=True)):
-            xb = T - s_len + 1
-            ax2.axvline(xb, color="#999999", lw=1, ls=(0, (2, 3)))
-            ax2.text(xb - 0.8, y_max * (0.92 - 0.12 * si), f"last-{s_len}",
-                     color=MUTED, fontsize=8.5, ha="right")
     ax2.set_ylim(0, y_max * 1.14)
     ax2.set_ylabel(f"|CAM$_b$(t)|  ({args.method})")
     ax2.set_title(r"(b) Branch attribution $|\mathrm{CAM}|$ (labels: window share)",
@@ -347,6 +338,7 @@ def main():
                  f" · Rank {args.rank}{demo_tag}",
                  fontsize=14, fontweight="bold", y=0.965)
 
+    os.makedirs(args.out_dir, exist_ok=True)
     base = os.path.join(
         args.out_dir,
         f"alert_card_{args.task}_{target_name}_seed{args.seed}_rank{args.rank}")

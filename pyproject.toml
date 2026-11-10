@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "lob-xai-paper"
 version = "0.2.3"
-description = "Reproducible LOB-XAI paper code: counterfactual faithfulness, branch decomposition, and branch-local pooling"
+description = "Prism-LOB positional-readout research code and selected figures"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.24",
@@ -22,7 +22,7 @@ dependencies = [
 include = ["lob_xai*", "models*"]
 
 [tool.setuptools.package-data]
-lob_xai_viz = ["reference/*.json", "README.md"]
+lob_xai_viz = ["README.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

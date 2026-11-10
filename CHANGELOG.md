@@ -1,10 +1,9 @@
 # Changelog
 
-## Reader-facing repository documentation
+## 2026-11-10
 
-- Rewrote English/Korean entry points around the research, quick start and reproducibility.
-- Added explicit positional/identity paper argument files while retaining historical GAP defaults.
-- Indexed every figure and table in the current manuscript source; separated current artifacts from historical `final` directories.
-- Replaced development-history module headers with input/output and scope descriptions.
-- Added data schema and checksums, known issues, citation metadata and a public-release checklist.
-- Retained model weights, numerical results, source documents and historical artifact paths.
+- Restricted the Prism-LOB readout implementation, defaults and supported configuration to positional.
+- Retained six selected final PNGs and added the correct/incorrect alert gallery without changing image bytes.
+- Privately archived historical settings, numerical results, detailed JSON and result archives before excluding them from the public tree.
+- Updated current documentation, tests and standalone figure tools to match the distributed files. Raw dataset files were not modified.
+- Code checks and synthetic demonstrations are distinct from scientific reproduction of the paper's results.

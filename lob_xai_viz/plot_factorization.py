@@ -65,24 +65,19 @@ def style_axis(ax):
 
 
 def readout_alphas(model, T):
-    """alpha_t per branch from checkpoint parameters. Refuses non-linear pools."""
+    """Return branch-local positional weights from checkpoint parameters."""
     pool = getattr(model, "pool", None)
-    if not getattr(model, "branch_local_pool", False) or pool is None:
+    if (not getattr(model, "branch_local_pool", False)
+            or getattr(model, "pool_kind", None) != "positional"
+            or getattr(pool, "kind", None) != "positional"):
         raise SystemExit(
-            "factorization requires a branch-local learned readout "
-            "(multi_scale / positional); this checkpoint has pool_kind="
-            f"{getattr(model, 'pool_kind', '?')!r}. The alpha_t law does not "
-            "apply to GAP/attention readouts — refusing to draw.")
-    alphas, mixtures = {}, {}
+            "factorization requires a branch-local positional readout; "
+            f"found pool_kind={getattr(model, 'pool_kind', None)!r}")
+    alphas = {}
     for name, p in zip(model.branch_names, pool.pools):
         with torch.no_grad():
             alphas[name] = p.temporal_weights(T).detach().cpu().numpy()
-        if hasattr(p, "windows"):                      # MultiScaleTailPool1D
-            with torch.no_grad():
-                mix = torch.softmax(p.logits, dim=0).cpu().numpy()
-            mixtures[name] = {"windows": [int(w) for w in p.windows],
-                              "mixture": [round(float(v), 6) for v in mix]}
-    return alphas, (mixtures or None), pool.kind
+    return alphas, pool.kind
 
 
 def main():
@@ -106,7 +101,6 @@ def main():
                     help="synthetic data + untrained model (watermarked)")
     ap.add_argument("--allow-unverified-data", action="store_true")
     args = ap.parse_args()
-    os.makedirs(args.out_dir, exist_ok=True)
     device = torch.device(args.device)
     classes = TASK_CLASSES[args.task]
     if not 0 <= args.target < len(classes):
@@ -120,9 +114,8 @@ def main():
         torch.manual_seed(args.seed)
         test_X, test_y = make_demo(args.task, DATA.seq_len, n=400)
         bidx = make_branching_scheme("type4", 40)
-        pool_kind = "multi_scale" if args.task == "toxic" else "positional"
         model = LOBBranchModel(n_features=40, n_classes=len(classes),
-                               backbone="tcn", pool=pool_kind,
+                               backbone="tcn", pool="positional",
                                cnn_channels=(32, 32, 64), cnn_kernel=3,
                                branch_indices=bidx,
                                seq_len=DATA.seq_len).to(device).eval()
@@ -160,18 +153,12 @@ def main():
     T = int(np.asarray(test_X[0]).shape[0])
 
     # ---- alpha_t from checkpoint parameters --------------------------------
-    alphas, mixtures, pool_kind = readout_alphas(model, T)
+    alphas, pool_kind = readout_alphas(model, T)
     for b in branch_names:
         s = float(alphas[b].sum())
         if abs(s - 1.0) > 1e-4:
             raise SystemExit(f"alpha_t for {b} sums to {s}, expected 1 — "
                              "readout is not a convex combination?")
-    boundary_pairs = []                       # [(x, tail_window), ...]
-    if mixtures:                              # multi_scale staircase boundaries
-        ws = mixtures[branch_names[0]]["windows"]
-        boundary_pairs = [(T - w + 1, w)
-                          for w in sorted(ws, reverse=True) if w < T]
-    boundaries = [p[0] for p in boundary_pairs]
 
     # ---- cohort selection (same rule as Axis A / alert card) ---------------
     with torch.no_grad():
@@ -248,31 +235,16 @@ def main():
                           left=0.085, right=0.845, top=0.895, bottom=0.075)
     t = np.arange(1, T + 1)
 
-    def draw_boundaries(ax, y_frac=0.90):
-        for i, xb in enumerate(boundaries):
-            ax.axvline(xb, color="#999999", lw=1, ls=(0, (2, 3)))
-        return None
-
     # (a) READOUT
     ax1 = fig.add_subplot(gs[0])
     amax = max(float(alphas[b].max()) for b in branch_names)
     amin = min(float(alphas[b][alphas[b] > 0].min()) for b in branch_names)
     use_log = amax / max(amin, 1e-12) > 30
     for b in branch_names:
-        if mixtures:
-            m = mixtures[b]["mixture"]
-            lbl = (f"{BRANCH_LABELS[b]}  m=("
-                   + ",".join(f"{v:.2f}" for v in m) + ")")
-        else:
-            lbl = BRANCH_LABELS[b]
-        ax1.plot(t, alphas[b], color=BRANCH_COLORS[b], lw=2, label=lbl)
+        ax1.plot(t, alphas[b], color=BRANCH_COLORS[b], lw=2,
+                 label=BRANCH_LABELS[b])
     if use_log:
         ax1.set_yscale("log")
-    draw_boundaries(ax1)
-    for xb, w in boundary_pairs:
-        ax1.text(xb - 0.8, amax * (0.55 if not use_log else 0.45),
-                 f"last-{w}", color=MUTED, fontsize=8.5, ha="right",
-                 rotation=90, va="top")
     ax1.set_ylabel(r"$\alpha_t$" + ("  (log)" if use_log else ""))
     ax1.set_title(r"(a) Positional weights $\alpha_t$", fontsize=11.5, loc="left", pad=6)
     ax1.legend(loc="upper left", frameon=False, fontsize=9, ncols=2)
@@ -283,7 +255,6 @@ def main():
     for b in branch_names:
         ax2.plot(t, rep_G[b], color=BRANCH_COLORS[b], lw=2)
     ax2.axhline(0, color="#d9d9d9", lw=1)
-    draw_boundaries(ax2)
     g_lo = min(float(rep_G[b].min()) for b in branch_names)
     g_hi = max(float(rep_G[b].max()) for b in branch_names)
     ends = dodge([(b, float(rep_G[b][-1])) for b in branch_names],
@@ -304,7 +275,6 @@ def main():
     for b in branch_names:
         ax3.plot(t, rep_R[b], color=INK, lw=1.1, ls=(0, (4, 3)))
     ax3.axhline(0, color="#d9d9d9", lw=1)
-    draw_boundaries(ax3)
     h_lo = min(float(rep_H[b].min()) for b in branch_names)
     h_hi = max(float(rep_H[b].max()) for b in branch_names)
     ends = dodge([(b, float(rep_H[b][-1])) for b in branch_names],
@@ -348,6 +318,7 @@ def main():
                  fontsize=30, color="#B3261E", alpha=0.35,
                  ha="center", va="center", rotation=20, fontweight="bold")
 
+    os.makedirs(args.out_dir, exist_ok=True)
     base = os.path.join(args.out_dir,
                         f"factorization_{args.task}_seed{args.seed}")
     fig.savefig(base + ".png", dpi=300)
@@ -372,8 +343,6 @@ def main():
         "seed": args.seed, "demo": bool(args.demo),
         "checkpoint": args.ckpt, "checkpoint_sha256": checkpoint_sha,
         "pool_kind": pool_kind,
-        "mixtures": mixtures,
-        "staircase_boundaries_1based": boundaries,
         "law": "HiResCAM(t) = T * alpha_t * GradCAM(t)",
         "cohort_rule": "top-confidence correct alerts (same as Axis A)",
         "cohort_size": int(len(sel)), "n_verify": int(n_verify),

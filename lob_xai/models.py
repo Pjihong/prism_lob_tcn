@@ -1,9 +1,8 @@
-"""Branch classifiers with temporal encoders and configurable readouts.
+"""Branch classifiers with temporal encoders and positional readout.
 
-The manuscript model uses four semantic TCN branches, input-independent
-positional readout and a shared classification head. GAP remains the constructor
-default for compatibility. Attention, max, avg_last and multi_scale support
-historical experiments and controlled comparisons.
+The model uses four semantic TCN branches, input-independent positional
+readout and a shared classification head. Positional is the only supported
+temporal readout.
 Inputs: tensors shaped (batch, time, features).
 Outputs: class logits shaped (batch, n_classes).
 Scope: branch identity is preserved before the head; the head can mix branches.
@@ -137,8 +136,8 @@ class TCNBranch(nn.Module):
 
     Each block has two causal convolutions. With the paper configuration
     ``channels=(32,32,64)``, ``k=3``, and dilations ``1,2,4``, a final
-    timestep has receptive field ``1 + 2*(k-1)*(1+2+4) = 29``. Global
-    average pooling still lets the classifier aggregate representations from
+    timestep has receptive field ``1 + 2*(k-1)*(1+2+4) = 29``. Positional
+    readout lets the classifier aggregate representations from
     every position in the 100-step window; it does not make any one temporal
     representation see all 100 steps.
     """
@@ -170,109 +169,14 @@ class TCNBranch(nn.Module):
 
 
 # ───────────────────────────────────────────────────────────────────
-# Pool strategies
+# Positional readout
 # ───────────────────────────────────────────────────────────────────
-
-
-class AttentionPool1D(nn.Module):
-    """Soft attention pool over time (LEARNED weights — can collapse)."""
-
-    def __init__(self, in_channels: int):
-        super().__init__()
-        self.out_channels = int(in_channels)
-        self.score = nn.Conv1d(in_channels, 1, kernel_size=1)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        s = self.score(x)
-        a = F.softmax(s, dim=-1)
-        return (x * a).sum(dim=-1)
-
-
-class AvgPool1D(nn.Module):
-    """Global average pool — every timestep contributes equally (FIXED 1/T)."""
-
-    def __init__(self, in_channels: int):
-        super().__init__()
-        self.out_channels = int(in_channels)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return x.mean(dim=-1)
-
-
-class MaxPool1D(nn.Module):
-    """Global max pool — picks the single most-activated timestep per channel."""
-
-    def __init__(self, in_channels: int):
-        super().__init__()
-        self.out_channels = int(in_channels)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return x.max(dim=-1).values
-
-
-class AvgLastPool1D(nn.Module):
-    """Fixed dual readout: concatenate the temporal mean and final state.
-
-    The mean retains the paper model's distributed evidence path, while the
-    last state gives the classifier direct access to the representation aligned
-    with the future-event label.  No learned temporal weights are introduced.
-    """
-
-    def __init__(self, in_channels: int):
-        super().__init__()
-        self.out_channels = 2 * int(in_channels)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return torch.cat((x.mean(dim=-1), x[..., -1]), dim=1)
-
-
-class MultiScaleTailPool1D(nn.Module):
-    """Convex mixture of fixed tail averages.
-
-    The default windows ``(8, 32, 100)`` expose short, medium and full-window
-    evidence without making the weights input-dependent.  Only the mixture
-    logits are learned.  Uniform-logit initialization gives every scale equal
-    prior mass and adds exactly ``len(windows)`` parameters per branch.
-    """
-
-    def __init__(self, in_channels: int,
-                 windows: Sequence[int] = (8, 32, 100)):
-        super().__init__()
-        parsed = tuple(int(w) for w in windows)
-        if not parsed or any(w <= 0 for w in parsed):
-            raise ValueError("multi-scale windows must be positive")
-        if len(set(parsed)) != len(parsed):
-            raise ValueError("multi-scale windows must be unique")
-        self.out_channels = int(in_channels)
-        self.windows = parsed
-        self.logits = nn.Parameter(torch.zeros(len(parsed)))
-
-    def temporal_weights(self, length: int) -> torch.Tensor:
-        """Return the effective length-``T`` linear pooling weights."""
-        length = int(length)
-        if length <= 0:
-            raise ValueError("temporal length must be positive")
-        mixture = F.softmax(self.logits, dim=0)
-        components = []
-        for window in self.windows:
-            width = min(int(window), length)
-            prefix = mixture.new_zeros(length - width)
-            tail = mixture.new_ones(width) / float(width)
-            components.append(torch.cat((prefix, tail), dim=0))
-        basis = torch.stack(components, dim=0)
-        return (mixture.view(-1, 1) * basis).sum(dim=0)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        weights = self.temporal_weights(x.shape[-1]).to(
-            device=x.device, dtype=x.dtype
-        )
-        return (x * weights.view(1, 1, -1)).sum(dim=-1)
 
 
 class LearnedPositionalPool1D(nn.Module):
     """Input-independent learned softmax weights over temporal positions.
 
-    Zero initialization recovers exact global average pooling at epoch zero.
+    Zero initialization gives every temporal position weight 1/T.
     The weights are parameters of the model, not per-sample attention scores,
     so the readout remains linear in the branch activations.
     """
@@ -305,22 +209,18 @@ class LearnedPositionalPool1D(nn.Module):
 
 
 class BranchLocalPool1D(nn.Module):
-    """Apply one independent temporal pool to each semantic branch."""
+    """Apply an independent positional readout to each semantic branch."""
 
     def __init__(self, kind: str, branch_channels: Sequence[int],
-                 seq_len: int = 100,
-                 windows: Sequence[int] = (8, 32, 100)):
+                 seq_len: int = 100):
         super().__init__()
-        if kind not in {"multi_scale", "positional"}:
-            raise ValueError("branch-local pool must be multi_scale or positional")
-        pools = []
-        for channels in branch_channels:
-            if kind == "multi_scale":
-                pools.append(MultiScaleTailPool1D(channels, windows=windows))
-            else:
-                pools.append(LearnedPositionalPool1D(channels, seq_len=seq_len))
+        if kind != "positional":
+            raise ValueError("only positional readout is supported")
         self.kind = kind
-        self.pools = nn.ModuleList(pools)
+        self.pools = nn.ModuleList([
+            LearnedPositionalPool1D(channels, seq_len=seq_len)
+            for channels in branch_channels
+        ])
         self.out_channels = sum(int(c) for c in branch_channels)
 
     def forward(self, branches: Sequence[torch.Tensor]) -> torch.Tensor:
@@ -331,24 +231,11 @@ class BranchLocalPool1D(nn.Module):
         )
 
 
-def make_pool(kind: str, in_channels: int, *, seq_len: int = 100,
-              windows: Sequence[int] = (8, 32, 100)) -> nn.Module:
-    if kind == "attention":
-        return AttentionPool1D(in_channels)
-    if kind == "avg":
-        return AvgPool1D(in_channels)
-    if kind == "max":
-        return MaxPool1D(in_channels)
-    if kind in {"avg_last", "avg+last"}:
-        return AvgLastPool1D(in_channels)
-    if kind == "multi_scale":
-        return MultiScaleTailPool1D(in_channels, windows=windows)
-    if kind == "positional":
-        return LearnedPositionalPool1D(in_channels, seq_len=seq_len)
-    raise ValueError(
-        f"unknown pool kind: {kind!r}. "
-        "Use 'attention'|'avg'|'max'|'avg_last'|'multi_scale'|'positional'."
-    )
+def make_pool(kind: str, in_channels: int, *, seq_len: int = 100) -> nn.Module:
+    """Construct the supported positional readout for one branch."""
+    if kind != "positional":
+        raise ValueError("only positional readout is supported")
+    return LearnedPositionalPool1D(in_channels, seq_len=seq_len)
 
 
 # ───────────────────────────────────────────────────────────────────
@@ -385,8 +272,7 @@ class LOBBranchModel(nn.Module):
     Generic 4-branch FI-2010 LOB classifier.
 
     backbone : "cnn" | "tcn"
-    pool     : "attention" | "avg" | "max" | "avg_last" |
-               "multi_scale" | "positional"
+    pool     : "positional"
 
     Input  : (B, T, F=40)
     Output : (B, n_classes) logits
@@ -408,7 +294,6 @@ class LOBBranchModel(nn.Module):
         tcn_norm: str = "none",
         interaction_channels: int = 0,
         seq_len: int = 100,
-        pool_windows: Sequence[int] = (8, 32, 100),
     ):
         super().__init__()
         self.n_features = n_features
@@ -419,9 +304,10 @@ class LOBBranchModel(nn.Module):
         self.tcn_norm_kind = tcn_norm
         self.interaction_channels = int(interaction_channels)
         self.seq_len = int(seq_len)
-        self.pool_windows = tuple(int(w) for w in pool_windows)
-        if self.interaction_channels < 0:
-            raise ValueError("interaction_channels must be >= 0")
+        if pool != "positional":
+            raise ValueError("only positional readout is supported")
+        if self.interaction_channels != 0:
+            raise ValueError("positional readout requires interaction_channels=0")
 
         if branch_indices is None:
             branch_indices = dict(
@@ -460,40 +346,13 @@ class LOBBranchModel(nn.Module):
             for name in self.branch_names
         ])
 
-        concat_channels = sum(b.out_channels for b in self.cnns)
-
-        # The semantic TCN encoders remain independent.  This optional 1x1
-        # stream sees their time-aligned outputs and makes cross-branch effects
-        # explicit instead of hiding them inside a monolithic backbone.
-        if self.interaction_channels:
-            self.interaction = nn.Sequential(
-                nn.Conv1d(concat_channels, self.interaction_channels,
-                          kernel_size=1),
-                make_tcn_norm(tcn_norm, self.interaction_channels),
-                nn.GELU(),
-                nn.Dropout(cnn_dropout),
-            )
-        else:
-            self.interaction = None
-
-        self.branch_local_pool = pool in {"multi_scale", "positional"}
-        if self.branch_local_pool:
-            if self.interaction_channels:
-                raise ValueError(
-                    "branch-local pooling forbids an interaction stream before the head"
-                )
-            self.pool = BranchLocalPool1D(
-                pool,
-                [branch.out_channels for branch in self.cnns],
-                seq_len=self.seq_len,
-                windows=self.pool_windows,
-            )
-        else:
-            readout_channels = concat_channels + self.interaction_channels
-            self.pool = make_pool(
-                pool, readout_channels, seq_len=self.seq_len,
-                windows=self.pool_windows,
-            )
+        self.interaction = None
+        self.branch_local_pool = True
+        self.pool = BranchLocalPool1D(
+            pool,
+            [branch.out_channels for branch in self.cnns],
+            seq_len=self.seq_len,
+        )
 
         fc = []
         prev = self.pool.out_channels
@@ -516,15 +375,7 @@ class LOBBranchModel(nn.Module):
             idx = getattr(self, f"_idx_{name}")
             xb = x_bft.index_select(dim=1, index=idx)
             outs.append(cnn(xb))
-        if self.branch_local_pool:
-            z = self.pool(outs)
-            return self.fc(z)
-        h = torch.cat(outs, dim=1)
-        if self.interaction is not None:
-            h_interaction = self.interaction(h)
-            h = torch.cat((h, h_interaction), dim=1)
-        z = self.pool(h)
-        return self.fc(z)
+        return self.fc(self.pool(outs))
 
     def predict_proba(self, x: torch.Tensor) -> torch.Tensor:
         return F.softmax(self.forward(x), dim=-1)

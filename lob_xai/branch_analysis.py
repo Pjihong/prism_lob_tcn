@@ -121,9 +121,9 @@ def discover_branches(model, X_sample, device, n_branches=4, seq_len=None):
             fusion = sorted(hits)[:n_branches]
 
     # temporal module per branch: prefer the branch's OWN final feature when it
-    # already carries the time axis (the canonical pre-GAP last-layer activation,
+    # already carries the time axis (the canonical pre-readout last-layer activation,
     # which is also the fusion point). Only descend if the fusion output is NOT
-    # temporal (e.g. a post-GAP vector). This avoids accidentally grabbing an
+    # temporal (e.g. a post-readout vector). This avoids accidentally grabbing an
     # early block's projection just because its module name is longer.
     temporal = []
     for fm in fusion:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aggregate validation-only branch architecture experiments.
+"""Aggregate validation-only positional-readout experiments.
 
 The collector groups runs by the actual saved architecture/loss configuration,
 not by directory naming.  By default it rejects runs that already contain test
@@ -15,12 +15,15 @@ from statistics import mean, stdev
 
 
 def _signature(cfg: dict) -> tuple:
+    if cfg.get("pool") != "positional":
+        raise ValueError("only explicitly identified positional results are supported")
+    if int(cfg.get("interaction_channels", 0)) != 0:
+        raise ValueError("positional readout requires interaction_channels=0")
     return (
         tuple(cfg.get("cnn_channels", (32, 32, 64))),
         int(cfg.get("cnn_kernel", 3)),
         int(cfg.get("tcn_dilation_base", 2)),
-        cfg.get("pool", "avg"),
-        tuple(cfg.get("pool_windows", (8, 32, 100))),
+        cfg["pool"],
         cfg.get("tcn_norm", "none"),
         cfg.get("input_norm", "identity"),
         int(cfg.get("interaction_channels", 0)),
@@ -37,14 +40,13 @@ def _signature(cfg: dict) -> tuple:
 
 
 def _label(sig: tuple) -> str:
-    (channels, kernel, dilation, pool, pool_windows, tcn_norm, input_norm,
+    (channels, kernel, dilation, pool, tcn_norm, input_norm,
      interaction, loss, gamma, weight_power, optimizer, scheduler, lr,
      weight_decay, early_metric, hidden) = sig
     ch = "-".join(str(x) for x in channels)
     fc = "-".join(str(x) for x in hidden)
-    pw = "-".join(str(x) for x in pool_windows)
     return (
-        f"ch{ch}_k{kernel}_d{dilation}_pool-{pool}_pw{pw}_tn-{tcn_norm}_"
+        f"ch{ch}_k{kernel}_d{dilation}_pool-{pool}_tn-{tcn_norm}_"
         f"in-{input_norm}_mix{interaction}_{loss}-g{gamma:g}-w{weight_power:g}_"
         f"{optimizer}-{scheduler}-lr{lr:g}-wd{weight_decay:g}_"
         f"sel-{early_metric}_fc{fc}"
@@ -62,6 +64,7 @@ def main() -> None:
 
     rows = []
     rejected = []
+    unsupported = []
     for path in sorted(Path(args.results_dir).glob("*/summary.json")):
         if args.name_contains and args.name_contains not in path.parent.name:
             continue
@@ -71,6 +74,11 @@ def main() -> None:
             continue
         val = doc.get("val") or {}
         cfg = doc.get("config") or {}
+        try:
+            signature = _signature(cfg)
+        except ValueError:
+            unsupported.append(str(path))
+            continue
         required = ("f1", "mcc", "pr_auc_macro_nonflat")
         if any(k not in val for k in required):
             continue
@@ -85,7 +93,7 @@ def main() -> None:
             task=doc.get("task"),
             k=int(cfg.get("k", -1)),
             seed=int(cfg.get("seed", -1)),
-            signature=_signature(cfg),
+            signature=signature,
             n_params=int(doc.get("n_params", -1)),
             val_f1=float(val["f1"]),
             val_mcc=float(val["mcc"]),
@@ -95,6 +103,8 @@ def main() -> None:
 
     if rejected:
         print(f"[sealed] rejected {len(rejected)} run(s) containing test metrics")
+    if unsupported:
+        print(f"[model] skipped {len(unsupported)} run(s) without a supported positional configuration")
     if not rows:
         raise SystemExit("no matching validation-only summary.json files found")
 
